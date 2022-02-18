@@ -1,4 +1,4 @@
-# advisor001-fe
+# advisor002-fe
 
 The Program Course Advisor (Advisor) is an app designed to facilitate easier course planning for students and advisors of UW-Stout. The app is being developed in the CS458 capstone course.
 
