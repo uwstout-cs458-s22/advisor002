@@ -43,10 +43,13 @@
                     <td class="align-middle"><%= data[i].email%></td>
                     <td class="align-middle"><%= data[i].role%></td>
                     <td class="align-middle">
-                      <div class="modal-body-hidden" hidden="true">
-                        Testing Testing
+
+                      <div class="modal-body" id="modalContent" hidden="true">
+                        Email: <%= data[i].email%><br>
+                        Role: <%= data[i].role%> <br>
+                        Major: Computer Science <br>
+                        Graduation Year: 2022 <br>
                       </div>
-                        <a class="btn btn-secondary edit" data-toggle="modal" data-target="#detailModal" onclick="attachModal()">Edit</a>
 
                           <!-- Modal -->
                           <div class="modal fade" id="detailModal" tabindex="-1">
@@ -58,11 +61,7 @@
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
-                                <div class="modal-body">
-                                  Email: <%= data[i].email%><br>
-                                  Role: <%= data[i].role%> <br>
-                                  Major: Computer Science <br>
-                                  Graduation Year: 2022 <br>
+                                <div class="modal-body" id="modalBody">
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -71,6 +70,7 @@
                               </div>
                             </div>
                           </div>   
+                          <a class="btn btn-secondary edit" data-toggle="modal" data-target="#detailModal" onclick="updateModal()">Edit</a>
 
                         <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../users/delete/<%=data[i].id%>">Delete</a>                       
                     </td>
@@ -86,10 +86,10 @@
         <% } %>
         
         <script>
-          function getUserID() {
-            document.getElementById("modal-body").append(modal-body-hidden)
-            var bVal = document.getElementById(this.value)
-            console.log(bVal)
+          function updateModal() {
+            var myDiv1 = document.getElementById("modalContent")
+            var myDiv2 = document.getElementById("modalBody")
+            myDiv2.innerHTML = myDiv1.innerHTML
           }
         </script>
 
