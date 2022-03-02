@@ -1,0 +1,67 @@
+<% currentCourses = [{
+  number: "MATH 158",
+  name: "Calculus 3"
+},{
+  number: "CS 404",
+  name: "Adv Web and Internet"
+},{
+  number: "MSCS 234",
+  name: "Machine Learning"
+}]
+completedCourses = [{
+  number: "MATH 157",
+  name: "Calculus 2"
+},{
+  number: "CS 380",
+  name: "Web and Internet"
+},{
+  number: "ENGL 102",
+  name: "English 2"
+}]
+%> 
+<div class="courses-container card">
+  <div class="card-header">
+      <button onClick="showCurrent()" id="completeBtn" > Completed Courses
+      <button onclick="showCompleted()" id="currBtn"> Current Courses
+  </div>
+  
+  <script>
+
+  </script>
+  <div class="courses-holder card-body" >
+    <table id="completedTable" class="table table-striped" >
+      <tr>
+        <th>Course Number</th>
+        <th>Course Name</th>
+      </tr>
+      <% 
+      
+      for(var i = 0; i < completedCourses.length; i++) { %> 
+      <tr>
+        <td><%-completedCourses[i].number%></td>
+        <td><%-completedCourses[i].name %></td>
+      </tr>
+    <% } %> 
+
+    </table>
+    <table id="currentTable" class="table table-striped">
+      <tr>
+        <th>Course Number</th>
+        <th>Course Name</th>
+      </tr>
+      <% 
+      
+      for(var i = 0; i < currentCourses.length; i++) { %> 
+      <tr>
+        <td><%-currentCourses[i].number%></td>
+        <td><%-currentCourses[i].name %></td>
+      </tr>
+    <% } %> 
+
+    </table>
+
+    <div class="course-item-holder">
+
+    </div>
+  </div>
+</div>

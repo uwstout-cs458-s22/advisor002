@@ -35,3 +35,23 @@ function idleLogout() {
 }
 idleLogout();
 </script>
+<script>
+  $(document).ready(function() {
+
+    $( "#currBtn" ).css('background', '#007bff');
+    $('#currentTable').hide();
+    showCurrent = () => {
+      $('#currBtn').css('background', '#f8f9fa')
+      $( "#completeBtn" ).css('background', '#007bff');
+      $('#completedTable').hide();
+      $('#currentTable').show();
+    }
+    showCompleted = () => {
+      $('#currBtn').css('background', '#007bff')
+      $( "#completeBtn" ).css('background', '#f8f9fa');
+      $('#completedTable').show();
+      $('#currentTable').hide();
+    }
+    
+  })
+</script>
