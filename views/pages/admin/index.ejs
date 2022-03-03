@@ -43,16 +43,16 @@
                     <td class="align-middle"><%= data[i].email%></td>
                     <td class="align-middle"><%= data[i].role%></td>
                     <td class="align-middle">
-
-                      <div class="modal-body" id="modalContent" hidden="true">
+                      <!-- could make different divs for each -->
+                      <div class="modal-body" id="modalContent">
                         Email: <%= data[i].email%><br>
                         Role: <%= data[i].role%> <br>
                         Major: Computer Science <br>
                         Graduation Year: 2022 <br>
                       </div>
 
-                          <!-- Modal -->
-                          <div class="modal fade" id="detailModal" tabindex="-1">
+                          <!-- Modal making one modal only, -->
+                          <div class="modal fade" id="detailModal<%i%>"  tabindex="-1">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -61,7 +61,11 @@
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
-                                <div class="modal-body" id="modalBody">
+                                <div class="modal-body" id="modalContent<%i%> ">
+                                  Email: <%= data[i].email%><br>
+                                  Role: <%= data[i].role%> <br>
+                                  Major: Computer Science <br>
+                                  Graduation Year: 2022 <br>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -70,7 +74,7 @@
                               </div>
                             </div>
                           </div>   
-                          <a class="btn btn-secondary edit" data-toggle="modal" data-target="#detailModal" onclick="updateModal()">Edit</a>
+                          <a class="btn btn-secondary edit" data-toggle="modal" data-target="#detailModal<%i%>" id="editButton<%i%>" >Edit</a>
 
                         <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../users/delete/<%=data[i].id%>">Delete</a>                       
                     </td>
@@ -86,8 +90,10 @@
         <% } %>
         
         <script>
-          function updateModal() {
+          function updateModal(i) {
+            // account for i/number
             var myDiv1 = document.getElementById("modalContent")
+            console.log("modalContent")
             var myDiv2 = document.getElementById("modalBody")
             myDiv2.innerHTML = myDiv1.innerHTML
           }
