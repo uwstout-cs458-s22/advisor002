@@ -102,6 +102,10 @@ describe('Admin Route Tests', () => {
         'master@uwstout.edu'
       );
 
+      // check the search bar
+      const searchBar = doc.getElementById('searchBar');
+      expect(doc.body.contains(searchBar)).toBe(true);
+
       // count the rows
       const rows = doc.querySelectorAll('.card-body>table>tbody>tr');
       expect(rows).toHaveLength(data.length);
