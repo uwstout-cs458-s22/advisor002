@@ -47,3 +47,63 @@
     });
   });
 </script>
+
+<script>
+  courseCount = 1;
+  // Add courses to a section in the program plan modal
+  function addCourse(divName) {
+    courseCount++;
+    const newDiv = document.createElement('div');
+    const newDivId = 'course' + courseCount;
+    newDiv.setAttribute('id', newDivId);
+    newDiv.innerHTML = `<input type="text" class="form-control course-input" placeholder="Enter course"/>
+      <a href="#" onclick="deleteElement('${newDivId}');">Delete</a>`;
+    document.getElementById(divName).appendChild(newDiv);
+  }
+</script>
+
+<script>
+  // Modal starts with one section so count is 1
+  sectionCount = 1;
+  // Add more sections
+  function addSection(divName) {
+    sectionCount++;
+    const newDiv = document.createElement('div');
+    const sectionName = 'section-' + sectionCount;
+    const groupName = 'group-' + sectionCount;
+    newDiv.setAttribute('id', groupName);
+
+    newDiv.innerHTML = `
+    <hr />
+      <label for="${sectionName}">Section Name | </label>
+      <a href="#" onclick="deleteElement('${groupName}');">Delete</a>
+      <input
+        type="text"
+        class="form-control"
+        id="${sectionName}"
+        placeholder="Enter section name"
+      />
+      <div id="${sectionName}-courses">
+        <input
+          type="text"
+          class="form-control course-input"
+          placeholder="Enter course"
+        />
+      </div>
+      <input
+        type="button"
+        class="btn btn-secondary ml-4"
+        value="Add course"
+        onClick="addCourse('${sectionName}-courses');"
+      />
+    </div>`;
+    document.getElementById(divName).appendChild(newDiv);
+    // updateSectionOnclick(`group-${sectionCount + 1}`);
+  }
+</script>
+
+<script>
+  function deleteElement(elementId) {
+    document.getElementById(elementId).remove();
+  }
+</script>

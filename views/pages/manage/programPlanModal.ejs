@@ -1,0 +1,50 @@
+<!-- TODO: 
+  Refresh form on submit
+  Refresh restart/clear form button
+  Form errors on blank inputs
+-->
+<!-- Modal -->
+<div id="programPlanModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create Program Plan</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div id="form" class="form-group">
+            <label for="section-1">Section Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="section-1"
+              placeholder="Enter section name"
+            />
+            <div id="section-1-courses">
+              <input type="text" class="form-control course-input" placeholder="Enter course" />
+            </div>
+            <input
+              type="button"
+              class="btn btn-secondary ml-4"
+              value="Add course"
+              onClick="addCourse('section-1-courses');"
+            />
+          </div>
+          <input
+            id="add-section"
+            type="button"
+            class="btn btn-secondary"
+            value="Add section"
+            onClick="addSection('form');"
+          />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
