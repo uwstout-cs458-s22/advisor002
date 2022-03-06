@@ -12,6 +12,7 @@ module.exports = function () {
       group: 'profile',
       template: 'index',
       email: req.session.user.email,
+      userId: req.session.user.userId,
     });
     log.info(`${req.method} ${req.originalUrl} success: rendering profile page`);
   });
