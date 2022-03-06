@@ -13,6 +13,7 @@ module.exports = function () {
       template: 'index',
       email: req.session.user.email,
       userId: req.session.user.userId,
+      role: req.session.user.role,
     });
     log.info(`${req.method} ${req.originalUrl} success: rendering profile page`);
   });
