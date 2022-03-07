@@ -17,6 +17,8 @@
   </div>
   <div class="card-body">
     <% if(data.length) { %>
+
+      <input class="form-control" id="searchBar" type="text" placeholder="Search.." />
     <table class="table">
       <thead>
         <tr>
@@ -27,7 +29,8 @@
           <th width="250px">Action</th>
         </tr>
       </thead>
-      <tbody>
+
+      <tbody id="userTable">
         <% for(var i = 0; i< data.length; i++) { %>
         <tr>
           <th scope="row" class="align-middle"><%= data[i].id %></th>
