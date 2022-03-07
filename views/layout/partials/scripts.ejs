@@ -36,8 +36,8 @@
   idleLogout();
 </script>
 
+<!-- Script for admin page search bar -->
 <script>
-  // Dynamic Search bar
   $(document).ready(function () {
     $('#searchBar').on('keyup', function () {
       var value = $(this).val().toLowerCase();
@@ -48,13 +48,13 @@
   });
 </script>
 
+<!-- Script for adding courses to program plan -->
 <script>
   courseCount = 1;
-  // Add courses to a section in the program plan modal
   function addCourse(divName) {
     courseCount++;
     const newDiv = document.createElement('div');
-    const newDivId = 'course' + courseCount;
+    const newDivId = 'course-' + courseCount;
     newDiv.setAttribute('id', newDivId);
     newDiv.innerHTML = `<input type="text" class="form-control course-input" placeholder="Enter course"/>
       <a href="#" onclick="deleteElement('${newDivId}');">Delete</a>`;
@@ -62,10 +62,9 @@
   }
 </script>
 
+<!-- Script for adding sections to program plan -->
 <script>
-  // Modal starts with one section so count is 1
   sectionCount = 1;
-  // Add more sections
   function addSection(divName) {
     sectionCount++;
     const newDiv = document.createElement('div');
@@ -98,12 +97,20 @@
       />
     </div>`;
     document.getElementById(divName).appendChild(newDiv);
-    // updateSectionOnclick(`group-${sectionCount + 1}`);
   }
 </script>
 
 <script>
   function deleteElement(elementId) {
     document.getElementById(elementId).remove();
+  }
+</script>
+
+<script>
+  function resetPlan() {
+    if (window.confirm('Are you sure?')) {
+      // Reloading will reset modal. Not ideal, but way easier than searching dom for elements and deleting them
+      location.reload();
+    }
   }
 </script>

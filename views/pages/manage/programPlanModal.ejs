@@ -1,12 +1,5 @@
-<!-- TODO: 
-  Refresh form on submit
-  Refresh restart/clear form button
-  Form errors on blank inputs
--->
-<!-- Modal -->
-<div id="programPlanModal" class="modal fade" role="dialog">
+<div id="program-plan-modal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Create Program Plan</h4>
@@ -42,7 +35,9 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+        <!-- TODO: Submit functionality - format & send data once there is backend functionality -->
+        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-danger" onClick="resetPlan();">Reset</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
