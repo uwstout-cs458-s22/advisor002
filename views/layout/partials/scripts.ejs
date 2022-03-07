@@ -36,18 +36,6 @@
   idleLogout();
 </script>
 
-<!-- Script for admin page search bar -->
-<script>
-  $(document).ready(function () {
-    $('#searchBar').on('keyup', function () {
-      var value = $(this).val().toLowerCase();
-      $('#userTable tr').filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-      });
-    });
-  });
-</script>
-
 <!-- Script for adding courses to program plan -->
 <script>
   courseCount = 1;
