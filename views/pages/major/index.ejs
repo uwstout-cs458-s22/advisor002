@@ -1,10 +1,22 @@
-<!doctype html>
-
-<div>Course Selection</div>
-<form>
-    <label class="align-middle">Choose which major you would like to view</label>
-    <select name="majors" id="majors">
-        <option value="Computer Science">Computer Science</option>
-        <option value="Business Admin">Business Admin</option>
-    </select>
-</form>
+<div class="card">
+    <div class="text-center">Major Selection</div>
+    <div class="text-center" id="myform" name="myform"
+        <label class="align-middle text-center">Choose which major you would like to view:</label>
+        <select name="majors" id="majors">
+            <option value=""></option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Business Admin">Business Admin</option>
+        </select>
+        <button type="right-align" id="changePage">Submit</button>
+    </div>
+    <div class="card text-center" id="major">
+        You have not selected a major yet.
+    </div>
+    <div id="majorChoice"></div>
+    <!-- <script type="text/javascript">
+        document.getElementByID('changePage').onclick = function() {
+            
+        }
+    </script> -->
+    <script src="./majorChoice.js" type="module"></script>
+</div>
