@@ -35,23 +35,28 @@ function idleLogout() {
 }
 idleLogout();
 </script>
+
+<!--Courses scripts-->
 <script>
   $(document).ready(function() {
-
+    // 007bff blue
+    // f8f9fa white
     $( "#currBtn" ).css('background', '#007bff');
-    $('#currentTable').hide();
+    $('#completedTable').hide();
     showCurrent = () => {
-      $('#currBtn').css('background', '#f8f9fa')
-      $( "#completeBtn" ).css('background', '#007bff');
+      $('#currBtn').css('background', '#007bff')
+      $("#completeBtn" ).css('background', '#f8f9fa');
       $('#completedTable').hide();
       $('#currentTable').show();
     }
     showCompleted = () => {
-      $('#currBtn').css('background', '#007bff')
-      $( "#completeBtn" ).css('background', '#f8f9fa');
+      $('#currBtn').css('background', '#f8f9fa')
+      $("#completeBtn" ).css('background', '#007bff');
       $('#completedTable').show();
       $('#currentTable').hide();
     }
-    
+    openMore = (more) => {
+      
+    }
   })
 </script>
