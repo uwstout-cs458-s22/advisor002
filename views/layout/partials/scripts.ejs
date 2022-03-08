@@ -102,3 +102,15 @@
     }
   }
 </script>
+
+<!-- User table search bar -->
+<script>
+  $(document).ready(function () {
+    $('#searchBar').on('keyup', function () {
+      var value = $(this).val().toLowerCase();
+      $('#userTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+</script>
