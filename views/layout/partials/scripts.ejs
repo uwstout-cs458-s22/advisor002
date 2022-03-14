@@ -35,3 +35,15 @@ function idleLogout() {
 }
 idleLogout();
 </script>
+<script>
+  function compareMajor(divName, courseInfo){
+    if(courseInfo!=""){
+      const newDiv = document.createElement('div');
+      const newDivId = 'majorChoice'
+      newDiv.setAttribute('id', newDivId)
+      newDiv.setAttribute('class',"text-center")
+      newDiv.innerHTML = `<input type="text" class="form-control course-input" placeholder="You are getting information for the ${courseInfo} major"/>`
+      document.getElementById(divName).appendChild(newDiv);
+    }
+  }
+</script>

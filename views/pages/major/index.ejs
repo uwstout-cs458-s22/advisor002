@@ -1,22 +1,24 @@
 <div class="card">
-    <div class="text-center">Major Selection</div>
-    <div class="text-center" id="myform" name="myform"
-        <label class="align-middle text-center">Choose which major you would like to view:</label>
-        <select name="majors" id="majors">
-            <option value=""></option>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Business Admin">Business Admin</option>
-        </select>
-        <button type="right-align" id="changePage">Submit</button>
+    <div class="text-center bold" id="pagegrid">Major Selection
+        <form class="text-center" action="./major" id="form" name="myform"
+            <label for="courseCompare" class="align-middle text-center">Please Select the Major you would like to compare</label>
+            <select name="majors" id="majors">
+                <option value=""></option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Business Admin">Business Admin</option>
+            </select>
+            <input type="button" class="btn btn-primary" value="Compare" value="Add Course" onClick="update()"></input>
+        </form>
     </div>
     <div class="card text-center" id="major">
         You have not selected a major yet.
     </div>
-    <div id="majorChoice"></div>
-    <!-- <script type="text/javascript">
-        document.getElementByID('changePage').onclick = function() {
-            
-        }
-    </script> -->
-    <script src="./majorChoice.js" type="module"></script>
+    <div id="majorCompare" class="text-center"></div>
 </div>
+<script type="text/javascript">
+    function update() {
+        var select = document.getElementById('majors');
+        var value = select.options[select.selectedIndex].text;
+        compareMajor('majorCompare',value)
+    }
+</script>
