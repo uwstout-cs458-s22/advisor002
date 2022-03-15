@@ -1,7 +1,10 @@
-<<<<<<< Updated upstream
+<% if (messages.success) { %>
+<div class="alert alert-success" role="alert"><%- messages.success %></div>
+<% } %>
 
-=======
->>>>>>> Stashed changes
+<% if (messages.error) { %>
+<div class="alert alert-danger" role="alert"><%- messages.error %></div>
+<% } %>
 <div class="card" id="body">
     <div class="text-center bold" id="pagegrid">Major Selection
         <form class="text-center" action="./major" id="form" name="myform"
@@ -18,15 +21,8 @@
 <div class="container">
     <div class="row">
         <div class="text-center card align-items-center justify-content-center" style="height: 18rem; width: 1104rem" id="major">
-<<<<<<< Updated upstream
-        </div>
-        <div id="majorCompare" style="height: 18rem" class="text-center card justify-content-center"></div>
-    </div>
-</div>
-=======
             
         </div>
         <div id="majorCompare" style="height: 18rem" class="text-center card justify-content-center"></div>
     </div>
 </div>
->>>>>>> Stashed changes
