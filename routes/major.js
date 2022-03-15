@@ -12,6 +12,7 @@ module.exports = function () {
         group: 'major',
         template: 'index',
         email: req.session.user.email,
+        major: req.session.user.major,
       });
       log.info(
         `${req.method} ${req.originalUrl} success: rendering major page`
