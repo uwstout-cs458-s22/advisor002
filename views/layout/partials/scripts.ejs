@@ -35,31 +35,37 @@ function idleLogout() {
 }
 idleLogout();
 </script>
-<script>
+<script type="text/javascript">
+  let studentMajor = ''
+  const oldDiv = document.getElementById('major')
+  const newDiv = document.getElementById('majorCompare')
+  const newButton = document.createElement('input');
   function compareMajor(divName, courseInfo){
-    
     if(courseInfo!=""){
-      oldDIv = document.getElementById('major')
-      const newDiv = document.getElementById('majorCompare')
-      oldDIv.setAttribute('class','card text-left col-sm justify-content-center')
-      // const newDiv = document.createElement('div');
-      // const newDivId = 'majorChoice'
+      oldDiv.setAttribute('class','card text-left col-sm justify-content-center')
       
-      // newDiv.innerHTML = `<div placeholder="You are getting information for the ${courseInfo} major"/>`
+      newButton.setAttribute('class',"align-self-end btn btn-primary")
+      newButton.setAttribute('value',"Change Majors")
+      newButton.setAttribute('id','fixedbutton')
+      newButton.setAttribute('onClick','rebuildPage()')
+      major = courseInfo
       newDiv.setAttribute('class','card text-left col-sm justify-content-center')
       newDiv.innerHTML = `You are getting information for the ${courseInfo} major`
-      //newDiv.setAttribute('placeholder', `You are getting information for the ${courseInfo} major`)
-
-      // const body = document.getElementById('body')
+      newDiv.appendChild(newButton)
     }
   }
-</script>
-
-<script type="text/javascript">
-
   function update() {
-      var select = document.getElementById('majors');
-      var value = select.options[select.selectedIndex].text;
-      compareMajor('majorCompare',value)
+    var select = document.getElementById('majors');
+    var value = select.options[select.selectedIndex].text;
+    compareMajor('majorCompare',value)
+  }
+  function rebuildPage(){
+    oldDiv.innerHTML = `You are getting information for the ${major} major`
+    //oldDiv.removeAttribute('col-sm')
+    oldDiv.class = 'align-items-center justify-content-center'
+    newDiv.removeAttribute('class')
+    newDiv.removeChild(newButton)
+    newDiv.innerHTML=null
+    // document.removeChild(newDiv)
   }
 </script>
