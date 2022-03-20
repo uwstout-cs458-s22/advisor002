@@ -47,3 +47,37 @@
     });
   });
 </script>
+<script type="text/javascript">
+  let studentMajor = ''
+  const oldDiv = document.getElementById('major')
+  const newDiv = document.getElementById('majorCompare')
+  const newButton = document.createElement('input');
+  function compareMajor(divName, courseInfo){
+    if(courseInfo!=""){
+      oldDiv.setAttribute('class','card text-left col-sm justify-content-center')
+      
+      newButton.setAttribute('class',"align-self-end btn btn-primary")
+      newButton.setAttribute('value',"Change Majors")
+      newButton.setAttribute('id','fixedbutton')
+      newButton.setAttribute('onClick','rebuildPage()')
+      major = courseInfo
+      newDiv.setAttribute('class','card text-left col-sm justify-content-center')
+      newDiv.innerHTML = `You are getting information for the ${courseInfo} major`
+      newDiv.appendChild(newButton)
+    }
+  }
+  function update() {
+    var select = document.getElementById('majors');
+    var value = select.options[select.selectedIndex].text;
+    compareMajor('majorCompare',value)
+  }
+  function rebuildPage(){
+    oldDiv.innerHTML = `You are getting information for the ${major} major`
+    //oldDiv.removeAttribute('col-sm')
+    oldDiv.class = 'align-items-center justify-content-center'
+    newDiv.removeAttribute('class')
+    newDiv.removeChild(newButton)
+    newDiv.innerHTML=null
+    // document.removeChild(newDiv)
+  }
+</script>
