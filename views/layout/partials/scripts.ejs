@@ -15,25 +15,37 @@
 ></script>
 
 <script>
-function idleLogout() {
+  function idleLogout() {
     var t;
     window.onload = resetTimer;
     window.onmousemove = resetTimer;
-    window.onmousedown = resetTimer;  // catches touchscreen presses as well      
-    window.ontouchstart = resetTimer; // catches touchscreen swipes as well      
-    window.ontouchmove = resetTimer;  // required by some devices 
-    window.onclick = resetTimer;      // catches touchpad clicks as well
-    window.onkeydown = resetTimer;   
-    window.addEventListener('scroll', resetTimer, true); 
+    window.onmousedown = resetTimer; // catches touchscreen presses as well
+    window.ontouchstart = resetTimer; // catches touchscreen swipes as well
+    window.ontouchmove = resetTimer; // required by some devices
+    window.onclick = resetTimer; // catches touchpad clicks as well
+    window.onkeydown = resetTimer;
+    window.addEventListener('scroll', resetTimer, true);
     function redirectToLogout() {
       window.location.href = '/logout';
     }
     function resetTimer() {
-        clearTimeout(t);
-        t = setTimeout(redirectToLogout, 10* 60 * 1000);  // 10 minutes of inactivity
+      clearTimeout(t);
+      t = setTimeout(redirectToLogout, 10 * 60 * 1000); // 10 minutes of inactivity
     }
-}
-idleLogout();
+  }
+  idleLogout();
+</script>
+
+<script>
+  // Dynamic Search bar
+  $(document).ready(function () {
+    $('#searchBar').on('keyup', function () {
+      var value = $(this).val().toLowerCase();
+      $('#userTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
 </script>
 
 <!--Courses scripts-->

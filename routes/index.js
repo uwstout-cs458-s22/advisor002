@@ -59,11 +59,14 @@ module.exports = function () {
   const adviseRoutes = require('./advise')();
   const manageRoutes = require('./manage')();
   const adminRoutes = require('./admin')();
+  const profileRoutes = require('./profile')();
   const coursesRoutes = require('./courses')();
+
   router.use('/advise', adviseRoutes);
   router.use('/manage', manageRoutes);
   router.use('/admin', adminRoutes);
-  router.use('/courses', coursesRoutes)
+  router.use('/profile', profileRoutes);
+  router.use('/courses', coursesRoutes);
 
   return router;
 };
