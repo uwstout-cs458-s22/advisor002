@@ -58,8 +58,9 @@ completedCourses = [{
 %>
 <div class="courses-container card">
   <div class="card-header">
-    <button onClick="showCompleted()" id="completeBtn">Completed Courses</button>
-    <button onclick="showCurrent()" id="currBtn">Current Courses</button>
+    <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
+    
+    <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
   </div>
   <script>
 
@@ -78,7 +79,7 @@ completedCourses = [{
         <td><%-completedCourses[i].number%></td>
         <td><%-completedCourses[i].name %></td>
         <td><%-completedCourses[i].credit %></td>
-        <td><button data-toggle="modal" data-target="#<%-completedCourses[i].name%>Modal">More</button></td>
+        <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#<%-completedCourses[i].name%>Modal">More</button></td>
         <div class="modal fade" id="<%-completedCourses[i].name%>Modal" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -116,9 +117,8 @@ completedCourses = [{
         <td><%-currentCourses[i].number%></td>
         <td><%-currentCourses[i].name %></td>
         <td><%-currentCourses[i].credit %></td>
-        <td><button data-toggle="modal" data-target="#<%-currentCourses[i].name%>Modal">More</button></td>
-        <div class="modal fade" id="<%-currentCourses[i].name%>Modal" tabindex="-1" role="dialog"
-          aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#<%-currentCourses[i].name%>Modal">More</button></td>
+        <div class="modal fade" id="<%-currentCourses[i].name%>Modal" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
