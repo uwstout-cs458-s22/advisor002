@@ -36,8 +36,75 @@
   idleLogout();
 </script>
 
+<!-- Script for adding courses to program plan -->
 <script>
-  // Dynamic Search bar
+  courseCount = 1;
+  function addCourse(divName) {
+    courseCount++;
+    const newDiv = document.createElement('div');
+    const newDivId = 'course-' + courseCount;
+    newDiv.setAttribute('id', newDivId);
+    newDiv.innerHTML = `<input type="text" class="form-control course-input" placeholder="Enter course"/>
+      <a href="#" onclick="deleteElement('${newDivId}');">Delete</a>`;
+    document.getElementById(divName).appendChild(newDiv);
+  }
+</script>
+
+<!-- Script for adding sections to program plan -->
+<script>
+  sectionCount = 1;
+  function addSection(divName) {
+    sectionCount++;
+    const newDiv = document.createElement('div');
+    const sectionName = 'section-' + sectionCount;
+    const groupName = 'group-' + sectionCount;
+    newDiv.setAttribute('id', groupName);
+
+    newDiv.innerHTML = `
+    <hr />
+      <label for="${sectionName}">Section Name | </label>
+      <a href="#" onclick="deleteElement('${groupName}');">Delete</a>
+      <input
+        type="text"
+        class="form-control"
+        id="${sectionName}"
+        placeholder="Enter section name"
+      />
+      <div id="${sectionName}-courses">
+        <input
+          type="text"
+          class="form-control course-input"
+          placeholder="Enter course"
+        />
+      </div>
+      <input
+        type="button"
+        class="btn btn-secondary ml-4"
+        value="Add course"
+        onClick="addCourse('${sectionName}-courses');"
+      />
+    </div>`;
+    document.getElementById(divName).appendChild(newDiv);
+  }
+</script>
+
+<script>
+  function deleteElement(elementId) {
+    document.getElementById(elementId).remove();
+  }
+</script>
+
+<script>
+  function resetPlan() {
+    if (window.confirm('Are you sure?')) {
+      // Reloading will reset modal. Not ideal, but way easier than searching dom for elements and deleting them
+      location.reload();
+    }
+  }
+</script>
+
+<!-- User table search bar -->
+<script>
   $(document).ready(function () {
     $('#searchBar').on('keyup', function () {
       var value = $(this).val().toLowerCase();

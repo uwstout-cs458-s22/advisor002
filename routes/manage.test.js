@@ -51,6 +51,10 @@ describe('Manage Route Tests', () => {
       expect(doc.querySelector('.navbar-nav>.navbar-text').innerHTML).toContain(
         'master@uwstout.edu'
       );
+
+      // Check the program plan modal
+      const programPlanModal = doc.getElementById('program-plan-modal');
+      expect(doc.body.contains(programPlanModal)).toBe(true);
     });
   });
 });

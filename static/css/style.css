@@ -68,4 +68,12 @@ body {
 
 .courses-container{
   display: block;
+
+.course-input {
+  margin-left: 1.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  max-width: 33.33%;
+  display: inline-block;
+
 }
