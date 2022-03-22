@@ -7,18 +7,16 @@ module.exports = function () {
   const router = express.Router();
   router.use(bodyParser.json());
   router.get('/', isUserLoaded, async (req, res, next) => {
-      res.render('layout', {
-        pageTitle: 'Major',
-        group: 'major',
-        template: 'index',
-        email: req.session.user.email,
-        major: '',
-      });
-      log.info(
-        `${req.method} ${req.originalUrl} success: rendering major page`
-      );
-    }
-  );
+    res.render('layout', {
+      pageTitle: 'Major',
+      group: 'major',
+      template: 'index',
+      email: req.session.user.email,
+      major: '',
+      role: req.session.user.role,
+    });
+    log.info(`${req.method} ${req.originalUrl} success: rendering major page`);
+  });
 
   return router;
 };

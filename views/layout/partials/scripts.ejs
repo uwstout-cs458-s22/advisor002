@@ -114,6 +114,21 @@
     });
   });
 </script>
+
+<!--Courses scripts-->
+<script>
+  $(document).ready(function() {
+    $('#completedTable').hide();
+    showCurrent = () => {
+      $('#completedTable').hide();
+      $('#currentTable').show();
+    }
+    showCompleted = () => {
+      $('#completedTable').show();
+      $('#currentTable').hide();
+    }
+  })
+</script>
 <script type="text/javascript">
   let studentMajor = ''
   const oldDiv = document.getElementById('major')
