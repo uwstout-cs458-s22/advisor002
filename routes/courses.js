@@ -14,6 +14,7 @@ module.exports = function () {
       group: 'courses',
       template: 'index',
       email: req.session.user.email,
+      role: req.session.user.role,
     });
     log.info(`${req.method} ${req.originalUrl} success: rendering course page`);
   });
