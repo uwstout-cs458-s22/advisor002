@@ -1,15 +1,20 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-throw-literal */
+/* eslint-disable no-unused-expressions */
 const log = require('loglevel');
 
 
-//errors needed for call is 404, class no longer available, major no longer available, concentration no longer available.
+// errors needed for call is 404, class no longer available, major no longer available, concentration no longer available.
 
-//function to get the URI of the page and tries to fetch it and if it fails it catches it and messages out ERROR 404.
+// function to get the URI of the page and tries to fetch it and if it fails it catches it and messages out ERROR 404.
   function Error404NOTFOUND(getID, getURI){
 
     const fetch = require('node-fetch');
     const message = document.getElementById(getID);
     message.innerHTML = "";
-    let x = document.URL;
+    const x = document.URL;
 
     fetch(getURI)
       .then(function error404Bool(getURI) {
@@ -31,12 +36,12 @@ const log = require('loglevel');
     }
   }
 
-  //get the id of the element for getting the class. If the class is Null or is the empty set than the class is not there and
-  //throws that the class in not available.
+  // get the id of the element for getting the class. If the class is Null or is the empty set than the class is not there and
+  // throws that the class in not available.
   function ClassNotAvailable(getID){
     const message = document.getElementById(getID);
     message.innerHTML = "";
-    let x = document.documentURI;
+    const x = document.documentURI;
     
     try{
       if(x == "") throw "Class Not Available";
@@ -51,12 +56,12 @@ const log = require('loglevel');
   }
 
 
-  //get the id of the element for getting the major. If the major is Null or is the empty set than the major is not there and
-  //throws that the major in not available.
+  // get the id of the element for getting the major. If the major is Null or is the empty set than the major is not there and
+  // throws that the major in not available.
   function MajorNotAvailable(getID){
     const message = document.getElementById(getID);
     message.innerHTML = "";
-    let x = document.documentURI;
+    const x = document.documentURI;
     
     try{
       if(x == "") throw "Major Not Available";
@@ -72,12 +77,12 @@ const log = require('loglevel');
     return true;
   }
 
-  //get the id of the element for getting the concentration. If the concentration is Null or is the empty set than the concentration is not there and
-  //throws that the concentration in not available.  
+  // get the id of the element for getting the concentration. If the concentration is Null or is the empty set than the concentration is not there and
+  // throws that the concentration in not available.  
   function ConcentrationNotAvailable(){
     const message = document.getElementById("message");
     message.innerHTML = "";
-    let x = document.URL;
+    const x = document.URL;
     fetch(getURI)
     try{
       if(x == "") throw "Concentration Not Available";

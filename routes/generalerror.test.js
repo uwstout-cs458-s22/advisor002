@@ -1,3 +1,5 @@
+/* eslint-disable spaced-comment */
+/* eslint-disable jest/no-commented-out-tests */
 /*const request = require('supertest');
 const { JSDOM } = require('jsdom');
 const log = require('loglevel');
