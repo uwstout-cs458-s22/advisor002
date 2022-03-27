@@ -42,9 +42,8 @@
       <th style="width: 33%">Course Name</th>
       <th style="width: 20%">Credit Amount</th>
     </tr>
-    <% 
     
-    for(var i = 0; i < currentCourses.length; i++) { %>
+    <% for(var i = 0; i < currentCourses.length; i++) { %>
     <tr>
       <td><%-currentCourses[i].number%></td>
       <td><%-currentCourses[i].name %></td>
@@ -73,3 +72,46 @@
     <% } %>
 
   </table>
+  <div id="futureTable">
+    
+  <%for(var j = 1; j < 5; j++) {%> 
+  <table  class="table table-striped">
+    <tr>
+      <th style="width: 33%">Course Number</th>
+      <th style="width: 33%">Course Name</th>
+      <th style="width: 20%">Credit Amount</th>
+    </tr>
+    <h2>Semester <%-j%> </h2>
+    <% 
+    
+    for(var i = 0; i < currentCourses.length; i++) { %>
+    <tr>
+      <td><%-currentCourses[i].number%></td>
+      <td><%-currentCourses[i].name %></td>
+      <td><%-currentCourses[i].credit %></td>
+      <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#<%-currentCourses[i].name%>Modal">More</button></td>
+      <div class="modal fade" id="<%-currentCourses[i].name%>Modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><%-currentCourses[i].name%></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <ul>Grade Letter: <%-currentCourses[i].more.grade%></ul>
+              <ul>Date: <%-currentCourses[i].more.date%></ul>
+              <ul>Category/s: <%currentCourses[i].more.category.forEach(category => {%>
+                <ul><%-category%></ul>
+              <%})%></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tr>
+    <% } 
+  }%>
+  </table>
+</div>
+</div>

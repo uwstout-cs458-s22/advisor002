@@ -85,10 +85,13 @@ futureCourses = [{
   }
 }]
 %>
+
+
 <div class="courses-container card">
   <div class="card-header">
-    <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
-    <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
+    <button type="button" class="btn btn-primary" onclick="showTable(completedTable)" id="completeBtn">Completed Courses</button>
+    <button type="button" class="btn btn-primary" onclick="showTable(currentTable)" id="currBtn">Current Courses</button>
+    <button type="button" class="btn btn-primary" onclick="showTable(futureTable)" id="currBtn">Future Courses</button>
   </div>
   <script>
 

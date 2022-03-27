@@ -119,13 +119,12 @@
 <script>
   $(document).ready(function() {
     $('#completedTable').hide();
-    showCurrent = () => {
+    $('#futureTable').hide();
+    showTable = (table) => {
       $('#completedTable').hide();
-      $('#currentTable').show();
-    }
-    showCompleted = () => {
-      $('#completedTable').show();
       $('#currentTable').hide();
+      $('#futureTable').hide();
+      $(table).show();
     }
   })
 </script>
