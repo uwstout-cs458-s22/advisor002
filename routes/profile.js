@@ -9,12 +9,13 @@ module.exports = function () {
   router.get('/', isUserLoaded, async (req, res) => {
     res.render('layout', {
       pageTitle: 'Advisor Management',
-      group: 'manage',
+      group: 'profile',
       template: 'index',
       email: req.session.user.email,
+      userId: req.session.user.userId,
       role: req.session.user.role,
     });
-    log.info(`${req.method} ${req.originalUrl} success: rendering manage page`);
+    log.info(`${req.method} ${req.originalUrl} success: rendering profile page`);
   });
 
   return router;

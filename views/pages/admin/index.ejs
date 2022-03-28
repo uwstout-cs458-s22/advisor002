@@ -1,89 +1,100 @@
-    <% if (messages.success) { %>
-    <div class="alert alert-success" role="alert"><%- messages.success %></div>
+<% if (messages.success) { %>
+<div class="alert alert-success" role="alert"><%- messages.success %></div>
+<% } %> <% if (messages.error) { %>
+<div class="alert alert-danger" role="alert"><%- messages.error %></div>
+<% } %>
+
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-pills w-100">
+      <li class="nav-pill active">
+        <a class="nav-link">Users</a>
+      </li>
+      <li class="nav-pill ml-auto">
+        <a class="nav-link active" href="/users/add">Add User</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <% if(data.length) { %>
+    <input class="form-control" id="searchBar" type="text" placeholder="Search.." />
+
+    <table class="table" id="userTable">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Enabled</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th width="300px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i< data.length; i++) { %>
+        <tr>
+          <th scope="row" class="align-middle"><%= data[i].id %></th>
+          <td class="align-middle">
+            <% if (data[i].enable) { %>
+            <span class="badge badge-success">Active</span>
+            <%} else { %>
+            <span class="badge badge-light">Disabled</span>
+            <% } %>
+          </td>
+          <td class="align-middle"><%= data[i].email%></td>
+          <td class="align-middle"><%= data[i].role%></td>
+          <td class="align-middle">
+            <!-- Modal making one modal only, -->
+            <div class="modal fade" id="detailModal<%=i%>" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel"><%=data[i].email%></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modalContent">
+                    Email: <%= data[i].email%><br />
+                    Role: <%= data[i].role%> <br />
+                    Major: Computer Science <br />
+                    Graduation Year: 2022 <br />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                      Complete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a
+              class="btn btn-info"
+              data-toggle="modal"
+              data-target="#detailModal<%=i%>"
+              id="viewButton<%i%>"
+              >View</a
+            >
+            <a class="btn btn-secondary edit" href="../users/edit/<%=data[i].id%>">Edit</a>
+            <a
+              class="btn btn-danger delete"
+              onclick="return alert('Are You sure?')"
+              href="../users/delete/<%=data[i].id%>"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
     <% } %>
 
-    <% if (messages.error) { %>
-    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+    <!-- if result is empty -->
+    <% if(!data.length) { %>
+    <p class="text-center">No Users found!</p>
     <% } %>
-
-    <div class="card"> 
-        <div class="card-header">
-            <ul class="nav nav-pills w-100">
-                <li class="nav-pill active">
-                    <a class="nav-link">Users</a>
-                </li>
-                <li class="nav-pill ml-auto">
-                    <a class="nav-link active" href="/users/add">Add User</a>
-                </li>
-            </ul>
-        </div>
-    <div class="card-body">
-        
-        <% if(data.length) { %>
-        <table class="table" id="userTable">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Enabled</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th width="300px">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-
-              <% for(var i = 0; i< data.length; i++) { %>
-                <tr>
-                  <th scope="row" class="align-middle"><%= data[i].id %></th>
-                  <td class="align-middle">
-                    <% if (data[i].enable) { %>
-                    <span class="badge badge-success">Active</span>
-                    <%} else { %>
-                    <span class="badge badge-light">Disabled</span>
-                    <% } %>
-                  </td>
-                  <td class="align-middle"><%= data[i].email%></td>
-                  <td class="align-middle"><%= data[i].role%></td>
-                  <td class="align-middle">
-                          <!-- Modal making one modal only, -->
-                          <div class="modal fade" id="detailModal<%=i%>"  tabindex="-1">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="detailModalLabel"><%=data[i].email%></h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body" id="modalContent">
-                                  Email: <%= data[i].email%><br>
-                                  Role: <%= data[i].role%> <br>
-                                  Major: Computer Science <br>
-                                  Graduation Year: 2022 <br>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary" data-dismiss="modal">Complete</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div> 
-
-                    <a class="btn btn-info" data-toggle="modal" data-target="#detailModal<%=i%>" id="viewButton<%i%>" >View</a>
-                    <a class="btn btn-secondary edit" href="../users/edit/<%=data[i].id%>">Edit</a>
-                    <a
-                      class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../users/delete/<%=data[i].id%>">Delete</a>
-                  </td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
-        <% } %>
-        
-        <!-- if result is empty -->
-        <% if(!data.length) { %>
-            <p class="text-center">No Users found!</p>
-        <% } %>
-
-        </div>
-    </div>
+  </div>
+</div>

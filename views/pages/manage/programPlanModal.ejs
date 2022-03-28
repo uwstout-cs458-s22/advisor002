@@ -1,0 +1,45 @@
+<div id="program-plan-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create Program Plan</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div id="form" class="form-group">
+            <label for="section-1">Section Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="section-1"
+              placeholder="Enter section name"
+            />
+            <div id="section-1-courses">
+              <input type="text" class="form-control course-input" placeholder="Enter course" />
+            </div>
+            <input
+              type="button"
+              class="btn btn-secondary ml-4"
+              value="Add course"
+              onClick="addCourse('section-1-courses');"
+            />
+          </div>
+          <input
+            id="add-section"
+            type="button"
+            class="btn btn-secondary"
+            value="Add section"
+            onClick="addSection('form');"
+          />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- TODO: Submit functionality - format & send data once there is backend functionality -->
+        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-danger" onClick="resetPlan();">Reset</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

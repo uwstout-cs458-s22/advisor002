@@ -2,16 +2,16 @@
   <div class="container-fluid">
     <div class="navbar-nav">
       <a class="navbar-brand" href="#">Program Course Advisor</a>
-      <a class="nav-link <%= group === 'advise' ? 'active' : ''%>" href="/advise" > Advise</a>
-      <a class="nav-link <%= group === 'manage' ? 'active' : ''%>" href="/manage" >Manage</a>
-      <a class="nav-link <%= group === 'admin' ? 'active' : ''%>" href="/admin" >Admin</a>
+      <a class="nav-link <%= group === 'advise' ? 'active' : ''%>" href="/advise"> Advise</a>
+      <a class="nav-link <%= group === 'manage' ? 'active' : ''%>" href="/manage">Manage</a>
+      <a class="nav-link <%= group === 'admin' ? 'active' : ''%>" href="/admin">Admin</a>
+      <a class="nav-link <%= group === 'major' ? 'active' : ''%>" href="/major">Major</a>
+      <a class="nav-link <%= group === 'profile' ? 'active' : ''%>" href="/profile">Profile</a>
+      <a class="nav-link <%= group === 'courses' ? 'active' : ''%>" href="/courses" >Courses</a>
     </div>
     <div class="navbar-nav">
-      <span class="navbar-text">
-        Welcome <%= email %>
-      </span>
+      <span class="navbar-text"> Welcome <%= email %> </span>
       <a class="nav-link" href="/logout">Logout</a>
     </div>
   </div>
 </nav>
-
