@@ -117,6 +117,23 @@ describe('Admin Route Tests', () => {
       }
     });
 
+    test('basic modal test', async () => {
+      const data = dataForGetUser(3);
+      User.fetchAll.mockResolvedValueOnce(data);
+      const response = await request(app).get('/admin');
+      const doc = new JSDOM(response.text).window.document;
+
+      // count/define the rows
+      const rows = doc.querySelectorAll('.card-body>table>tbody>tr');
+      expect(rows).toHaveLength(data.length);
+
+      // check the modals are being created
+      for (let i = 0; i < rows.length; i++) {
+        const modal = doc.getElementById('detailModal'+i);
+        expect(doc.body.contains(modal)).toBe(true);
+    }
+  });
+    
     test('User.fetchAll thrown error', async () => {
       User.fetchAll.mockRejectedValue(HttpError(500, `Advisor API Error`));
       const response = await request(app).get('/admin');
