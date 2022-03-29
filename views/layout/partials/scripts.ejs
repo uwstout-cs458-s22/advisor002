@@ -185,6 +185,7 @@
         continue;
       }
 
+      // Checks if credits is not a number
       if (element.id === 'course-credits' && isNaN(element.value)) {
         element.setCustomValidity('Must be a number');
         isValid = false;
@@ -200,9 +201,8 @@
 </script>
 
 <script>
+  const Course = require('../controllers/Courses');
   function submitCourseForm(form) {
-    // Does this require work here?
-    const Course = require('../controllers/Courses');
 
     const isValid = validateCourseForm(form);
 
