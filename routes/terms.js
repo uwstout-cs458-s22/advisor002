@@ -12,8 +12,8 @@ module.exports = function () {
       group: 'terms',
       template: 'index',
       email: req.session.user.email,
-      major: '',
-      role: req.session.user.role,
+      userId: req.session.user.userId,
+      role: req.session.user.role
     });
     log.info(`${req.method} ${req.originalUrl} success: rendering terms page`);
   });
