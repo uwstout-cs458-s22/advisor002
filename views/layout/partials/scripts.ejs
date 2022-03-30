@@ -163,4 +163,18 @@
     // document.removeChild(newDiv)
   }
 </script>
-
+<!-- Script with working on the terms page -->
+<script>
+  function showModal(){
+    $('#termsModal').modal('show')
+  }
+  function removeTerm(termNumber){
+    console.log(termNumber)
+    const term = `Term${termNumber}`
+    const termToBeRemoved = document.getElementById(term)
+    termToBeRemoved.remove()
+  }
+  function hideModal(){
+    $('#termsModal').modal('hide')
+  }
+</script>
