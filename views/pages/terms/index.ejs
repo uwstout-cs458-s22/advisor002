@@ -3,16 +3,19 @@
 </div>
 
 <div class="card bg-primary" id="Term1">
-    <div class="text-center bold" contenteditable="true">Term 1 <button class="btn btn-danger " contenteditable="false"onClick='showModal()' id="deleteBtn">X</input></div>
-    <div class="card justify-content-center">
+    <div class="text-center bold" contenteditable="true" id="userTerm1">Term 1 </div> 
+    <div align="right">
+        <button class="btn btn-danger" contenteditable="false"onClick='showModal(1)' id="deleteBtn">X</input>
+    </div>
+        <div class="card justify-content-center">
         Class
     </div>
 </div>
 
-<div id="termsModal" class="Modal" aria-hidden="true">
+<div id="termsModal" class="modal" aria-hidden="true">
     <div class="card" id="header">
         <div class="modal-content" id="modalTitle">Title</div>
-        <button class="btn btn-success" onClick="removeTerm(1)" width="10%">Yes</button>
-        <button class="btn btn-danger" onClick="hideModal()">No</button>
+        <button class="btn btn-success" onClick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>
+        <button class="btn btn-danger" onClick="hideModal()" data-dismiss="modal">No</button>
     </div>
 </div>

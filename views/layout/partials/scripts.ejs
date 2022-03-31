@@ -165,7 +165,10 @@
 </script>
 <!-- Script with working on the terms page -->
 <script>
-  function showModal(){
+  function showModal(termNumber){
+    const userName = document.getElementById(`userTerm${termNumber}`).innerText
+    const title = document.getElementById('modalTitle')
+    title.innerHTML = `Are you sure you want to remove Term '${userName}'`
     $('#termsModal').modal('show')
   }
   function removeTerm(termNumber){
@@ -173,8 +176,9 @@
     const term = `Term${termNumber}`
     const termToBeRemoved = document.getElementById(term)
     termToBeRemoved.remove()
+    $('#termsModal').hide();
   }
   function hideModal(){
-    $('#termsModal').modal('hide')
+    $('#termsModal').hide();
   }
 </script>
