@@ -62,6 +62,7 @@ module.exports = function () {
   const adminRoutes = require('./admin')();
   const profileRoutes = require('./profile')();
   const coursesRoutes = require('./courses')();
+  const termRoutes = require('./terms')();
 
   router.use('/advise', adviseRoutes);
   router.use('/manage', manageRoutes);
@@ -69,6 +70,7 @@ module.exports = function () {
   router.use('/admin', adminRoutes);
   router.use('/profile', profileRoutes);
   router.use('/courses', coursesRoutes);
+  router.use('/terms', termRoutes);
 
   return router;
 };
