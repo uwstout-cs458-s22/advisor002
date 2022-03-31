@@ -4,7 +4,7 @@
 // However, it is good practice to provide this layer in case the FE
 // wants to make transformations on the API returned data
 // Deserializations that perform a simple map do not need to be unit tested
-function deSerializeUser(data) {
+function deSerializeCourse(data) {
   return {
     id: data.id,
     courseid: data.courseId,
@@ -14,5 +14,5 @@ function deSerializeUser(data) {
 }
 
 module.exports = {
-  deSerializeUser,
+  deSerializeCourse,
 };
