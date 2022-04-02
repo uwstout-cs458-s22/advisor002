@@ -25,7 +25,7 @@ module.exports = function () {
   router.get('/:courseId', isUserLoaded, async (req, res, next) => {
     try {
       const courseId = req.session.courses.courseId;
-      const criteria = ' where courseId is ' + courseId;
+      const criteria = ' where courseId =' + courseId;
       const courses = await Course.findAll({ criteria: criteria });
       log.info(`${req.method} ${req.originalUrl} success: returning courses ${courseId}`);
       return res.send(courses);
@@ -33,6 +33,8 @@ module.exports = function () {
       next(error);
     }
   });
+
+  router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {});
 
   return router;
 };
