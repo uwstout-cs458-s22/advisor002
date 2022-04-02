@@ -221,7 +221,6 @@
 </script>
 
 <script>
-  const Course = require('../controllers/Courses');
   function submitCourseForm(form) {
 
     const isValid = validateCourseForm(form);
@@ -229,7 +228,6 @@
     if (!isValid) return;
 
     // TODO: Create object to send to request
-
-    Course.addCourse({});
+    // Course.addCourse({});
   }
 </script>
