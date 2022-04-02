@@ -164,6 +164,7 @@
   }
 </script>
 
+<!-- Create Course Validation -->
 <script>
   function validateCourseForm(form) {
     form.reportValidity();
@@ -171,16 +172,16 @@
 
     let isValid = true;
     for (const element of elements) {
-      if (element.className !== 'form-control') continue;
+      if (!element.classList.contains('validate')) continue;
 
-      if (element.validity.valueMissing) {
-        element.setCustomValidity('Cannot be empty');
+      if (element.id === 'course-number' && !element.value.includes('-')) {
+        element.setCustomValidity('Must include prefix. Ex: CS-123');
         isValid = false;
         continue;
       }
 
-      if (element.id === 'course-number' && !element.value.includes('-')) {
-        element.setCustomValidity('Must include prefix. Ex: CS-123');
+      if (element.validity.valueMissing) {
+        element.setCustomValidity('Cannot be empty');
         isValid = false;
         continue;
       }
@@ -191,12 +192,31 @@
         isValid = false;
         continue;
       }
-
       // Empty string means no errors
       element.setCustomValidity('');
     }
-
     return isValid;
+  }
+</script>
+
+<!-- Add more perquisite input -->
+<script>
+  function addPrerequisiteInput() {
+    const newSection = document.createElement('div');
+    newSection.setAttribute('class', 'form-row');
+
+    newSection.innerHTML = `
+        <div class="form-group col-md-4">
+          <input type="text" class="form-control" placeholder="Course Prefix and Number">
+        </div>
+        <div class="form-group col-md-4">
+          <input type="text" class="form-control" placeholder="Course Prefix and Number">
+        </div>
+        <div class="form-group col-md-4">
+        <input type="text" class="form-control" placeholder="Course Prefix and Number">
+        </div>
+      </div>`;
+      document.getElementById('prerequisite-section').appendChild(newSection);
   }
 </script>
 
