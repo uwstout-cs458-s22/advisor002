@@ -11,8 +11,16 @@
       <a class="nav-link <%= group === 'terms' ? 'active' : ''%>" href="/terms">Terms</a>
     </div>
     <div class="navbar-nav">
-      <span class="navbar-text"> Welcome <%= email %> </span>
-      <a class="nav-link" href="/logout">Logout</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbardrop" data-toggle="dropdown">
+            <%= email %>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/profile">Profile</a>
+            <a class="dropdown-item" href="/logout">Logout</a>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
