@@ -207,13 +207,13 @@
 
     newSection.innerHTML = `
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" placeholder="Course Prefix and Number">
+          <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
         </div>
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" placeholder="Course Prefix and Number">
+          <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
         </div>
         <div class="form-group col-md-4">
-        <input type="text" class="form-control" placeholder="Course Prefix and Number">
+        <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
         </div>
       </div>`;
       document.getElementById('prerequisite-section').appendChild(newSection);
@@ -221,13 +221,71 @@
 </script>
 
 <script>
-  function submitCourseForm(form) {
+  async function submitCourseForm(form) {
+    // Hides messages from previous course submissions, so that the new one will be displayed
+    const errorAlert = document.getElementById('failed-course-alert')
+    const successAlert = document.getElementById('success-course-alert')
+    errorAlert.style.display = "none"
+    successAlert.style.display = "none"
 
     const isValid = validateCourseForm(form);
 
     if (!isValid) return;
 
-    // TODO: Create object to send to request
-    // Course.addCourse({});
+    const formData = {
+      name: null,
+      credits: null,
+      section: null,
+      description: null,
+      prerequisites: []
+    };
+    elements = form.elements;
+    for (const element of elements) {
+      // Skips blank values
+      if(element.value === '') continue;
+
+      if (element.id === 'course-number') {
+        formData.section = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-name') {
+        formData.name = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-credits') {
+        formData.credits = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-description') {
+        formData.description = element.value;
+        continue;
+      }
+
+      if (element.classList.contains('course-prereq')) {
+        formData.prerequisite.push(element.value);
+        continue;
+      }
+    }
+    
+    try {
+      const res = await fetch('/createCourse', {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if(res.status === 201) {
+        successAlert.style.display = "block";
+      } else {
+        errorAlert.style.display = "block";
+      }
+    } catch (e) {
+      errorAlert.style.display = "block";
+    }
   }
 </script>

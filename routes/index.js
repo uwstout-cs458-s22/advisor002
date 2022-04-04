@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const log = require('loglevel');
 const User = require('../controllers/User');
+const Course = require('../controllers/Courses');
 const { isUserLoaded, authenticateUser, revokeSession } = require('../services/auth');
 const { saveSession } = require('../services/utils');
 
@@ -51,6 +52,23 @@ module.exports = function () {
     }
   });
 
+  router.post('/createCourse', async (req, res, next) => {
+    try {
+      const requestBody = [
+        {
+          name: req.body.name,
+          credits: req.body.credits,
+          section: 1, // TODO: Change
+        },
+      ];
+      const response = await Course.addCourse(req.session.session_token, requestBody);
+      res.status(response.status);
+      res.send(response);
+    } catch (error) {
+      next(error);
+    }
+  });
+
   router.get('/logout', revokeSession, async (req, res) => {
     res.redirect('/login');
     log.info(`${req.method} ${req.originalUrl} success: redirecting to /login page`);
@@ -65,7 +83,7 @@ module.exports = function () {
 
   router.use('/advise', adviseRoutes);
   router.use('/manage', manageRoutes);
-  router.use('/major', majorRoutes)
+  router.use('/major', majorRoutes);
   router.use('/admin', adminRoutes);
   router.use('/profile', profileRoutes);
   router.use('/courses', coursesRoutes);

@@ -5,6 +5,18 @@
         <h4 class="modal-title">Create a Course</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
+      <div id='failed-course-alert' class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none">
+        Failed to create course.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id='success-course-alert' class="alert alert-success alert-dismissible fade show" role="alert" style="display:none">
+        Successfully created the course.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <form id='create-course-form' class="needs-validation" novalidate>
         <div class="modal-body">
           <div class="form-row">
@@ -31,13 +43,13 @@
             <a href="#" onclick="addPrerequisiteInput();">Add More</a>
             <div class="form-row">
               <div class="form-group col-md-4">
-                <input type="text" class="form-control" placeholder="Course Prefix and Number">
+                <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
               </div>
               <div class="form-group col-md-4">
-                <input type="text" class="form-control" placeholder="Course Prefix and Number">
+                <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
               </div>
               <div class="form-group col-md-4">
-                <input type="text" class="form-control" placeholder="Course Prefix and Number">
+                <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
               </div>
             </div>
           </div>
