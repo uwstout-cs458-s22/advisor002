@@ -119,13 +119,21 @@
 <script>
   $(document).ready(function() {
     $('#completedTable').hide();
+    $('#viewTable').hide();
     showCurrent = () => {
       $('#completedTable').hide();
       $('#currentTable').show();
+      $('#viewTable').hide();
     }
     showCompleted = () => {
       $('#completedTable').show();
       $('#currentTable').hide();
+      $('#viewTable').hide();
+    }
+    viewCourses = () => {
+      $('#completedTable').hide();
+      $('#currentTable').hide();
+      $('#viewTable').show();
     }
   })
 </script>
