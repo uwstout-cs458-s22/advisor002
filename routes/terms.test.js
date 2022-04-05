@@ -54,3 +54,14 @@ describe('Manage Route Tests', () => {
     });
   });
 });
+
+test('Testing Add Button', async () => {
+
+  const response = await request(app).get('/terms');
+
+  const doc = new JSDOM(response.text).window.document;
+  // doc.submitTerm();
+
+  // expect(doc.getElementByID(testingDiv).innerHTML = "test completed");
+
+})

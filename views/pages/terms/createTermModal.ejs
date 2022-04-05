@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary" onClick="submitTerm()">Submit</button>
             <button type="button" class="btn btn-danger" onClick="resetPlan();">Reset</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
@@ -26,5 +26,11 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function submitTerm() {
+      document.getElementById("testingDiv").innerHTML = "test completed"
+    }
+  </script>
 
   
