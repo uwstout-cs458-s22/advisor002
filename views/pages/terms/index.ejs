@@ -13,9 +13,18 @@
 </div>
 
 <div id="termsModal" class="modal" aria-hidden="true">
-    <div class="card" id="header">
-        <div class="modal-content" id="modalTitle">Title</div>
-        <button class="btn btn-success" onClick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>
-        <button class="btn btn-danger" onClick="hideModal()" data-dismiss="modal">No</button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <!-- <div class="modal-content" id="modalTitle">Title</div>    -->
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-success" onClick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>
+                <button class="btn btn-danger" onClick="hideModal()" data-dismiss="modal">No</button>
+            </div>
+        </div>
     </div>
 </div>
