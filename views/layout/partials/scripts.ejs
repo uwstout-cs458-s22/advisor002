@@ -240,6 +240,8 @@
       prerequisites: []
     };
     elements = form.elements;
+
+    // Turn the form data into an JS object
     for (const element of elements) {
       // Skips blank values
       if(element.value === '') continue;

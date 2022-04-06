@@ -75,7 +75,10 @@ describe('Courses Route Tests', () => {
 
       // check the main navbar
       expect(doc.querySelector('.navbar-nav>.active').getAttribute('href')).toBe('/courses');
-      expect(doc.querySelector('.navbar-nav>.navbar-text').innerHTML).toContain(
+      expect(doc.querySelector('.dropdown-menu>.dropdown-item').getAttribute('href')).toBe(
+        '/profile'
+      );
+      expect(doc.querySelector('.nav-link.dropdown-toggle.active').innerHTML).toContain(
         'master@uwstout.edu'
       );
 

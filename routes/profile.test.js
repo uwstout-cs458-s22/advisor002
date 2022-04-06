@@ -47,8 +47,10 @@ describe('Manage Route Tests', () => {
       const doc = new JSDOM(response.text).window.document;
 
       // check the main navbar
-      expect(doc.querySelector('.navbar-nav>.active').getAttribute('href')).toBe('/profile');
-      expect(doc.querySelector('.navbar-nav>.navbar-text').innerHTML).toContain(
+      expect(doc.querySelector('.dropdown-menu>.dropdown-item').getAttribute('href')).toBe(
+        '/profile'
+      );
+      expect(doc.querySelector('.nav-link.dropdown-toggle.active').innerHTML).toContain(
         'master@uwstout.edu'
       );
     });
