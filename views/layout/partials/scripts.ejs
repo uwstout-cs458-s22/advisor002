@@ -271,7 +271,7 @@
     }
     
     try {
-      const res = await fetch('/createCourse', {
+      const res = await fetch('/courses/createCourse', {
         method: 'POST',
         credentials: 'same-origin',
         body: JSON.stringify(formData),

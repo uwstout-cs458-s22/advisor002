@@ -1,7 +1,7 @@
 const axios = require('axios');
 const log = require('loglevel');
 
-async function addCourse(sessionToken, requestBody) {
+async function createCourse(sessionToken, requestBody) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
   });
@@ -23,5 +23,5 @@ async function addCourse(sessionToken, requestBody) {
 }
 
 module.exports = {
-  addCourse,
+  createCourse,
 };

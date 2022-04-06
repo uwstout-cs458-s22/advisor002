@@ -3,7 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const log = require('loglevel');
 const User = require('../controllers/User');
-const Course = require('../controllers/Courses');
 const { isUserLoaded, authenticateUser, revokeSession } = require('../services/auth');
 const { saveSession } = require('../services/utils');
 
@@ -47,23 +46,6 @@ module.exports = function () {
       await saveSession(req);
       res.redirect('/');
       log.info(`${req.method} ${req.originalUrl} success: redirecting to / page`);
-    } catch (error) {
-      next(error);
-    }
-  });
-
-  router.post('/createCourse', async (req, res, next) => {
-    try {
-      const requestBody = [
-        {
-          name: req.body.name,
-          credits: req.body.credits,
-          section: 1, // TODO: Change
-        },
-      ];
-      const response = await Course.addCourse(req.session.session_token, requestBody);
-      res.status(response.status);
-      res.send(response);
     } catch (error) {
       next(error);
     }
