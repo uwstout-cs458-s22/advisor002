@@ -12,6 +12,7 @@ async function deleteCourse(sessionToken, Id) {
 }
 */
 
+/*
 async function findOne(sessionToken, criteria) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
@@ -28,6 +29,7 @@ async function findOne(sessionToken, criteria) {
     throw HttpError(500, `Advisor API Error ${response.status}: ${response.data.error.message}`);
   }
 }
+*/
 
 async function findAll(sessionToken, criteria, limit = 100, offset = 0) {
   const request = axios.create({
@@ -48,6 +50,6 @@ async function findAll(sessionToken, criteria, limit = 100, offset = 0) {
 
 module.exports = {
   // deleteCourse,
-  findOne,
+  // findOne,
   findAll,
 };

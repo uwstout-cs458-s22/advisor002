@@ -23,6 +23,7 @@ module.exports = function () {
     log.info(`${req.method} ${req.originalUrl} success: rendering course page`);
   });
 
+  /*
   router.get('/:courseId', isUserLoaded, async (req, res, next) => {
     try {
       const courseId = req.session.courses.courseId;
@@ -34,6 +35,7 @@ module.exports = function () {
       next(error);
     }
   });
+  */
 
   router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {});
 
