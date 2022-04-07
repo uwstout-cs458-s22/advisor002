@@ -55,61 +55,6 @@ completedCourses = [{
     date: 'Summer 2019',
   }
 }]
-viewCourses = [{
-  number: "MATH 157",
-  name: "Calculus 2",
-  credit: 4,
-  more: {
-    grade: 'A-',
-    category: ['Mathematical Course'],
-    date: 'Fall 2020',
-  }
-},{
-  number: "CS 380",
-  name: "Web and Internet",
-  credit: 3,
-  more: {
-    grade: 'A',
-    category: ['Mathematical Course'],
-    date: 'Spring 2018',
-  }
-},{
-  number: "ENGL 102",
-  name: "English 2",
-  credit: 2,
-  more: {
-    grade: 'C+',
-    category: ['Communication Skills'],
-    date: 'Summer 2019',
-  }
-},{
-  number: "MATH 158",
-  name: "Calculus 3",
-  credit: 4,
-  more: {
-    grade: 'A',
-    category: ['Mathematical Course', 'Mobile Applications Course'],
-    date: 'Current',
-  }
-},{
-  number: "CS 404",
-  name: "Adv Web and Internet",
-  credit: 3,
-  more: {
-    grade: 'B+',
-    category: ['Mobile Applications Course'],
-    date: 'Current',
-  }
-},{
-  number: "MSCS 234",
-  name: "Machine Learning",
-  credit: 3,
-  more: {
-    grade: 'B',
-    category: ['Mathematical Course', 'Mobile Applications Course'],
-    date: 'Current',
-  }
-}]
 %>
 
 <div class="courses-container card">
@@ -265,7 +210,7 @@ viewCourses = [{
             type="button"
             class="btn btn-secondary"
             data-toggle="modal"
-            data-target="#<%-viewCourses[i].name%>Modal"
+            data-target="#<%-data[i].name%>Modal"
           >
             More
           </button>
@@ -291,10 +236,10 @@ viewCourses = [{
                   Grade Letter: Not defined yet
                 </ul>
                 <ul>
-                  Date: <%-data[i].section%>
+                  Date: Not Defined Yet
                 </ul>
                 <ul>
-                  Category/s: <%viewCourses[i].more.category.forEach(category => {%>
+                  Category/s: <%currentCourses[i].more.category.forEach(category => {%>
                   <ul>
                     <%-category%>
                   </ul>
