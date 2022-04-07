@@ -7,7 +7,7 @@
 function deSerializeCourse(data) {
   return {
     id: data.id,
-    courseid: data.courseId,
+    courseid: data.courseid,
     name: data.name,
     credits: data.credits,
     section: data.section,

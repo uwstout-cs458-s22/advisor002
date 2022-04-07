@@ -115,6 +115,24 @@
   });
 </script>
 
+<!-- User table search bar -->
+<script>
+  $(document).ready(function () {
+    $('#courseSearchBar').on('keyup', function () {
+      var value = $(this).val().toLowerCase();
+      $('#completedTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+      $('#currentTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+      $('#viewTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+</script>
+
 <!--Courses scripts-->
 <script>
   $(document).ready(function() {

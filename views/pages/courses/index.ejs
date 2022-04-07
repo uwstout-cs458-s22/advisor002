@@ -127,7 +127,10 @@ viewCourses = [{
     </button>
   </div>
   <script></script>
+
+
   <div class="courses-holder card-body">
+    <input class="form-control" id="courseSearchBar" type="text" placeholder="Search.." />
     <table id="completedTable" class="table table-striped">
       <tr>
         <th style="width: 33%">Course Number</th>
@@ -245,15 +248,18 @@ viewCourses = [{
     </table>
     <table id="viewTable" class="table table-striped">
       <tr>
-        <th style="width: 33%">Course Number</th>
-        <th style="width: 33%">Course Name</th>
-        <th style="width: 20%">Credit Amount</th>
+        <th >Course Id</th>
+        <th >Course Name</th>
+        <th >Credit Amount</th>
+        <th>Course Section</th>
       </tr>
-      <% for(var i = 0; i < viewCourses.length; i++) { %>
+      <% for(var i = 0; i < data.length; i++) { %>
       <tr>
-        <td><%-viewCourses[i].number%></td>
-        <td><%-viewCourses[i].name %></td>
-        <td><%-viewCourses[i].credit %></td>
+        <td><%-data[i].id%></td>
+        <td><%-data[i].name %></td>
+        <td><%-data[i].credits %></td>
+        <td><%-data[i].section %></td> 
+
         <td>
           <button
             type="button"
@@ -266,7 +272,7 @@ viewCourses = [{
         </td>
         <div
           class="modal fade"
-          id="<%-viewCourses[i].name%>Modal"
+          id="<%-data[i].name%>Modal"
           tabindex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
@@ -275,17 +281,17 @@ viewCourses = [{
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title"><%-viewCourses[i].name%></h5>
+                <h5 class="modal-title"><%-data[i].name%></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <ul>
-                  Grade Letter: <%-viewCourses[i].more.grade%>
+                  Grade Letter: Not defined yet
                 </ul>
                 <ul>
-                  Date: <%-viewCourses[i].more.date%>
+                  Date: <%-data[i].section%>
                 </ul>
                 <ul>
                   Category/s: <%viewCourses[i].more.category.forEach(category => {%>
