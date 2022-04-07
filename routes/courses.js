@@ -9,7 +9,8 @@ module.exports = function () {
   router.use(bodyParser.json());
 
   router.get('/', isUserLoaded, async (req, res) => {
-    const courses = await Course.findAll(req.session.session_token, 0, 100);
+    const criteria = '';
+    const courses = await Course.findAll(req.session.session_token, criteria, 0, 100);
 
     res.render('layout', {
       pageTitle: 'Course Manager',

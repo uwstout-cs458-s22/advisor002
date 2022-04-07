@@ -4,6 +4,7 @@ class Course {
     this.courseId = params.courseId;
     this.name = params.name;
     this.credits = params.credits;
+    this.section = params.section;
   }
 }
 
