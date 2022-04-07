@@ -2,9 +2,28 @@
     <div class="text-center bold">Terms</div>
 </div>
 
-<div class="card bg-primary" id="body">
-    <div class="text-center bold" contenteditable="true" id="Term1">Term 1</div>
+<div class="card bg-primary" id="Term1">
+    <div class="text-center bold" contenteditable="true" id="userTerm1">Term 1 </div> 
+    <div style="text-align:right">
+        <button class="btn btn-danger" contenteditable="false"onClick='showModal(1)' id="deleteBtn">X</input>
+    </div>
+        <div class="card justify-content-center">
+        Class
+    </div>
 </div>
-<div class="card justify-content-center">
-    Class
+
+<div id="termsModal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-success" onClick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>
+                <button class="btn btn-danger" onClick="hideModal()" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
 </div>
