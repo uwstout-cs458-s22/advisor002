@@ -18,8 +18,8 @@
   <div class="card-body">
     <script>
       function editUserPopup() {
-        $('#editUserPopup').show();
-        $('#student').prop('checked', true);
+        $('#modalContent').hide();
+        $('#changeUserPermission').show();
       }
 
       function deleteUserPopup(idNum, email) {
@@ -84,18 +84,61 @@
                     Major: Computer Science <br />
                     Graduation Year: 2022 <br />
                   </div>
+                  <div class="modal-body" id="changeUserPermission" aria-hidden="true">
+                    <h4>Select Role:</h4>
+                    <input type="radio" id="superAdmin" name="role" value="superadmin" />
+                    <label for="superAdmin">Super Admin</label><br />
+                    <input type="radio" id="admin" name="role" value="admin" />
+                    <label for="admin">Admin</label><br />
+                    <input type="radio" id="user" name="role" value="user" checked="checked" />
+                    <label for="user">User</label><br />
+
+                    <br />
+                    <h4>Active Status:</h4>
+                    <input type="radio" id="enabled" name="active" value="enabled" />
+                    <label for="enabled">Enable</label><br />
+                    <input
+                      type="radio"
+                      id="disabled"
+                      name="active"
+                      value="disabled"
+                      checked="checked"
+                    />
+                    <label for="disabled">Disable</label><br />
+                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                       Close
                     </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-dismiss="modal"
+                      onclick="submitUserEdits('<%=data[i].id%>')"
+                    >
                       Complete
                     </button>
                   </div>
                 </div>
               </div>
             </div>
+            <script>
+              function submitUserEdits(userId) {
+                var role, active;
+                if (
+                  document.querySelector('input[name="role"]:checked').value &&
+                  document.querySelector('input[name="active"]:checked').value
+                ) {
+                  role = document.querySelector('input[name="role"]:checked').value;
+                  active = document.querySelector('input[name="active"]:checked').value;
+                } else {
+                  console.log('Something went wrong');
+                }
 
+                //submit role changes to userId backend
+                //submit active changes to userId backend
+              }
+            </script>
             <a
               class="btn btn-info"
               data-toggle="modal"
@@ -103,7 +146,14 @@
               id="viewButton<%i%>"
               >View</a
             >
-            <a class="btn btn-secondary edit" href="../users/edit/<%=data[i].id%>">Edit</a>
+            <a
+              class="btn btn-secondary edit"
+              data-toggle="modal"
+              data-target="#detailModal<%=i%>"
+              id="editButton<%i%>"
+              onclick="editUserPopup()"
+              >Edit</a
+            >
             <a
               class="btn btn-danger delete"
               onclick='deleteUserPopup("<%=data[i].id%>", "<%=data[i].email%>")'
