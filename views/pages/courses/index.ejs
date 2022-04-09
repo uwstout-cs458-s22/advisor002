@@ -59,30 +59,42 @@ completedCourses = [{
 
 <div class="courses-container card">
   <div class="card-header">
-    <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">
-      Completed Courses
-    </button>
 
-    <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">
-      Current Courses
-    </button>
-
-    <button type="button" class="btn btn-primary" onclick="viewCourses()" id="viewBtn">
+    <ul class="nav nav-pills w-100">
+      <li class="nav-pill active">
+        <a class="nav-link">Courses</a>
+      </li>
+      <li class="nav-pill ml-auto">
+        <button
+        id="create-course-button"
+        type="button"
+        class="btn nav-link active"
+        data-toggle="modal"
+        data-target="#create-course-modal"
+        >
+        Create Course
+      </button>
+    </li>
+  </ul>
+  <hr>
+  <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
+  
+  <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
+  
+  <button type="button" class="btn btn-primary" onclick="viewCourses()" id="viewBtn">
       View Courses
     </button>
-  </div>
-  <script></script>
-
-
-  <div class="courses-holder card-body">
-    <input class="form-control" id="courseSearchBar" type="text" placeholder="Search..." />
-    <table id="completedTable" class="table table-striped">
-      <tr>
-        <th style="width: 33%">Course Number</th>
-        <th style="width: 33%">Course Name</th>
-        <th style="width: 20%">Credit Amount</th>
-      </tr>
-      <% for(var i = 0; i < completedCourses.length; i++) { %>
+</div>
+<div class="courses-holder card-body">
+  <table id="completedTable" class="table table-striped">
+    <tr>
+      <th style="width: 33%">Course Number</th>
+      <th style="width: 33%">Course Name</th>
+      <th style="width: 20%">Credit Amount</th>
+    </tr>
+    <% 
+    
+    for(var i = 0; i < completedCourses.length; i++) { %>
       <tr>
         <td><%-completedCourses[i].number%></td>
         <td><%-completedCourses[i].name %></td>
@@ -254,4 +266,5 @@ completedCourses = [{
     </table>
     <div class="course-item-holder"></div>
   </div>
+   <%- include('./createCourseModal') %>
 </div>
