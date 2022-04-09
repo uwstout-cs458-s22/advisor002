@@ -66,7 +66,7 @@ module.exports = function () {
 
   router.use('/advise', adviseRoutes);
   router.use('/manage', manageRoutes);
-  router.use('/major', majorRoutes)
+  router.use('/major', majorRoutes);
   router.use('/admin', adminRoutes);
   router.use('/profile', profileRoutes);
   router.use('/courses', coursesRoutes);
