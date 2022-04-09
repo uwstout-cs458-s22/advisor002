@@ -29,6 +29,7 @@ jest.mock('../services/auth', () => {
 jest.mock('../controllers/Courses', () => {
   return {
     createCourse: jest.fn(),
+    findAll: jest.fn(),
   };
 });
 
@@ -74,7 +75,6 @@ describe('Courses Route Tests', () => {
       const doc = new JSDOM(response.text).window.document;
 
       // check the main navbar
-
       expect(doc.querySelector('.navbar-nav>.active').getAttribute('href')).toBe('/courses');
       expect(doc.querySelector('.dropdown-menu>.dropdown-item').getAttribute('href')).toBe(
         '/profile'
