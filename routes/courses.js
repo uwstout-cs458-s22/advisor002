@@ -9,7 +9,8 @@ module.exports = function () {
   router.use(bodyParser.json());
 
   router.get('/', isUserLoaded, async (req, res) => {
-    const courses = await Course.findAll(req.session.session_token, 0, 100);
+    const criteria = '';
+    const courses = await Course.findAll(req.session.session_token, criteria, 0, 100);
 
     res.render('layout', {
       pageTitle: 'Course Manager',
@@ -22,6 +23,16 @@ module.exports = function () {
     log.info(`${req.method} ${req.originalUrl} success: rendering course page`);
   });
 
+  router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {
+    try{
+      log.info(`here is the requested id: ${res.params.id}`);
+      Course.deleteCourse(req.session.session_token, req.params.id);
+      
+    }
+    catch (error){
+      next(error);
+    }
+  })
   router.get('/:courseId', isUserLoaded, async (req, res, next) => {
     try {
       const courseId = req.session.courses.courseId;
@@ -34,7 +45,7 @@ module.exports = function () {
     }
   });
 
-  router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {});
+  
 
   return router;
 };

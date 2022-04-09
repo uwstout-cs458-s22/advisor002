@@ -1,6 +1,3 @@
-module.exports = {
-  deleteCourse
-}
 const axios = require('axios');
 const log = require('loglevel');
 const { deSerializeCourse } = require('../serializers/Course');
@@ -48,18 +45,26 @@ async function findAll(sessionToken, criteria, limit = 100, offset = 0) {
     throw HttpError(500, `Advisor API Error ${response.status}: ${response.data.error.message}`);
   }
 }
-async function deleteCourse(sessionToken, courseId) {
-  axios.delete('endpointURL', {
-    headers: { Authorization: `Bearer ${sessionToken}` },
-    data: {id: courseId}
-  }).then(response => {
-    log.debug(`Deleted Course: ${response.data}`)
-  }).catch(error => {
-    log.debug(`Couldn't Delete Course: ${error}`)
-  })
+
+async function deleteCourse(sessionToken, course) {
+  const request = axios.delete(`/remove/${course}`,{
+    headers: { Authorization: `Bearer ${sessionToken}` }
+  });
+  if(request == null) return {message: `request is null with course: ${course}`};
+  if(request.status === 201) {
+    return {
+      message: 'Course was deleted successfully',
+      status: request.status
+    };
+  }
+  log.debug(`There was an error deleting course with status code: ${request.status}`);
+  return {
+    message: request.data.error.message,
+    status: request.status
+  };
 }
+
 module.exports = {
-  // deleteCourse,
   findOne,
   findAll,
   deleteCourse
