@@ -117,49 +117,49 @@
 
 <!--Courses scripts-->
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#completedTable').hide();
     showCurrent = () => {
       $('#completedTable').hide();
       $('#currentTable').show();
-    }
+    };
     showCompleted = () => {
       $('#completedTable').show();
       $('#currentTable').hide();
-    }
-  })
+    };
+  });
 </script>
 <script type="text/javascript">
-  let studentMajor = ''
-  const oldDiv = document.getElementById('major')
-  const newDiv = document.getElementById('majorCompare')
+  let studentMajor = '';
+  const oldDiv = document.getElementById('major');
+  const newDiv = document.getElementById('majorCompare');
   const newButton = document.createElement('input');
-  function compareMajor(divName, courseInfo){
-    if(courseInfo!=""){
-      oldDiv.setAttribute('class','card text-left col-sm justify-content-center')
+  function compareMajor(divName, courseInfo) {
+    if (courseInfo != '') {
+      oldDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
 
-      newButton.setAttribute('class',"align-self-end btn btn-primary")
-      newButton.setAttribute('value',"Change Majors")
-      newButton.setAttribute('id','fixedbutton')
-      newButton.setAttribute('onClick','rebuildPage()')
-      major = courseInfo
-      newDiv.setAttribute('class','card text-left col-sm justify-content-center')
-      newDiv.innerHTML = `You are getting information for the ${courseInfo} major`
-      newDiv.appendChild(newButton)
+      newButton.setAttribute('class', 'align-self-end btn btn-primary');
+      newButton.setAttribute('value', 'Change Majors');
+      newButton.setAttribute('id', 'fixedbutton');
+      newButton.setAttribute('onClick', 'rebuildPage()');
+      major = courseInfo;
+      newDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+      newDiv.innerHTML = `You are getting information for the ${courseInfo} major`;
+      newDiv.appendChild(newButton);
     }
   }
   function update() {
     var select = document.getElementById('majors');
     var value = select.options[select.selectedIndex].text;
-    compareMajor('majorCompare',value)
+    compareMajor('majorCompare', value);
   }
-  function rebuildPage(){
-    oldDiv.innerHTML = `You are getting information for the ${major} major`
+  function rebuildPage() {
+    oldDiv.innerHTML = `You are getting information for the ${major} major`;
     //oldDiv.removeAttribute('col-sm')
-    oldDiv.class = 'align-items-center justify-content-center'
-    newDiv.removeAttribute('class')
-    newDiv.removeChild(newButton)
-    newDiv.innerHTML=null
+    oldDiv.class = 'align-items-center justify-content-center';
+    newDiv.removeAttribute('class');
+    newDiv.removeChild(newButton);
+    newDiv.innerHTML = null;
     // document.removeChild(newDiv)
   }
 </script>
@@ -216,17 +216,17 @@
         <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
         </div>
       </div>`;
-      document.getElementById('prerequisite-section').appendChild(newSection);
+    document.getElementById('prerequisite-section').appendChild(newSection);
   }
 </script>
 
 <script>
   async function submitCourseForm(form) {
     // Hides messages from previous course submissions, so that the new one will be displayed
-    const errorAlert = document.getElementById('failed-course-alert')
-    const successAlert = document.getElementById('success-course-alert')
-    errorAlert.style.display = "none"
-    successAlert.style.display = "none"
+    const errorAlert = document.getElementById('failed-course-alert');
+    const successAlert = document.getElementById('success-course-alert');
+    errorAlert.style.display = 'none';
+    successAlert.style.display = 'none';
 
     const isValid = validateCourseForm(form);
 
@@ -237,14 +237,14 @@
       credits: null,
       section: null,
       description: null,
-      prerequisites: []
+      prerequisites: [],
     };
     elements = form.elements;
 
     // Turn the form data into an JS object
     for (const element of elements) {
       // Skips blank values
-      if(element.value === '') continue;
+      if (element.value === '') continue;
 
       if (element.id === 'course-number') {
         formData.section = element.value;
@@ -271,7 +271,7 @@
         continue;
       }
     }
-    
+
     try {
       const res = await fetch('/courses/createCourse', {
         method: 'POST',
@@ -281,13 +281,32 @@
           'Content-Type': 'application/json',
         },
       });
-      if(res.status === 201) {
-        successAlert.style.display = "block";
+      if (res.status === 201) {
+        successAlert.style.display = 'block';
       } else {
-        errorAlert.style.display = "block";
+        errorAlert.style.display = 'block';
       }
     } catch (e) {
-      errorAlert.style.display = "block";
+      errorAlert.style.display = 'block';
     }
+  }
+</script>
+
+<!-- Script with working on the terms page -->
+<script>
+  function showModal(termNumber) {
+    const userName = document.getElementById(`userTerm${termNumber}`).innerText;
+    const title = document.getElementById('modalTitle');
+    title.innerHTML = `Are you sure you want to remove Term '${userName}'`;
+    $('#termsModal').modal('show');
+  }
+  function removeTerm(termNumber) {
+    const term = `Term${termNumber}`;
+    const termToBeRemoved = document.getElementById(term);
+    termToBeRemoved.remove();
+    $('#termsModal').hide();
+  }
+  function hideModal() {
+    $('#termsModal').hide();
   }
 </script>
