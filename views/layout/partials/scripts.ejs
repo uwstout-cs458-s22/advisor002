@@ -117,50 +117,91 @@
 
 <!--Courses scripts-->
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#completedTable').hide();
     showCurrent = () => {
       $('#completedTable').hide();
       $('#currentTable').show();
-    }
+    };
     showCompleted = () => {
       $('#completedTable').show();
       $('#currentTable').hide();
-    }
-  })
+    };
+  });
 </script>
+
+<!-- Major Compare Scripts -->
 <script type="text/javascript">
-  let studentMajor = ''
-  const oldDiv = document.getElementById('major')
-  const newDiv = document.getElementById('majorCompare')
+  let studentMajor = '';
+  const oldDiv = document.getElementById('major');
+  const newDiv = document.getElementById('majorCompare');
   const newButton = document.createElement('input');
-  function compareMajor(divName, courseInfo){
-    if(courseInfo!=""){
-      oldDiv.setAttribute('class','card text-left col-sm justify-content-center')
-      
-      newButton.setAttribute('class',"align-self-end btn btn-primary")
-      newButton.setAttribute('value',"Change Majors")
-      newButton.setAttribute('id','fixedbutton')
-      newButton.setAttribute('onClick','rebuildPage()')
-      major = courseInfo
-      newDiv.setAttribute('class','card text-left col-sm justify-content-center')
-      newDiv.innerHTML = `You are getting information for the ${courseInfo} major`
-      newDiv.appendChild(newButton)
+  function compareMajor(divName, courseInfo) {
+    if (courseInfo != '') {
+      oldDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+
+      newButton.setAttribute('class', 'align-self-end btn btn-primary');
+      newButton.setAttribute('value', 'Change Majors');
+      newButton.setAttribute('id', 'fixedbutton');
+      newButton.setAttribute('onClick', 'rebuildPage()');
+      major = courseInfo;
+      newDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+      newDiv.innerHTML = `You are getting information for the ${courseInfo} major`;
+      newDiv.appendChild(newButton);
     }
   }
   function update() {
     var select = document.getElementById('majors');
     var value = select.options[select.selectedIndex].text;
-    compareMajor('majorCompare',value)
+    compareMajor('majorCompare', value);
   }
-  function rebuildPage(){
-    oldDiv.innerHTML = `You are getting information for the ${major} major`
+  function rebuildPage() {
+    oldDiv.innerHTML = `You are getting information for the ${major} major`;
     //oldDiv.removeAttribute('col-sm')
-    oldDiv.class = 'align-items-center justify-content-center'
-    newDiv.removeAttribute('class')
-    newDiv.removeChild(newButton)
-    newDiv.innerHTML=null
+    oldDiv.class = 'align-items-center justify-content-center';
+    newDiv.removeAttribute('class');
+    newDiv.removeChild(newButton);
+    newDiv.innerHTML = null;
     // document.removeChild(newDiv)
   }
 </script>
 
+<!-- Term Scripts -->
+<script type="text/javascript">
+  const currentTermDiv = document.getElementById('termSelection');
+  const comparedTermDiv = document.getElementById('termCompare');
+  const termButton = document.createElement('input');
+
+  let termSelection = '';
+
+  // TODO: Find a way to switch which term is deleted.
+  //       The user should have the option to delete either term comparison options.
+  function termComparison(termDiv, termInformation) {
+    if (termInformation != '') {
+      currentTermDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+
+      newButton.setAttribute('class', 'align-self-end btn btn-primary');
+      newButton.setAttribute('value', 'Remove This Term');
+      newButton.setAttribute('id', 'fixedbutton');
+      newButton.setAttribute('onClick', 'newTermLayout()');
+      term = termInformation;
+      comparedTermDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+      comparedTermDiv.innerHTML = `You are currently looking at term ${termInformation}`;
+      comparedTermDiv.appendChild(newButton);
+    }
+  }
+
+  function newTermLayout() {
+    currentTermDiv.innerHTML = `You are currently looking at term ${termInformation}`;
+    currentTermDiv.class = 'align-items-center justify-content-center';
+    comparedTermDiv.removeAttribute('class');
+    comparedTermDiv.removeChild(newButton);
+    comparedTermDiv.innerHTML = null;
+  }
+
+  function updateTerm() {
+    var select = document.getElementById('term');
+    var value = select.options[select.selectedIndex].text;
+    termComparison('comparedTermDiv', value);
+  }
+</script>
