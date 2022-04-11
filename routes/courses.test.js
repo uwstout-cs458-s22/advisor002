@@ -29,6 +29,7 @@ jest.mock('../services/auth', () => {
 jest.mock('../controllers/Courses', () => {
   return {
     createCourse: jest.fn(),
+    findAll: jest.fn(),
   };
 });
 
@@ -48,6 +49,8 @@ describe('Courses Route Tests', () => {
   beforeEach(() => {
     Course.createCourse.mockReset();
     Course.createCourse.mockResolvedValue(null);
+    Course.findAll.mockReset();
+    Course.findAll.mockResolvedValue({ name: 'test-course' });
     resetMockIsUserLoaded();
   });
 
@@ -72,7 +75,6 @@ describe('Courses Route Tests', () => {
     test('basic page checks', async () => {
       const response = await request(app).get('/courses');
       const doc = new JSDOM(response.text).window.document;
-
       // check the main navbar
       expect(doc.querySelector('.navbar-nav>.active').getAttribute('href')).toBe('/courses');
       expect(doc.querySelector('.dropdown-menu>.dropdown-item').getAttribute('href')).toBe(

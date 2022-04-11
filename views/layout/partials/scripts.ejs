@@ -115,19 +115,46 @@
   });
 </script>
 
+<!-- Course table search bar -->
+<script>
+  $(document).ready(function () {
+    $('#courseSearchBar').on('keyup', function () {
+      var value = $(this).val().toLowerCase();
+      $('#completedTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+      $('#currentTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+      $('#viewTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+</script>
+
 <!--Courses scripts-->
 <script>
   $(document).ready(function () {
     $('#completedTable').hide();
+    $('#viewTable').hide();
     showCurrent = () => {
       $('#completedTable').hide();
       $('#currentTable').show();
-    };
+      $('#viewTable').hide();
+    }
     showCompleted = () => {
       $('#completedTable').show();
       $('#currentTable').hide();
-    };
-  });
+      $('#viewTable').hide();
+    }
+    viewCourses = () => {
+      $('#completedTable').hide();
+      $('#currentTable').hide();
+      $('#viewTable').show();
+    }
+  })
+
 </script>
 <script type="text/javascript">
   let studentMajor = '';
@@ -163,6 +190,7 @@
     // document.removeChild(newDiv)
   }
 </script>
+
 
 <!-- Create Course Validation -->
 <script>
