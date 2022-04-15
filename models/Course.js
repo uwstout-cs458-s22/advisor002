@@ -1,9 +1,10 @@
 class Course {
   constructor(params) {
+    this.id = params.id;
+    this.courseId = params.courseId;
     this.name = params.name;
-    this.major = params.major;
     this.credits = params.credits;
-    this.semester = params.semester;
+    this.section = params.section;
   }
 }
 

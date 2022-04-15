@@ -6,6 +6,7 @@ const { isUserLoaded } = require('../services/auth');
 module.exports = function () {
   const router = express.Router();
   router.use(bodyParser.json());
+  
   router.get('/', isUserLoaded, async (req, res, next) => {
     res.render('layout', {
       pageTitle: 'Terms',
