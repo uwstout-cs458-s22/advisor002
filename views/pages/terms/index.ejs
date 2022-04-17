@@ -1,4 +1,46 @@
 <div class="card" id="body">
+    <div class="text-center bold" id="pagegrid">Term Information Page
+        <form class="text-center" action="./terms" id="form" name="myform"
+            <label for="termSelection" class="align-middle text-center">Select the term you wish to view</label>
+            <select name="term" id="term">
+                <option value=""></option>
+                <option value="Term1">Term 1</option>
+                <option value="Term2">Term 2</option>
+                <option value="Term3">Term 3</option>
+                <option value="Term4">Term 4</option>
+                <option value="Term5">Term 5</option>
+                <option value="Term6">Term 6</option>
+                <option value="Term7">Term 7</option>
+                <option value="Term8">Term 8</option>
+            </select>
+            <input type="button" class="btn btn-primary" value="Compare" onClick="updateTerm()"></input>
+            <input type="button" class="btn btn-success" value="Add Term" onClick="addTerm()"></input>
+            <input type="button" class="btn btn-danger" value="Delete Term" onClick="deleteTerm()"></input>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="text-center card align-items-center justify-content-center" style="height: 18rem; width: 1104rem" id="major">
+            <!-- You do not have any terms yet, please add a term before selection -->
+        </div>
+        <div id="termCompare" style="height: 18rem" class="text-center card justify-content-center"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    let term = ''
+    function buildPage(starting){
+    const oldDiv = document.getElementById('term')
+    if(starting==''){
+      oldDiv.innerHTML='You do not have any terms yet, please add a term before selection'
+    } else{
+        oldDiv.innerHTML=`You are looking at information for term ${term}`
+    }
+}
+    window.onload = buildPage(term)
+</script>
+
 
     <div class="card-header">
         <button id="add-plan-button" type="button" class="btn nav-link active" data-toggle="modal" data-target="#termModal"> Create Term </button>
@@ -40,5 +82,3 @@
     Class
 </div>
 <%- include('./createTermModal') %>
-
-

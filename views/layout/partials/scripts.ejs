@@ -154,8 +154,9 @@
       $('#viewTable').show();
     }
   })
-
 </script>
+
+<!-- Major Compare Scripts -->
 <script type="text/javascript">
   let studentMajor = '';
   const oldDiv = document.getElementById('major');
@@ -191,6 +192,44 @@
   }
 </script>
 
+<!-- Term Scripts -->
+<script type="text/javascript">
+  const currentTermDiv = document.getElementById('termSelection');
+  const comparedTermDiv = document.getElementById('termCompare');
+  const termButton = document.createElement('input');
+
+  let termSelection = '';
+
+  // TODO: Find a way to switch which term is deleted.
+  //       The user should have the option to delete either term comparison options.
+  function termComparison(termDiv, termInformation) {
+    if (termInformation != '') {
+      currentTermDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+
+      newButton.setAttribute('class', 'align-self-end btn btn-primary');
+      newButton.setAttribute('value', 'Remove This Term');
+      newButton.setAttribute('id', 'fixedbutton');
+      newButton.setAttribute('onClick', 'newTermLayout()');
+      term = termInformation;
+      comparedTermDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+      comparedTermDiv.innerHTML = `You are currently looking at term ${termInformation}`;
+      comparedTermDiv.appendChild(newButton);
+    }
+  }
+
+  function newTermLayout() {
+    currentTermDiv.innerHTML = `You are currently looking at term ${termInformation}`;
+    currentTermDiv.class = 'align-items-center justify-content-center';
+    comparedTermDiv.removeAttribute('class');
+    comparedTermDiv.removeChild(newButton);
+    comparedTermDiv.innerHTML = null;
+  }
+
+  function updateTerm() {
+    var select = document.getElementById('term');
+    var value = select.options[select.selectedIndex].text;
+    termComparison('comparedTermDiv', value);
+</script>
 
 <!-- Create Course Validation -->
 <script>
