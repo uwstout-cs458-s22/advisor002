@@ -45,7 +45,15 @@ module.exports = function () {
     }
   });
 
-  
+  router.post('/', isUserLoaded, async(req,res,next) => {
+    try{
+      log.info(req.body)
+      Course.deleteCourse(req.session.session_token, req.body);
+    }
+    catch(error) {
+      next(error);
+    }
+  })
 
   return router;
 };

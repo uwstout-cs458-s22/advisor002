@@ -47,11 +47,11 @@ async function findAll(sessionToken, criteria, limit = 100, offset = 0) {
 }
 
 async function deleteCourse(sessionToken, course) {
-  const request = axios.delete(`/remove/${course}`,{
-    headers: { Authorization: `Bearer ${sessionToken}` }
+  const request = axios.put(`/`, {
+    body: course.id
   });
-  if(request == null) return {message: `request is null with course: ${course}`};
-  if(request.status === 201) {
+  if(request == null) return {message: `request is null with course: ${course.id}`};
+  if(request.status === 204) {
     return {
       message: 'Course was deleted successfully',
       status: request.status

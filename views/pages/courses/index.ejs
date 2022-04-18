@@ -91,10 +91,11 @@ futureCourses = [{
     <button type="button" class="btn btn-primary" onclick="showTable(completedTable)" id="completeBtn">Completed Courses</button>
     <button type="button" class="btn btn-primary" onclick="showTable(currentTable)" id="currBtn">Current Courses</button>
     <button type="button" class="btn btn-primary" onclick="showTable(futureTable)" id="currBtn">Future Courses</button>
+    <form method="post">
+      <input type="hidden" value="1">
+      <input type="submit" class="btn btn-primary" id="formBtn" value="1">
+    </form>  
   </div>
-  <script>
-
-  </script>
   <div class="courses-holder card-body">
     <%- include('./courseTable') %>
   </div>
