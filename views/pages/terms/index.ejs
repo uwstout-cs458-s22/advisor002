@@ -41,26 +41,6 @@
     window.onload = buildPage(term)
 </script>
 
-
-    <div class="card-header">
-        <button id="add-plan-button" type="button" class="btn nav-link active" data-toggle="modal" data-target="#termModal"> Create Term </button>
-        <div id="testingDiv"></div>
-      </div>
-    
-    <div class="text-center bold">Terms</div>
-</div>
-
-
-<div class="card bg-primary" id="Term1">
-    <div class="text-center bold" contenteditable="true" id="userTerm1">Term 1 </div> 
-    <div style="text-align:right">
-        <button class="btn btn-danger" contenteditable="false"onClick='showModal(1)' id="deleteBtn">X</input>
-    </div>
-        <div class="card justify-content-center">
-        Class
-    </div>
-</div>
-
 <div id="termsModal" class="modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -77,8 +57,4 @@
     </div>
 </div>
 
-
-<div class="card justify-content-center">
-    Class
-</div>
 <%- include('./createTermModal') %>
