@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-size: 100%;
   font-weight: 100;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'arial', sans-serif;
 }
 
 h1,
@@ -13,7 +13,7 @@ h4,
 h5,
 h6 {
   font-weight: 300;
-  color: #004990;
+  color: #ffffff;
 }
 
 h1 {
@@ -25,7 +25,46 @@ h2 {
 }
 
 a {
-  color: #3c7cbb;
+  color: #0c233f;
+}
+
+.header {
+  height: 40px;
+}
+
+.headerBar {
+  background-color: #0c233f;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 100%;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  height: 200px;
+}
+
+.headerTop {
+  height: 40px;
+}
+
+.headerTopLeft {
+  color: #0c233f;
+  font-family: 'Ridgeline', Arial, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 1000;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+.headerLogo {
+  max-width: 205px;
+}
+
+.headerLogo img{
+  width: 100%;
+  transition: .25s;
+  width: 205px;
+  position: absolute;
+  top: 40px;
 }
 
 header .navbar-brand {
@@ -34,6 +73,44 @@ header .navbar-brand {
 
 .navbar-text {
   color: rgb(255, 255, 255) !important;
+}
+
+.footer {
+  height: 40px;
+}
+
+.footerLogo {
+  background-color: #0c233f;
+  padding-top: 28px;
+  padding-bottom: 48px;
+}
+
+.footerLogo img {
+max-width: 200px;
+}
+
+.footerWarning {
+  background-color: #0c233f;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.375rem;
+  color: white;
+  padding-bottom: 50px;
+  text-align: center;
+  font-size: large;
+}
+
+.footerAuthors {
+  background-color: #000000;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.375rem;
+  color: white;
+  padding-bottom: 50px;
+  text-align: center;
+  font-size: large;
 }
 
 .maincontent {
@@ -47,7 +124,7 @@ body {
 .App {
   align-items: center;
   display: flex;
-  font-family: 'Helvetica New', Helvetica, sans-serif;
+  font-family: 'arial', sans-serif;
   height: 100vh;
   justify-content: center;
   text-align: center;
@@ -55,19 +132,20 @@ body {
 
 .Sign-in-container {
   align-items: center;
-  background-color: #ffffff;
+  background-color: #0c233f;
   border: 1px solid #ebebeb;
   border-radius: 9px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   display: flex;
-  height: 375px;
+  height: 475px;
   justify-content: center;
-  width: 450px;
+  width: 550px;
 }
 
 .courses-container{
   display: block;
+}
 
 .course-input {
   margin-left: 1.5rem;
