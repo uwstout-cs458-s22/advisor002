@@ -94,6 +94,7 @@ completedCourses = [{
       <th style="width: 33%">Course Number</th>
       <th style="width: 33%">Course Name</th>
       <th style="width: 20%">Credit Amount</th>
+      <th>Course Options</th>
     </tr>
     <% 
     
@@ -105,7 +106,7 @@ completedCourses = [{
         <td>
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-info"
             data-toggle="modal"
             data-target="#<%-completedCourses[i].name%>Modal"
           >
@@ -154,6 +155,8 @@ completedCourses = [{
         <th style="width: 33%">Course Number</th>
         <th style="width: 33%">Course Name</th>
         <th style="width: 20%">Credit Amount</th>
+        <th>Course Options</th>
+
       </tr>
       <% for(var i = 0; i < currentCourses.length; i++) { %>
       <tr>
@@ -163,7 +166,7 @@ completedCourses = [{
         <td>
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-info"
             data-toggle="modal"
             data-target="#<%-currentCourses[i].name%>Modal"
           >
@@ -212,6 +215,7 @@ completedCourses = [{
         <th >Course Name</th>
         <th >Credit Amount</th>
         <th>Course Section</th>
+        <th>Course Options</th>
       </tr>
       <% for(var i = 0; i < data.length; i++) { %>
       <tr>
@@ -223,13 +227,22 @@ completedCourses = [{
         <td>
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-info"
             data-toggle="modal"
             data-target="#<%-data[i].name%>Modal"
           >
             More
           </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal" 
+            data-target="#<%-data[i].name%>ModalAdd"
+          >
+            Add to Term
+          </button>
         </td>
+          
         <div
           class="modal fade"
           id="<%-data[i].name%>Modal"
@@ -259,6 +272,33 @@ completedCourses = [{
                     Not Defined Yet
                   </ul>
                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="modal fade"
+          id="<%-data[i].name%>ModalAdd"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><%-data[i].name%></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  Select Term To Add To: 
+                </ul>
+                <
+                
               </div>
             </div>
           </div>
