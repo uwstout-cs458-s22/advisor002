@@ -1,7 +1,7 @@
 <div class="card" id="body">
     <div class="text-center bold" id="pagegrid">Term Information Page
-        <form class="text-center" action="./terms" id="form" name="myform"
-            <label for="termSelection" class="align-middle text-center">Select the term you wish to view</label>
+        <form class="text-center" action="./terms" id="form" name="myform">
+         <label for="termSelection" class="align-middle text-center">Select the term you wish to view</label>
             <select name="term" id="term">
                 <option value=""></option>
                 <option value="Term1">Term 1</option>
@@ -18,26 +18,34 @@
             <input type="button" class="btn btn-danger" value="Delete Term" onClick="deleteTerm()"></input>
         </form>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="text-center card align-items-center justify-content-center" style="height: 18rem; width: 1104rem" id="major">
-            <!-- You do not have any terms yet, please add a term before selection -->
-        </div>
-        <div id="termCompare" style="height: 18rem" class="text-center card justify-content-center"></div>
+    <div class="terms-holder" id="Term1">
+        <%for(var i = 0; i < 6; i++) {%>
+        <div class="dropdown terms-term">
+            <button class="btn btn-secondary dropdown-toggle" style="width:100%; height: 200%;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Spring 2022
+            </button>
+            <div class="dropdown-menu" style="width: 100%; text-align: center;" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Web and Internet</a>
+              <a class="dropdown-item" href="#">English 102</a>
+              <a class="dropdown-item" href="#">Calculus 2</a>
+            </div>
+          </div>
+        <%}%>
     </div>
 </div>
 
+
 <script type="text/javascript">
     let term = ''
-    function buildPage(starting){
-    const oldDiv = document.getElementById('term')
-    if(starting==''){
-      oldDiv.innerHTML='You do not have any terms yet, please add a term before selection'
-    } else{
-        oldDiv.innerHTML=`You are looking at information for term ${term}`
+
+    function buildPage(starting) {
+        const oldDiv = document.getElementById('term')
+        if (starting == '') {
+            oldDiv.innerHTML = 'You do not have any terms yet, please add a term before selection'
+        } else {
+            oldDiv.innerHTML = `You are looking at information for term ${term}`
+        }
     }
-}
     window.onload = buildPage(term)
 </script>
 
@@ -47,7 +55,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
             </div>
             <div class="modal-body">
                 <button class="btn btn-success" onClick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>

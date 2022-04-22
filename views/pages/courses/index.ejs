@@ -1,4 +1,5 @@
-<!--Some arrays of objects for displaying purposes, once there is course data in the database, we will pull from that information instead-->
+<!--Some arrays of objects for displaying purposes, once there is course data in the database, we will pull from that information instead 
+  and delete this abomination -->
 <% currentCourses = [{
   number: "MATH 158",
   name: "Calculus 3",
@@ -55,6 +56,34 @@ completedCourses = [{
     date: 'Summer 2019',
   }
 }]
+futureCourses = [{
+  number: "MATH 157",
+  name: "Calculus 2",
+  credit: 4,
+  more: {
+    grade: 'A-',
+    category: ['Mathematical Course'],
+    date: 'Fall 2020',
+  }
+},{
+  number: "CS 380",
+  name: "Web and Internet",
+  credit: 3,
+  more: {
+    grade: 'A',
+    category: ['Mathematical Course'],
+    date: 'Spring 2018',
+  }
+},{
+  number: "ENGL 102",
+  name: "English 2",
+  credit: 2,
+  more: {
+    grade: 'C+',
+    category: ['Communication Skills'],
+    date: 'Summer 2019',
+  }
+}]
 %>
 
 <div class="courses-container card">
@@ -65,37 +94,32 @@ completedCourses = [{
         <a class="nav-link">Courses</a>
       </li>
       <li class="nav-pill ml-auto">
-        <button
-        id="create-course-button"
-        type="button"
-        class="btn nav-link active"
-        data-toggle="modal"
-        data-target="#create-course-modal"
-        >
-        Create Course
-      </button>
-    </li>
-  </ul>
-  <hr>
-  <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
-  
-  <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
-  
-  <button type="button" class="btn btn-primary" onclick="viewCourses()" id="viewBtn">
+        <button id="create-course-button" type="button" class="btn nav-link active" data-toggle="modal"
+          data-target="#create-course-modal">
+          Create Course
+        </button>
+      </li>
+    </ul>
+    <hr>
+    <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
+
+    <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
+
+    <button type="button" class="btn btn-primary" onclick="viewCourses()" id="viewBtn">
       View Courses
     </button>
-</div>
+  </div>
 
-<div class="courses-holder card-body">
-  <input class="form-control mb-2" id="courseSearchBar" type="text" placeholder="Search..." />
+  <div class="courses-holder card-body">
+    <input class="form-control mb-2" id="courseSearchBar" type="text" placeholder="Search..." />
 
-  <table id="completedTable" class="table table-striped">
-    <tr>
-      <th style="width: 33%">Course Number</th>
-      <th style="width: 33%">Course Name</th>
-      <th style="width: 20%">Credit Amount</th>
-    </tr>
-    <% 
+    <table id="completedTable" class="table table-striped">
+      <tr>
+        <th style="width: 33%">Course Number</th>
+        <th style="width: 33%">Course Name</th>
+        <th style="width: 20%">Credit Amount</th>
+      </tr>
+      <% 
     
     for(var i = 0; i < completedCourses.length; i++) { %>
       <tr>
@@ -103,23 +127,13 @@ completedCourses = [{
         <td><%-completedCourses[i].name %></td>
         <td><%-completedCourses[i].credit %></td>
         <td>
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-toggle="modal"
-            data-target="#<%-completedCourses[i].name%>Modal"
-          >
+          <button type="button" class="btn btn-secondary" data-toggle="modal"
+            data-target="#<%-completedCourses[i].name%>Modal">
             More
           </button>
         </td>
-        <div
-          class="modal fade"
-          id="<%-completedCourses[i].name%>Modal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
+        <div class="modal fade" id="<%-completedCourses[i].name%>Modal" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -161,22 +175,12 @@ completedCourses = [{
         <td><%-currentCourses[i].name %></td>
         <td><%-currentCourses[i].credit %></td>
         <td>
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-toggle="modal"
-            data-target="#<%-currentCourses[i].name%>Modal"
-          >
+          <button type="button" class="btn btn-secondary" data-toggle="modal"
+            data-target="#<%-currentCourses[i].name%>Modal">
             More
           </button>
         </td>
-        <div
-          class="modal fade"
-          id="<%-currentCourses[i].name%>Modal"
-          tabindex="-1"
-          role="dialog"
-          aria-hidden="true"
-        >
+        <div class="modal fade" id="<%-currentCourses[i].name%>Modal" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -208,9 +212,9 @@ completedCourses = [{
     </table>
     <table id="viewTable" class="table table-striped">
       <tr>
-        <th >Course Id</th>
-        <th >Course Name</th>
-        <th >Credit Amount</th>
+        <th>Course Id</th>
+        <th>Course Name</th>
+        <th>Credit Amount</th>
         <th>Course Section</th>
       </tr>
       <% for(var i = 0; i < data.length; i++) { %>
@@ -218,26 +222,15 @@ completedCourses = [{
         <td><%-data[i].id%></td>
         <td><%-data[i].name %></td>
         <td><%-data[i].credits %></td>
-        <td><%-data[i].section %></td> 
+        <td><%-data[i].section %></td>
 
         <td>
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-toggle="modal"
-            data-target="#<%-data[i].name%>Modal"
-          >
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#<%-data[i].name%>Modal">
             More
           </button>
         </td>
-        <div
-          class="modal fade"
-          id="<%-data[i].name%>Modal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
+        <div class="modal fade" id="<%-data[i].name%>Modal" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -268,5 +261,5 @@ completedCourses = [{
     </table>
     <div class="course-item-holder"></div>
   </div>
-   <%- include('./createCourseModal') %>
+  <%- include('./createCourseModal') %>
 </div>
