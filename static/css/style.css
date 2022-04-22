@@ -76,3 +76,20 @@ body {
   max-width: 33.33%;
   display: inline-block;
 }
+.terms-holder {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  display: block;
+  margin-left: auto;
+  margin-top: auto;
+  width:80%;
+  height:100%;
+}
+.terms-term{
+  margin-top: 1%;
+  margin-bottom: 1%;
+  display: flex;
+  justify-content: center;
+  width:69%;
+  height:auto;
+}
