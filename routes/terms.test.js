@@ -48,9 +48,23 @@ describe('Manage Route Tests', () => {
 
       // check the main navbar
       expect(doc.querySelector('.navbar-nav>.active').getAttribute('href')).toBe('/manage');
-      expect(doc.querySelector('.navbar-nav>.navbar-text').innerHTML).toContain(
+      expect(doc.querySelector('.dropdown-menu>.dropdown-item').getAttribute('href')).toBe(
+        '/profile'
+      );
+      expect(doc.querySelector('.nav-link.dropdown-toggle.active').innerHTML).toContain(
         'master@uwstout.edu'
       );
     });
   });
 });
+
+test('Testing Add Button', async () => {
+
+  // const response = await request(app).get('/terms');
+
+  // const doc = new JSDOM(response.text).window.document;
+  // doc.submitTerm();
+
+  // expect(doc.getElementByID(testingDiv).innerHTML = "test completed");
+
+})

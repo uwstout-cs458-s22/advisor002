@@ -48,10 +48,12 @@ describe('Manage Route Tests', () => {
 
       // check the main navbar
       expect(doc.querySelector('.navbar-nav>.active').getAttribute('href')).toBe('/manage');
-      expect(doc.querySelector('.navbar-nav>.navbar-text').innerHTML).toContain(
+      expect(doc.querySelector('.dropdown-menu>.dropdown-item').getAttribute('href')).toBe(
+        '/profile'
+      );
+      expect(doc.querySelector('.nav-link.dropdown-toggle.active').innerHTML).toContain(
         'master@uwstout.edu'
       );
-
       // Check the program plan modal
       const programPlanModal = doc.getElementById('program-plan-modal');
       expect(doc.body.contains(programPlanModal)).toBe(true);

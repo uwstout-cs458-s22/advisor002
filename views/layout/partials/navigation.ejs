@@ -6,13 +6,20 @@
       <a class="nav-link <%= group === 'manage' ? 'active' : ''%>" href="/manage">Manage</a>
       <a class="nav-link <%= group === 'admin' ? 'active' : ''%>" href="/admin">Admin</a>
       <a class="nav-link <%= group === 'major' ? 'active' : ''%>" href="/major">Major</a>
-      <a class="nav-link <%= group === 'profile' ? 'active' : ''%>" href="/profile">Profile</a>
       <a class="nav-link <%= group === 'courses' ? 'active' : ''%>" href="/courses">Courses</a>
       <a class="nav-link <%= group === 'terms' ? 'active' : ''%>" href="/terms">Terms</a>
     </div>
     <div class="navbar-nav">
-      <span class="navbar-text"> Welcome <%= email %> </span>
-      <a class="nav-link" href="/logout">Logout</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbardrop" data-toggle="dropdown">
+            <%= email %>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/profile">Profile</a>
+            <a class="dropdown-item" href="/logout">Logout</a>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
