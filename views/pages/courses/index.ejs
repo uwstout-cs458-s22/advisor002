@@ -212,6 +212,7 @@ completedCourses = [{
         <th >Course Name</th>
         <th >Credit Amount</th>
         <th>Course Section</th>
+        <th>Action</th>
       </tr>
       <% for(var i = 0; i < data.length; i++) { %>
       <tr>
@@ -229,7 +230,9 @@ completedCourses = [{
           >
             More
           </button>
+          <a data-id="<%-i%>" class="btn btn-info edit edit-course-button" href="#edit-course-modal" data-target="#edit-course-modal" data-toggle="modal">Edit</a>
         </td>
+
         <div
           class="modal fade"
           id="<%-data[i].name%>Modal"
@@ -264,9 +267,58 @@ completedCourses = [{
           </div>
         </div>
       </tr>
+
+      <!-- Edit course modal -->
+      <div id="edit-course-modal" class="modal fade" role="dialog" value="">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"><%-data[i].name%></h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div id='failed-edit-alert' class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none">
+              Failed to update course.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id='success-edit-alert' class="alert alert-success alert-dismissible fade show" role="alert" style="display:none">
+              Successfully updated the course.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id='edit-course-form' class="needs-validation" novalidate>
+              <div class="modal-body">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="course-number">Course Number</label>
+                    <input type="text" class="form-control validate" id="course-number" placeholder="Course Prefix and Number" value="<%-data[i].prefix%>">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="course-name">Course Name</label>
+                    <input type="text" class="form-control validate" id="course-name" placeholder="Course Name" value="<%-data[i].name%>">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="course-credits">Credits</label>
+                    <input type="text" class="form-control validate" id="course-credits" placeholder="Credits" value="<%-data[i].credits%>">
+                  </div>
+                </div>
+                <br>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onClick="submitCourseEditForm(this.form)">Submit</button>
+                <button type="button" class="btn btn-danger" onClick="resetPlan();">Reset</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
       <% } %>
     </table>
     <div class="course-item-holder"></div>
   </div>
-   <%- include('./createCourseModal') %>
+  <%- include('./createCourseModal') %>
 </div>
