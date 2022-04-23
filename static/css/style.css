@@ -29,7 +29,7 @@ a {
 }
 
 .header {
-  height: 40px;
+  height: 5%;
 }
 
 .headerBar {
@@ -43,7 +43,9 @@ a {
 }
 
 .headerTop {
-  height: 40px;
+  height: 5%;
+  top: 0%;
+  position: absolute;
 }
 
 .headerTopLeft {
@@ -53,6 +55,8 @@ a {
   font-weight: 1000;
   letter-spacing: 0.125rem;
   text-transform: uppercase;
+  padding-top: 0%;
+  vertical-align: top;
 }
 
 .headerLogo {
@@ -76,7 +80,8 @@ header .navbar-brand {
 }
 
 .footer {
-  height: 40px;
+  height: 5%;
+  vertical-align: bottom;
 }
 
 .footerLogo {
