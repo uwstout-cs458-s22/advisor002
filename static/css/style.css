@@ -155,3 +155,25 @@ body {
   display: inline-block;
 
 }
+
+.stout-colors {
+  background-color: #0c233f;
+  color: #fff;
+}
+
+.stout-colors:hover {
+  color: #fff;
+}
+
+.btn-stout {
+  background-color: #0c233f;
+  border:#fff;
+  color: #fff;
+}
+
+.btn-stout:hover {
+  background-color: #0c233f;
+  border-style: none;
+  opacity: 90%;
+  color: #fff;
+}
