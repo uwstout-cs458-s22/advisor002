@@ -138,6 +138,7 @@ body {
   height: 100vh;
   justify-content: center;
   text-align: center;
+  padding-top: 150px;
 }
 
 .Sign-in-container {
