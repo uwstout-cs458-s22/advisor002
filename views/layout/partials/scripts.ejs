@@ -142,18 +142,18 @@
       $('#completedTable').hide();
       $('#currentTable').show();
       $('#viewTable').hide();
-    }
+    };
     showCompleted = () => {
       $('#completedTable').show();
       $('#currentTable').hide();
       $('#viewTable').hide();
-    }
+    };
     viewCourses = () => {
       $('#completedTable').hide();
       $('#currentTable').hide();
       $('#viewTable').show();
-    }
-  })
+    };
+  });
 </script>
 
 <!-- Major Compare Scripts -->
@@ -229,6 +229,7 @@
     var select = document.getElementById('term');
     var value = select.options[select.selectedIndex].text;
     termComparison('comparedTermDiv', value);
+  }
 </script>
 
 <!-- Create Course Validation -->
