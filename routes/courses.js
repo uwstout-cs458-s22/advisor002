@@ -23,7 +23,6 @@ module.exports = function () {
     log.info(`${req.method} ${req.originalUrl} success: rendering course page`);
   });
 
-
   /*
   router.get('/:courseId', isUserLoaded, async (req, res, next) => {
     try {
@@ -48,6 +47,23 @@ module.exports = function () {
         },
       ];
       const response = await Course.createCourse(req.session.session_token, requestBody);
+      res.status(response.status);
+      res.send(response);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/editCourse/:id', isUserLoaded, async (req, res, next) => {
+    try {
+      const id = req.params.id;
+
+      const requestBody = {
+        name: req.body.name,
+        credits: req.body.credits,
+        section: 1, // TODO: Change
+      };
+      const response = await Course.editCourse(req.session.session_token, requestBody, id);
       res.status(response.status);
       res.send(response);
     } catch (error) {
