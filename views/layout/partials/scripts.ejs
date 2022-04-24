@@ -232,7 +232,7 @@
   }
 </script>
 
-<!-- Create Course Validation -->
+<!-- Course Form Validation -->
 <script>
   function validateCourseForm(form) {
     elements = form.elements;
@@ -375,7 +375,6 @@
 
     if (!isValid) return;
 
-
     const formData = {
       name: null,
       credits: null,
@@ -413,7 +412,7 @@
           'Content-Type': 'application/json',
         },
       });
-      console.log(editResponse)
+      console.log(editResponse);
       if (editResponse.status === 200) {
         successAlert.style.display = 'block';
       } else {
