@@ -23,7 +23,10 @@ async function create(sessionToken, userId, email) {
     log.debug(`Advisor API Success: Created (${response.status}) User ${user.id} (${user.email})`);
     return user;
   } else {
-    throw HttpError(500, `Advisor API Error ${response.status}: ${response.data.Error}`);
+    throw HttpError(
+      500,
+      `Advisor API Create User Error ${response.status}: ${response.data.Error}`
+    );
   }
 }
 
@@ -44,7 +47,44 @@ async function fetchAll(sessionToken, offset, limit) {
   }
 }
 
+async function deleteUser(sessionToken, userId) {
+  const request = axios.create({
+    headers: { Authorization: `Bearer {$sessionToken}` },
+  });
+  const response = await request.delete(`users/${userId}`);
+  if (response.status === 200) {
+    log.debug(`User: ${userId} was successfully deleted`);
+    return response;
+  } else {
+    throw HttpError(
+      500,
+      `Advisor API Delete User Error ${response.status}: ${response.data.error.message}`
+    );
+  }
+}
+
+async function edit(sessionToken, userId, newValues) {
+  const request = axios.create({
+    headers: { Authorization: `Bearer ${sessionToken}` },
+  });
+
+  const response = await request.put(`/users/${userId}`, newValues);
+  if (response.status === 200 || response.status === 201) {
+    const userValues = deSerializeUser(response.data);
+    const updatedUser = new User(userValues);
+    log.debug(`API Success: User: ${userId} is now (${newValues})`);
+    return updatedUser;
+  } else {
+    throw HttpError(
+      500,
+      `Advisor API Edit User Error ${response.status}: ${response.data.error.message}`
+    );
+  }
+}
+
 module.exports = {
   create,
   fetchAll,
+  deleteUser,
+  edit,
 };
