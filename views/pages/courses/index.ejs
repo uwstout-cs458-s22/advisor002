@@ -294,21 +294,25 @@ completedCourses = [{
                 </button>
               </div>
               <div class="modal-body">
-                <ul>
-                  Select Term To Add To: 
-                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Terms
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Winterm</a></li>
-                      <li><a href="#">Spring Term</a></li>
-                      <li><a href="#">Summer Term</a></li>
-                      <li><a href="#">Fall Term</a></li>
-                    </ul>
-                </ul>
-                
-                
-                
+                <form class="needs-validation" novalidate>
+                  <div>
+                    <label for="select" class="form-label">Add Class To:</label>
+                    <select class="form-select" id="select" aria-label="Default select example" name="selectTerm" required>
+                      <option selected disabled value="">Select a term</option>
+                      <option value="1">Fall Term</option>
+                      <option value="2">Winterm</option>
+                      <option value="3">Spring Term</option>
+                      <option value="4">Summer Term</option>
+                    </select>
+                    <div class="invalid-feedback">Please Select an option.</div>                    
+                  </div>
+                  
+                </form>
               </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary float-end">Submit</button>
+                  </div>
             </div>
           </div>
         </div>
