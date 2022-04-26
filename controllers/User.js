@@ -63,16 +63,16 @@ async function deleteUser(sessionToken, userId) {
   }
 }
 
-async function edit(sessionToken, userId, newValues) {
+async function edit(sessionToken, userId, newPermissions) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
   });
 
-  const response = await request.put(`/users/${userId}`, newValues);
+  const response = await request.put(`/users/${userId}`, newPermissions);
   if (response.status === 200 || response.status === 201) {
     const userValues = deSerializeUser(response.data);
     const updatedUser = new User(userValues);
-    log.debug(`API Success: User: ${userId} is now (${newValues})`);
+    log.debug(`API Success: User: ${userId} is now (${newPermissions})`);
     return updatedUser;
   } else {
     throw HttpError(
