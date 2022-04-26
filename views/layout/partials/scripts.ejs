@@ -115,52 +115,265 @@
   });
 </script>
 
+<!-- Course table search bar -->
+<script>
+  $(document).ready(function () {
+    $('#courseSearchBar').on('keyup', function () {
+      var value = $(this).val().toLowerCase();
+      $('#completedTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+      $('#currentTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+      $('#viewTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+</script>
+
 <!--Courses scripts-->
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#completedTable').hide();
+    $('#viewTable').hide();
     showCurrent = () => {
       $('#completedTable').hide();
       $('#currentTable').show();
+      $('#viewTable').hide();
     }
     showCompleted = () => {
       $('#completedTable').show();
       $('#currentTable').hide();
+      $('#viewTable').hide();
+    }
+    viewCourses = () => {
+      $('#completedTable').hide();
+      $('#currentTable').hide();
+      $('#viewTable').show();
     }
   })
 </script>
+
+<!-- Major Compare Scripts -->
 <script type="text/javascript">
-  let studentMajor = ''
-  const oldDiv = document.getElementById('major')
-  const newDiv = document.getElementById('majorCompare')
+  let studentMajor = '';
+  const oldDiv = document.getElementById('major');
+  const newDiv = document.getElementById('majorCompare');
   const newButton = document.createElement('input');
-  function compareMajor(divName, courseInfo){
-    if(courseInfo!=""){
-      oldDiv.setAttribute('class','card text-left col-sm justify-content-center')
-      
-      newButton.setAttribute('class',"align-self-end btn btn-primary")
-      newButton.setAttribute('value',"Change Majors")
-      newButton.setAttribute('id','fixedbutton')
-      newButton.setAttribute('onClick','rebuildPage()')
-      major = courseInfo
-      newDiv.setAttribute('class','card text-left col-sm justify-content-center')
-      newDiv.innerHTML = `You are getting information for the ${courseInfo} major`
-      newDiv.appendChild(newButton)
+  function compareMajor(divName, courseInfo) {
+    if (courseInfo != '') {
+      oldDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+
+      newButton.setAttribute('class', 'align-self-end btn btn-primary');
+      newButton.setAttribute('value', 'Change Majors');
+      newButton.setAttribute('id', 'fixedbutton');
+      newButton.setAttribute('onClick', 'rebuildPage()');
+      major = courseInfo;
+      newDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+      newDiv.innerHTML = `You are getting information for the ${courseInfo} major`;
+      newDiv.appendChild(newButton);
     }
   }
   function update() {
     var select = document.getElementById('majors');
     var value = select.options[select.selectedIndex].text;
-    compareMajor('majorCompare',value)
+    compareMajor('majorCompare', value);
   }
-  function rebuildPage(){
-    oldDiv.innerHTML = `You are getting information for the ${major} major`
+  function rebuildPage() {
+    oldDiv.innerHTML = `You are getting information for the ${major} major`;
     //oldDiv.removeAttribute('col-sm')
-    oldDiv.class = 'align-items-center justify-content-center'
-    newDiv.removeAttribute('class')
-    newDiv.removeChild(newButton)
-    newDiv.innerHTML=null
+    oldDiv.class = 'align-items-center justify-content-center';
+    newDiv.removeAttribute('class');
+    newDiv.removeChild(newButton);
+    newDiv.innerHTML = null;
     // document.removeChild(newDiv)
   }
 </script>
 
+<!-- Term Scripts -->
+<script type="text/javascript">
+  const currentTermDiv = document.getElementById('termSelection');
+  const comparedTermDiv = document.getElementById('termCompare');
+  const termButton = document.createElement('input');
+
+  let termSelection = '';
+
+  // TODO: Find a way to switch which term is deleted.
+  //       The user should have the option to delete either term comparison options.
+  function termComparison(termDiv, termInformation) {
+    if (termInformation != '') {
+      currentTermDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+
+      newButton.setAttribute('class', 'align-self-end btn btn-primary');
+      newButton.setAttribute('value', 'Remove This Term');
+      newButton.setAttribute('id', 'fixedbutton');
+      newButton.setAttribute('onClick', 'newTermLayout()');
+      term = termInformation;
+      comparedTermDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+      comparedTermDiv.innerHTML = `You are currently looking at term ${termInformation}`;
+      comparedTermDiv.appendChild(newButton);
+    }
+  }
+
+  function newTermLayout() {
+    currentTermDiv.innerHTML = `You are currently looking at term ${termInformation}`;
+    currentTermDiv.class = 'align-items-center justify-content-center';
+    comparedTermDiv.removeAttribute('class');
+    comparedTermDiv.removeChild(newButton);
+    comparedTermDiv.innerHTML = null;
+  }
+
+  function updateTerm() {
+    var select = document.getElementById('term');
+    var value = select.options[select.selectedIndex].text;
+    termComparison('comparedTermDiv', value);
+</script>
+
+<!-- Create Course Validation -->
+<script>
+  function validateCourseForm(form) {
+    form.reportValidity();
+    elements = form.elements;
+
+    let isValid = true;
+    for (const element of elements) {
+      if (!element.classList.contains('validate')) continue;
+
+      if (element.id === 'course-number' && !element.value.includes('-')) {
+        element.setCustomValidity('Must include prefix. Ex: CS-123');
+        isValid = false;
+        continue;
+      }
+
+      if (element.validity.valueMissing) {
+        element.setCustomValidity('Cannot be empty');
+        isValid = false;
+        continue;
+      }
+
+      // Checks if credits is not a number
+      if (element.id === 'course-credits' && isNaN(element.value)) {
+        element.setCustomValidity('Must be a number');
+        isValid = false;
+        continue;
+      }
+      // Empty string means no errors
+      element.setCustomValidity('');
+    }
+    return isValid;
+  }
+</script>
+
+<!-- Add more perquisite input -->
+<script>
+  function addPrerequisiteInput() {
+    const newSection = document.createElement('div');
+    newSection.setAttribute('class', 'form-row');
+
+    newSection.innerHTML = `
+        <div class="form-group col-md-4">
+          <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
+        </div>
+        <div class="form-group col-md-4">
+          <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
+        </div>
+        <div class="form-group col-md-4">
+        <input type="text" class="form-control course-prereq" placeholder="Course Prefix and Number">
+        </div>
+      </div>`;
+    document.getElementById('prerequisite-section').appendChild(newSection);
+  }
+</script>
+
+<script>
+  async function submitCourseForm(form) {
+    // Hides messages from previous course submissions, so that the new one will be displayed
+    const errorAlert = document.getElementById('failed-course-alert');
+    const successAlert = document.getElementById('success-course-alert');
+    errorAlert.style.display = 'none';
+    successAlert.style.display = 'none';
+
+    const isValid = validateCourseForm(form);
+
+    if (!isValid) return;
+
+    const formData = {
+      name: null,
+      credits: null,
+      section: null,
+      description: null,
+      prerequisites: [],
+    };
+    elements = form.elements;
+
+    // Turn the form data into an JS object
+    for (const element of elements) {
+      // Skips blank values
+      if (element.value === '') continue;
+
+      if (element.id === 'course-number') {
+        formData.section = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-name') {
+        formData.name = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-credits') {
+        formData.credits = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-description') {
+        formData.description = element.value;
+        continue;
+      }
+
+      if (element.classList.contains('course-prereq')) {
+        formData.prerequisite.push(element.value);
+        continue;
+      }
+    }
+
+    try {
+      const res = await fetch('/courses/createCourse', {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (res.status === 201) {
+        successAlert.style.display = 'block';
+      } else {
+        errorAlert.style.display = 'block';
+      }
+    } catch (e) {
+      errorAlert.style.display = 'block';
+    }
+  }
+</script>
+
+<!-- Script with working on the terms page -->
+<script>
+  function showModal(termNumber) {
+    const userName = document.getElementById(`userTerm${termNumber}`).innerText;
+    const title = document.getElementById('modalTitle');
+    title.innerHTML = `Are you sure you want to remove Term '${userName}'`;
+    $('#termsModal').modal('show');
+  }
+  function removeTerm(termNumber) {
+    const term = `Term${termNumber}`;
+    const termToBeRemoved = document.getElementById(term);
+    termToBeRemoved.remove();
+    $('#termsModal').hide();
+  }
+  function hideModal() {
+    $('#termsModal').hide();
+  }
+</script>

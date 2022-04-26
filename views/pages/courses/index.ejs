@@ -56,32 +56,70 @@ completedCourses = [{
   }
 }]
 %>
+
 <div class="courses-container card">
   <div class="card-header">
-    <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
-    
-    <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
-  </div>
-  <script>
 
-  </script>
-  <div class="courses-holder card-body">
-    <table id="completedTable" class="table table-striped">
-      <tr>
-        <th style="width: 33%">Course Number</th>
-        <th style="width: 33%">Course Name</th>
-        <th style="width: 20%">Credit Amount</th>
-      </tr>
-      <% 
-      
-      for(var i = 0; i < completedCourses.length; i++) { %>
+    <ul class="nav nav-pills w-100">
+      <li class="nav-pill active">
+        <a class="nav-link">Courses</a>
+      </li>
+      <li class="nav-pill ml-auto">
+        <button
+        id="create-course-button"
+        type="button"
+        class="btn nav-link active"
+        data-toggle="modal"
+        data-target="#create-course-modal"
+        >
+        Create Course
+      </button>
+    </li>
+  </ul>
+  <hr>
+  <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
+  
+  <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
+  
+  <button type="button" class="btn btn-primary" onclick="viewCourses()" id="viewBtn">
+      View Courses
+    </button>
+</div>
+
+<div class="courses-holder card-body">
+  <input class="form-control mb-2" id="courseSearchBar" type="text" placeholder="Search..." />
+
+  <table id="completedTable" class="table table-striped">
+    <tr>
+      <th style="width: 33%">Course Number</th>
+      <th style="width: 33%">Course Name</th>
+      <th style="width: 20%">Credit Amount</th>
+    </tr>
+    <% 
+    
+    for(var i = 0; i < completedCourses.length; i++) { %>
       <tr>
         <td><%-completedCourses[i].number%></td>
         <td><%-completedCourses[i].name %></td>
         <td><%-completedCourses[i].credit %></td>
-        <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#<%-completedCourses[i].name%>Modal">More</button></td>
-        <div class="modal fade" id="<%-completedCourses[i].name%>Modal" tabindex="-1" role="dialog"
-          aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <td>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-toggle="modal"
+            data-target="#<%-completedCourses[i].name%>Modal"
+          >
+            More
+          </button>
+        </td>
+        <div
+          class="modal fade"
+          id="<%-completedCourses[i].name%>Modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -91,18 +129,25 @@ completedCourses = [{
                 </button>
               </div>
               <div class="modal-body">
-                <ul>Grade Letter: <%-completedCourses[i].more.grade%></ul>
-                <ul>Date: <%-completedCourses[i].more.date%></ul>
-                <ul>Category/s: <%completedCourses[i].more.category.forEach(category => {%>
-                  <ul><%-category%></ul>
-                <%})%></ul>
+                <ul>
+                  Grade Letter: <%-completedCourses[i].more.grade%>
+                </ul>
+                <ul>
+                  Date: <%-completedCourses[i].more.date%>
+                </ul>
+                <ul>
+                  Category/s: <%completedCourses[i].more.category.forEach(category => {%>
+                  <ul>
+                    <%-category%>
+                  </ul>
+                  <%})%>
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </tr>
       <% } %>
-
     </table>
     <table id="currentTable" class="table table-striped">
       <tr>
@@ -110,15 +155,28 @@ completedCourses = [{
         <th style="width: 33%">Course Name</th>
         <th style="width: 20%">Credit Amount</th>
       </tr>
-      <% 
-      
-      for(var i = 0; i < currentCourses.length; i++) { %>
+      <% for(var i = 0; i < currentCourses.length; i++) { %>
       <tr>
         <td><%-currentCourses[i].number%></td>
         <td><%-currentCourses[i].name %></td>
         <td><%-currentCourses[i].credit %></td>
-        <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#<%-currentCourses[i].name%>Modal">More</button></td>
-        <div class="modal fade" id="<%-currentCourses[i].name%>Modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <td>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-toggle="modal"
+            data-target="#<%-currentCourses[i].name%>Modal"
+          >
+            More
+          </button>
+        </td>
+        <div
+          class="modal fade"
+          id="<%-currentCourses[i].name%>Modal"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -128,22 +186,87 @@ completedCourses = [{
                 </button>
               </div>
               <div class="modal-body">
-                <ul>Grade Letter: <%-currentCourses[i].more.grade%></ul>
-                <ul>Date: <%-currentCourses[i].more.date%></ul>
-                <ul>Category/s: <%currentCourses[i].more.category.forEach(category => {%>
-                  <ul><%-category%></ul>
-                <%})%></ul>
+                <ul>
+                  Grade Letter: <%-currentCourses[i].more.grade%>
+                </ul>
+                <ul>
+                  Date: <%-currentCourses[i].more.date%>
+                </ul>
+                <ul>
+                  Category/s: <%currentCourses[i].more.category.forEach(category => {%>
+                  <ul>
+                    <%-category%>
+                  </ul>
+                  <%})%>
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </tr>
       <% } %>
-
     </table>
+    <table id="viewTable" class="table table-striped">
+      <tr>
+        <th >Course Id</th>
+        <th >Course Name</th>
+        <th >Credit Amount</th>
+        <th>Course Section</th>
+      </tr>
+      <% for(var i = 0; i < data.length; i++) { %>
+      <tr>
+        <td><%-data[i].id%></td>
+        <td><%-data[i].name %></td>
+        <td><%-data[i].credits %></td>
+        <td><%-data[i].section %></td> 
 
-    <div class="course-item-holder">
-
-    </div>
+        <td>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-toggle="modal"
+            data-target="#<%-data[i].name%>Modal"
+          >
+            More
+          </button>
+        </td>
+        <div
+          class="modal fade"
+          id="<%-data[i].name%>Modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><%-data[i].name%></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  Grade Letter: Not defined yet
+                </ul>
+                <ul>
+                  Date: Not Defined Yet
+                </ul>
+                <ul>
+                  Category/s:
+                  <ul>
+                    Not Defined Yet
+                  </ul>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tr>
+      <% } %>
+    </table>
+    <div class="course-item-holder"></div>
   </div>
+   <%- include('./createCourseModal') %>
 </div>
