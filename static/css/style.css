@@ -70,18 +70,19 @@ body {
   display: block;
 }
 .course-input {
-  margin-left: 1.5rem;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+  margin-left: 1.5rem;
   max-width: 33.33%;
   display: inline-block;
 }
 .terms-holder {
   margin-top: 1%;
-  margin-bottom: 1%;
+  margin-bottom: 4%;
+  margin-right: auto;
+  margin-left: 18%;
+  padding-left: 5%;
   display: block;
-  margin-left: auto;
-  margin-top: auto;
   width:80%;
   height:100%;
 }
@@ -90,6 +91,7 @@ body {
   margin-bottom: 1%;
   display: flex;
   justify-content: center;
+  align-items: center;
   width:69%;
   height:auto;
 }
