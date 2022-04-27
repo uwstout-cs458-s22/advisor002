@@ -236,6 +236,11 @@
 <script>
   function validateCourseForm(form) {
     form.reportValidity();
+
+<!-- Course Form Validation -->
+<script>
+  function validateCourseForm(form) {
+
     elements = form.elements;
 
     let isValid = true;
@@ -263,6 +268,9 @@
       // Empty string means no errors
       element.setCustomValidity('');
     }
+
+    form.reportValidity();
+
     return isValid;
   }
 </script>
@@ -360,6 +368,68 @@
   }
 </script>
 
+<!-- Edit course -->
+<script>
+  async function submitCourseEditForm(form) {
+    const courseId = $(form).data('id');
+    // Hides messages from previous course submissions, so that the new one will be displayed
+    const errorAlert = document.getElementById(`failed-edit-alert-${courseId}`);
+    const successAlert = document.getElementById(`success-edit-alert-${courseId}`);
+    errorAlert.style.display = 'none';
+    successAlert.style.display = 'none';
+
+    const isValid = validateCourseForm(form);
+
+    if (!isValid) return;
+
+    const formData = {
+      name: null,
+      credits: null,
+      section: null,
+    };
+    elements = form.elements;
+
+    // Turn the form data into an JS object
+    for (const element of elements) {
+      // Skips blank values
+      if (element.value === '') continue;
+
+      if (element.id === 'course-number') {
+        formData.section = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-name') {
+        formData.name = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-credits') {
+        formData.credits = element.value;
+        continue;
+      }
+    }
+
+    try {
+      const editResponse = await fetch(`/courses/editCourse/${courseId}`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (editResponse.status === 200) {
+        successAlert.style.display = 'block';
+      } else {
+        errorAlert.style.display = 'block';
+      }
+    } catch (e) {
+      errorAlert.style.display = 'block';
+    }
+  }
+</script>
+
 <!-- Script with working on the terms page -->
 <script>
   function showModal(termNumber) {
@@ -439,3 +509,4 @@
     }
   }
 </script>
+
