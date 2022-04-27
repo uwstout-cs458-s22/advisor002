@@ -236,6 +236,11 @@
 <script>
   function validateCourseForm(form) {
     form.reportValidity();
+  }
+</script>
+<!-- Course Form Validation -->
+<script>
+  function validateCourseForm(form) {
     elements = form.elements;
 
     let isValid = true;
@@ -263,6 +268,9 @@
       // Empty string means no errors
       element.setCustomValidity('');
     }
+
+    form.reportValidity();
+
     return isValid;
   }
 </script>
@@ -360,6 +368,68 @@
   }
 </script>
 
+<!-- Edit course -->
+<script>
+  async function submitCourseEditForm(form) {
+    const courseId = $(form).data('id');
+    // Hides messages from previous course submissions, so that the new one will be displayed
+    const errorAlert = document.getElementById(`failed-edit-alert-${courseId}`);
+    const successAlert = document.getElementById(`success-edit-alert-${courseId}`);
+    errorAlert.style.display = 'none';
+    successAlert.style.display = 'none';
+
+    const isValid = validateCourseForm(form);
+
+    if (!isValid) return;
+
+    const formData = {
+      name: null,
+      credits: null,
+      section: null,
+    };
+    elements = form.elements;
+
+    // Turn the form data into an JS object
+    for (const element of elements) {
+      // Skips blank values
+      if (element.value === '') continue;
+
+      if (element.id === 'course-number') {
+        formData.section = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-name') {
+        formData.name = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-credits') {
+        formData.credits = element.value;
+        continue;
+      }
+    }
+
+    try {
+      const editResponse = await fetch(`/courses/editCourse/${courseId}`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (editResponse.status === 200) {
+        successAlert.style.display = 'block';
+      } else {
+        errorAlert.style.display = 'block';
+      }
+    } catch (e) {
+      errorAlert.style.display = 'block';
+    }
+  }
+</script>
+
 <!-- Script with working on the terms page -->
 <script>
   function showModal(termNumber) {
@@ -376,5 +446,66 @@
   }
   function hideModal() {
     $('#termsModal').hide();
+  }
+</script>
+
+<!-- Script for editing and deleting users -->
+<script>
+  async function submitUserEdits(id) {
+    var role, active;
+    if (
+      document.querySelector('input[name="role"]:checked').value &&
+      document.querySelector('input[name="active"]:checked').value
+    ) {
+      role = document.querySelector('input[name="role"]:checked').value;
+      active = document.querySelector('input[name="active"]:checked').value;
+    } else {
+      console.log('Something went wrong');
+    }
+    console.log(role, active);
+    const newPermissions = {
+      role: role,
+      enable: active,
+    };
+
+    try {
+      const editResponse = await fetch(`/users/editUser/${id}`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: JSON.stringify(newPermissions),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (editResponse.status === 200) {
+        console.log('wow it worked');
+      }
+    } catch (err) {
+      console.log('it didnt work:' + err);
+    }
+  }
+
+  function editUserPopup() {
+    $('#modalContent').hide();
+    $('#changeUserPermission').show();
+  }
+
+  function deleteUserPopup(idNum, email) {
+    if (confirm('Are You sure you want to delete this user?')) {
+      // delete the user of idNum
+      return new Promise((resolve, reject) => {
+        axios
+          .delete('/users')
+          .send({ userId: idNum, email: email })
+          .then((response) => {
+            return resolve(response.data);
+          })
+          .catch((error) => {
+            return reject(error);
+          });
+      });
+    } else {
+      // do nothing
+    }
   }
 </script>
