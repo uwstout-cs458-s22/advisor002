@@ -63,16 +63,16 @@ async function deleteUser(sessionToken, userId) {
   }
 }
 
-async function edit(sessionToken, userId, newPermissions) {
+async function editUser(sessionToken, id, newPermissions) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
   });
-
-  const response = await request.put(`/users/${userId}`, newPermissions);
+  console.log('hit controller');
+  const response = await request.put(`/user/${id}`, newPermissions);
   if (response.status === 200 || response.status === 201) {
     const userValues = deSerializeUser(response.data);
     const updatedUser = new User(userValues);
-    log.debug(`API Success: User: ${userId} is now (${newPermissions})`);
+    log.debug(`API Success: User: ${id} is now (${newPermissions})`);
     return updatedUser;
   } else {
     throw HttpError(
@@ -86,5 +86,5 @@ module.exports = {
   create,
   fetchAll,
   deleteUser,
-  edit,
+  editUser,
 };

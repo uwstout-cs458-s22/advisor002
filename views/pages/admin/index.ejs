@@ -123,7 +123,7 @@
               </div>
             </div>
             <script>
-              function submitUserEdits(userId) {
+              async function submitUserEdits(id) {
                 var role, active;
                 if (
                   document.querySelector('input[name="role"]:checked').value &&
@@ -134,9 +134,27 @@
                 } else {
                   console.log('Something went wrong');
                 }
+                console.log(role, active);
+                const newPermissions = {
+                  role: role,
+                  enable: active,
+                };
 
-                //submit role changes to userId backend
-                //submit active changes to userId backend
+                try {
+                  const editResponse = await fetch(`/users/editUser/${id}`, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    body: JSON.stringify(newPermissions),
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  });
+                  if (editResponse.status === 200) {
+                    console.log('wow it worked');
+                  }
+                } catch (err) {
+                  console.log('it didnt work:' + err);
+                }
               }
             </script>
             <a
