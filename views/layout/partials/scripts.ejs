@@ -469,7 +469,7 @@
     };
 
     try {
-      const editResponse = await fetch(`/users/${id}`, {
+      const editResponse = await fetch(`/users/editUser/${id}`, {
         method: 'POST',
         credentials: 'same-origin',
         body: JSON.stringify(newPermissions),
