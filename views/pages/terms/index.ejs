@@ -1,9 +1,9 @@
 <div class="card" style="padding-top: 2%;" id="body">
     <div class="text-center bold" id="pagegrid"><h4>Term Information Page</h4>
         <form action="./terms" style="margin-top: 2%; margin-right: 2%;" id="form" name="myform">
-            <input type="button" class="btn btn-primary" value="Compare" onClick="updateTerm()"></input>
-            <input type="button" class="btn btn-success" value="Add Term" onClick="addTerm()"></input>
-            <input type="button" class="btn btn-danger" value="Delete Term" onClick="deleteTerm()"></input>
+            <input type="button" class="btn btn-primary" value="Compare" onclick="updateTerm()"></input>
+            <input type="button" class="btn btn-success" value="Add Term" onclick="addTerm()"></input>
+            <input type="button" class="btn btn-danger" value="Delete Term" onclick="deleteTerm()"></input>
         </form>
     </div>
     <label for="termSelection" class="align-middle text-center"><h5 style="margin-top: 2%;">Select the term you wish to view</h5></label>
@@ -11,17 +11,12 @@
         
         <%for(var i = 0; i < 6; i++) {%>    
         <div class="dropdown terms-term">
-            <button class="btn btn-secondary" style="width:100%; height: 200%;" type="button" id="dropdownMenuButton" data-toggle="modal" data-target="#termsModal<%=i%>" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary" style="width:100%; height: 200%;" type="button" id="userTerm<%=i%>" data-toggle="modal" data-target="#Term<%=i%>" aria-haspopup="true" aria-expanded="false">
               Spring 2022
             </button>
-            <div class="dropdown-menu" style="width: 100%; text-align: center;" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Web and Internet</a>
-              <a class="dropdown-item" href="#">English 102</a>
-              <a class="dropdown-item" href="#">Calculus 2</a>
-            </div>
           </div>
           
-        <div class="modal fade" id="termsModal<%=i%>" tabindex="-1">
+        <div class="modal fade" id="Term<%=i%>" tabindex="-1">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -40,11 +35,11 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     Close
                 </button>
+                <button class="btn btn-danger" onclick="showModal('<%=i%>')">Delete</button>
                 </div>
             </div>
             </div>
         </div>
-
         <%}%>
     </div>
 </div>
@@ -72,8 +67,8 @@
                     <span aria-hidden="true">&times;</span>
             </div>
             <div class="modal-body">
-                <button class="btn btn-success" onClick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>
-                <button class="btn btn-danger" onClick="hideModal()" data-dismiss="modal">No</button>
+                <button class="btn btn-success" onclick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>
+                <button class="btn btn-danger" onclick="hideModal()" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
