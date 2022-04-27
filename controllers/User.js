@@ -49,7 +49,7 @@ async function fetchAll(sessionToken, offset, limit) {
 
 async function deleteUser(sessionToken, userId) {
   const request = axios.create({
-    headers: { Authorization: `Bearer {$sessionToken}` },
+    headers: { Authorization: `Bearer ${sessionToken}` },
   });
   const response = await request.delete(`users/${userId}`);
   if (response.status === 200) {
@@ -68,7 +68,7 @@ async function editUser(sessionToken, id, newPermissions) {
     headers: { Authorization: `Bearer ${sessionToken}` },
   });
   console.log('hit controller');
-  const response = await request.put(`/user/${id}`, newPermissions);
+  const response = await request.put(`/users/${id}`, newPermissions);
   if (response.status === 200 || response.status === 201) {
     const userValues = deSerializeUser(response.data);
     const updatedUser = new User(userValues);

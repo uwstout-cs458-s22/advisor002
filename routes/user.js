@@ -29,22 +29,24 @@ module.exports = function () {
     }
   });
 
-  router.post('/editUser/:id', isUserLoaded, async (req, res, next) => {
-    // const currentRole = String(req.session.user.role); // might need to add role to this object
-    const requestBody = {
-      role: req.session.user.role,
-      enable: req.session.user.active,
-    };
-    try {
-      console.log('hit router');
-      const response = await User.editUser(req.session.session_token, req.params.id, requestBody);
-      res.status(response.status);
-      res.send(response);
-      // res.redirect(303, '/admin');
-    } catch (err) {
-      next(err);
-    }
-  });
+  // Probably just delete this file
+  
+  // router.post('/editUser/:id', isUserLoaded, async (req, res, next) => {
+  //   // const currentRole = String(req.session.user.role); // might need to add role to this object
+  //   const requestBody = {
+  //     role: req.session.user.role,
+  //     enable: req.session.user.active,
+  //   };
+  //   try {
+  //     console.log('hit router');
+  //     const response = await User.editUser(req.session.session_token, req.params.id, requestBody);
+  //     res.status(response.status);
+  //     res.send(response);
+  //     // res.redirect(303, '/admin');
+  //   } catch (err) {
+  //     next(err);
+  //   }
+  // });
 
   router.delete('/user/:userId', isUserLoaded, async (req, res, next) => {
     try {
