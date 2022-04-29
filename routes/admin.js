@@ -26,5 +26,32 @@ module.exports = function () {
     }
   });
 
+  router.post('/editUser/:id', isUserLoaded, async (req, res, next) => {
+    // const currentRole = String(req.session.user.role); // might need to add role to this object
+    const requestBody = {
+      role: req.body.role,
+      enable: req.body.enable,
+    };
+    try {
+      console.log('hit router');
+      console.log(req.body.role + ' ' + req.body.enable);
+      await User.editUser(req.session.session_token, req.params.id, requestBody);
+      console.log('redirec hits here');
+      res.redirect('/admin');
+    } catch (err) {
+      next(err);
+    }
+  });
+
+  router.delete('/user/:userId', isUserLoaded, async (req, res, next) => {
+    try {
+      const userID = req.session.users.userId; // this should refer to the value entered in the URL
+      await User.deleteUser(req.session.session_token, userID);
+      res.redirect('/admin');
+    } catch (err) {
+      next(err);
+    }
+  });
+
   return router;
 };

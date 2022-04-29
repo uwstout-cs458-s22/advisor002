@@ -23,7 +23,10 @@ async function create(sessionToken, userId, email) {
     log.debug(`Advisor API Success: Created (${response.status}) User ${user.id} (${user.email})`);
     return user;
   } else {
-    throw HttpError(500, `Advisor API Error ${response.status}: ${response.data.Error}`);
+    throw HttpError(
+      500,
+      `Advisor API Create User Error ${response.status}: ${response.data.Error}`
+    );
   }
 }
 
@@ -44,7 +47,53 @@ async function fetchAll(sessionToken, offset, limit) {
   }
 }
 
+async function deleteUser(sessionToken, userId) {
+  const request = axios.create({
+    headers: { Authorization: `Bearer ${sessionToken}` },
+  });
+  const response = await request.delete(`users/${userId}`);
+  if (response.status === 200) {
+    log.debug(`User: ${userId} was successfully deleted`);
+    return response;
+  } else {
+    throw HttpError(
+      500,
+      `Advisor API Delete User Error ${response.status}: ${response.data.error.message}`
+    );
+  }
+}
+
+async function editUser(sessionToken, id, permissions) {
+  const request = axios.create({
+    headers: { Authorization: `Bearer ${sessionToken}` },
+  });
+  const newPermissions = {
+    role: permissions.role,
+    enable: permissions.enable,
+    id: id,
+  };
+  console.log('hit controller');
+  // console.log(newPermissions.User.role + ' ' + newPermissions.User.enable);
+  const response = await request.put(`/users/${id}`, newPermissions);
+  console.log('Status code ' + response.status);
+  if (response.status === 200 || response.status === 201) {
+    console.log(response);
+    const userValues = deSerializeUser(response.data);
+    console.log(userValues.role + ' ' + userValues.enable);
+    const updatedUser = new User(userValues);
+    log.debug(`API Success: User: ${id} is now (${newPermissions.role}, ${newPermissions.enable})`);
+    return updatedUser;
+  } else {
+    throw HttpError(
+      500,
+      `Advisor API Edit User Error ${response.status}: ${response.data.error.message}`
+    );
+  }
+}
+
 module.exports = {
   create,
   fetchAll,
+  deleteUser,
+  editUser,
 };
