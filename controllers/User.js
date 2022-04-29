@@ -72,14 +72,9 @@ async function editUser(sessionToken, id, permissions) {
     enable: permissions.enable,
     id: id,
   };
-  console.log('hit controller');
-  // console.log(newPermissions.User.role + ' ' + newPermissions.User.enable);
   const response = await request.put(`/users/${id}`, newPermissions);
-  console.log('Status code ' + response.status);
   if (response.status === 200 || response.status === 201) {
-    console.log(response);
     const userValues = deSerializeUser(response.data);
-    console.log(userValues.role + ' ' + userValues.enable);
     const updatedUser = new User(userValues);
     log.debug(`API Success: User: ${id} is now (${newPermissions.role}, ${newPermissions.enable})`);
     return updatedUser;

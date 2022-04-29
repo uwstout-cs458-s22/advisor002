@@ -117,12 +117,11 @@
                   console.log('Something went wrong');
                 }
 
-                console.log(roleVal, activeVal);
                 const newPermissions = {
                   role: roleVal,
                   enable: activeVal,
                 };
-                console.log(newPermissions.role + ' ' + newPermissions.enable);
+
                 try {
                   const editResponse = await fetch(`/admin/editUser/${id}`, {
                     method: 'POST',
@@ -133,7 +132,7 @@
                     },
                   });
                   if (editResponse.status === 200) {
-                    console.log('wow it worked');
+                    console.log('It worked successfully');
                   }
                 } catch (err) {
                   console.log('it didnt work:' + err);
