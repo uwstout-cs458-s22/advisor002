@@ -2,6 +2,16 @@
 <html>
   <head>
     <title><%= pageTitle %></title>
+    <div class="headerBar">
+      <div class="headerLogo">
+        <img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/athletics.uwstout.edu/images/responsive_2020/logo_main.svg" alt="University of Wisconsin-Stout Logo">
+      </div>
+    </div>
+    <div class="headerTop">
+      <div class="headerTopLeft">
+        University of Wisconsin-Stout Course Advisor
+      </div>
+    </div>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -9,20 +19,20 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="/css/style.css" />
-
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=block"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="/css/style.css" />
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   </head>
 
-  <body class="container" style="margin-top: 50px;">
-    <div class="alert alert-primary d-flex align-items-center" role="alert">
+  <body style="margin-top: 250px; width: 100%;">
+    <div class="alert alert-primary d-flex align-items-center stout-colors role-alert-location " role="alert">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
       </svg>
@@ -30,10 +40,28 @@
         You are logged in as an <%= role %>.
       </div>
     </div>
-    <header>
+    <div>
       <%- include('./partials/navigation') %>
-    </header>
-    <%- include(`../pages/${group}/${template}`) %>        <%- include('./partials/scripts') %>
-  </div>
+      <%- include(`../pages/${group}/${template}`) %>
+      <%- include('./partials/scripts') %>
+    </div>
   </body>
+
+  <footer class="footer">
+    <div class="footerLogo">
+      <a class="stoutWebsiteRedirect" href="https://www.uwstout.edu/">
+        <img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/athletics.uwstout.edu/images/responsive_2020/logo_footer_edu.svg" alt="University of Wisconsin-Stout Logo">
+      </a>
+    </div>
+    <div class="footerWarning">
+      <div class="footerWarningRights">
+        <div>All imagery reserved to UW-Stout</div>
+        <div>220 13th Avenue East, Menomonie, WI 54751</div>
+      </div>
+    </div>
+    <div class="footerAuthors">
+      <div>Not an offical UW-Stout Product</div>
+      <div>Product created by students for class purposes</div>
+    </div>
+  </footer>
 </html>

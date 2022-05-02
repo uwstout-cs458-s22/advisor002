@@ -106,6 +106,23 @@ futureCourses = [{
     <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
 
     <button type="button" class="btn btn-primary" onclick="viewCourses()" id="viewBtn">
+        <button
+        id="create-course-button"
+        type="button"
+        class="btn nav-link btn-stout"
+        data-toggle="modal"
+        data-target="#create-course-modal"
+        >
+        Create Course
+      </button>
+    </li>
+  </ul>
+  <hr>
+  <button type="button" class="btn btn-primary btn-stout" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
+  
+  <button type="button" class="btn btn-primary btn-stout" onclick="showCurrent()" id="currBtn">Current Courses</button>
+  
+  <button type="button" class="btn btn-primary btn-stout" onclick="viewCourses()" id="viewBtn">
       View Courses
     </button>
   </div>
