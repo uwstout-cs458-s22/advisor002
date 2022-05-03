@@ -10,6 +10,8 @@ function deSerializeCourse(data) {
     name: data.name,
     credits: data.credits,
     section: data.section,
+    type: data.type,
+    year: data.year,
   };
 }
 

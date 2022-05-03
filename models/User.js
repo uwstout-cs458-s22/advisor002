@@ -6,6 +6,7 @@ class User {
     this.role = params.role;
     this.userId = params.userId;
     this.userMajor = params.userMajor;
+    this.year = params.year;
   }
 
   // future complex logic functions can go here
