@@ -39,7 +39,9 @@ async function deleteCourse(sessionToken, courseId) {
   const response = await request.delete(`courses/${courseId}`);
   if(response.status === 200) {
     return {
+      
       message: 'Course was deleted successfully',
+
       status: request.status
     };
   }
