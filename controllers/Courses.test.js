@@ -32,7 +32,7 @@ describe('Course controller tests', () => {
       expect(result.message).toEqual('Course was deleted successfully');
     });
   });
-
+  
   const testCourse = [
     {
       name: 'Intro Computer Science',
@@ -97,6 +97,7 @@ describe('Course controller tests', () => {
       });
       const result = await Course.createCourse('session-token', testCourse);
 
+
       expect(result.message).toEqual('Unauthorized');
     });
   });
@@ -104,7 +105,6 @@ describe('Course controller tests', () => {
   describe('editCourse tests', () => {
     test('that editCourse returns success message', async () => {
       axios.put.mockResolvedValueOnce({ status: 200 });
-
       const result = await Course.editCourse('session-token', testCourse[0]);
 
       expect(result.message).toEqual('Course Successfully Updated');
