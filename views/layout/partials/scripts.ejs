@@ -316,7 +316,8 @@
       if (element.value === '') continue;
 
       if (element.id === 'course-number') {
-        formData.section = element.value;
+        // Grab the number without prefix. ex CS-123 -> 123
+        formData.section = element.value.split('-')[1];
         continue;
       }
 

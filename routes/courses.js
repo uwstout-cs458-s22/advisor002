@@ -43,7 +43,7 @@ module.exports = function () {
         {
           name: req.body.name,
           credits: req.body.credits,
-          section: 1, // TODO: Change
+          section: req.body.section,
         },
       ];
       const response = await Course.createCourse(req.session.session_token, requestBody);
