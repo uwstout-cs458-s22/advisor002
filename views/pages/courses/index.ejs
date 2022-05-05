@@ -256,7 +256,12 @@ futureCourses = [{
                 </ul>
               </div>
               <div class="modal-footer">
-                <a type="button" onclick="deleteCourse('<%=data[i].name%>')" class="btn btn-danger">Delete Course</a>
+                <a 
+                  type="button" 
+                  href="courses/remove/<%-data[i].id%>" 
+                  onclick="return confirm('Are you sure you want to delete <%-data[i].name%>?');" 
+                  class="btn btn-danger">Delete Course
+                </a>
               </div>
             </div>
           </div>

@@ -4,15 +4,6 @@ const { deSerializeCourse } = require('../serializers/Course');
 const Course = require('../models/Course');
 const HttpError = require('http-errors');
 
-
-/*
-async function deleteCourse(sessionToken, Id) {
-  const request = axios.create({
-    headers: { Authorization: `Bearer ${sessionToken}` },
-  });
-}
-*/
-
 /*
 async function findOne(sessionToken, criteria) {
   const request = axios.create({

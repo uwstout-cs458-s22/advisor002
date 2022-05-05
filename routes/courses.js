@@ -64,7 +64,5 @@ module.exports = function () {
     }
   });
 
-  // router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {});
-
   return router;
 };
