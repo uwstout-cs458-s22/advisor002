@@ -85,6 +85,7 @@ jest.mock('../services/auth', () => {
 jest.mock('../controllers/Courses', () => {
   return {
     createCourse: jest.fn(),
+    editCourse: jest.fn(),
     findAll: jest.fn(),
   };
 });
@@ -105,6 +106,8 @@ describe('Courses Route Tests', () => {
   beforeEach(() => {
     Course.createCourse.mockReset();
     Course.createCourse.mockResolvedValue(null);
+    Course.editCourse.mockReset();
+    Course.editCourse.mockResolvedValue(null);
     Course.findAll.mockReset();
     Course.findAll.mockResolvedValue({ name: 'test-course' });
     resetMockIsUserLoaded();
@@ -123,6 +126,23 @@ describe('Courses Route Tests', () => {
       const response = await request(app).post('/courses/createCourse');
       expect(Course.createCourse.mock.calls).toHaveLength(1);
       expect(Course.createCourse.mock.calls[0][0]).toBe('thisisatoken');
+      expect(response.statusCode).toBe(500);
+    });
+  });
+
+  describe('editCourse Route', () => {
+    test('should make a call to editCourse', async () => {
+      Course.editCourse.mockResolvedValueOnce({});
+      await request(app).post('/courses/editCourse/1');
+      expect(Course.editCourse.mock.calls).toHaveLength(1);
+      expect(Course.editCourse.mock.calls[0][0]).toBe('thisisatoken');
+    });
+
+    test('editCourse throws an error', async () => {
+      Course.editCourse.mockRejectedValue(HttpError(500, 'Advisor API Error'));
+      const response = await request(app).post('/courses/editCourse/1');
+      expect(Course.editCourse.mock.calls).toHaveLength(1);
+      expect(Course.editCourse.mock.calls[0][0]).toBe('thisisatoken');
       expect(response.statusCode).toBe(500);
     });
   });

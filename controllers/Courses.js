@@ -77,9 +77,30 @@ async function createCourse(sessionToken, requestBody) {
   };
 }
 
+async function editCourse(sessionToken, requestBody, id) {
+  const request = axios.create({
+    headers: { Authorization: `Bearer ${sessionToken}` },
+  });
+  const response = await request.put(`courses/${id}`, requestBody);
+
+  if (response.status === 200) {
+    log.debug(`Advisor API Success: Updated Course`);
+    return {
+      message: 'Course Successfully Updated',
+      status: response.status,
+    };
+  }
+  log.debug(`Advisor API Error: Could not update course. Status code: ${response.status}`);
+  return {
+    message: response.data.error.message,
+    status: response.status,
+  };
+}
+
 module.exports = {
   // findOne,
   deleteCourse,
   findAll,
   createCourse,
+  editCourse
 };
