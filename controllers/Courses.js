@@ -35,13 +35,10 @@ async function deleteCourse(sessionToken, courseId) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
   });
-  log.debug(courseId);
   const response = await request.delete(`courses/${courseId}`);
   if(response.status === 200) {
     return {
-      
       message: 'Course was deleted successfully',
-
       status: request.status
     };
   }
