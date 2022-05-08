@@ -95,3 +95,13 @@ body {
   width:69%;
   height:auto;
 }
+
+#modal1{
+  top: 50px;
+  right: 50%;
+}
+
+#modal2{
+  top: 50px;
+  left: 50%;
+}

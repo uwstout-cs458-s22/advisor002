@@ -1,7 +1,27 @@
 <div class="card" style="padding-top: 2%;" id="body">
     <div class="text-center bold" id="pagegrid"><h4>Term Information Page</h4>
         <form action="./terms" style="margin-top: 2%; margin-right: 2%;" id="form" name="myform">
-            <input type="button" class="btn btn-primary" value="Compare" onclick="updateTerm()"></input>
+            <label for="termSelection" class="align-middle text-center">Select the term you wish to view</label>
+            <select name="term1" id="term1">
+                <option value=""></option>
+                <option value="Term1">Term 1</option>
+                <option value="Term2">Term 2</option>
+                <option value="Term3">Term 3</option>
+                <option value="Term4">Term 4</option>
+                <option value="Term5">Term 5</option>
+                <option value="Term6">Term 6</option>
+            </select>
+            <select name="term2" id="term2">
+                <option value=""></option>
+                <option value="Term1">Term 1</option>
+                <option value="Term2">Term 2</option>
+                <option value="Term3">Term 3</option>
+                <option value="Term4">Term 4</option>
+                <option value="Term5">Term 5</option>
+                <option value="Term6">Term 6</option>
+            </select>
+            <input type="button" class="btn btn-primary" value="Compare" onclick="compareTerms()"></input>
+            <br />
             <input type="button" class="btn btn-success" value="Add Term" onclick="addTerm()"></input>
             <input type="button" class="btn btn-danger" value="Delete Term" onclick="deleteTerm()"></input>
         </form>
@@ -43,23 +63,48 @@
         <%}%>
     </div>
 </div>
+<div class="modal fade" aria-hidden="true" id="modal1">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <h5>Spring 2022</h5>
+            <div class="close-modal-button"></div>
+        </div>
+        <div class="modal-body" id="modalContent">
+            <h6>Classes:</h6>
+            Web and Internet</br>
+            English 102</br>
+            Calculus 2</br>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal1">
+            Close
+        </button>
+        </div>
+    </div>
+</div>
 
-<script type="text/javascript">
-    let term = ''
-
-    function buildPage(starting) {
-        const oldDiv = document.getElementById('term')
-        if (starting == '') {
-            oldDiv.innerHTML = 'You do not have any terms yet, please add a term before selection'
-        } else {
-            oldDiv.innerHTML = `You are looking at information for term ${term}`
-        }
-    }
-    window.onload = buildPage(term)
-</script>
+<div class="modal fade" aria-hidden="true" id="modal2">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header ">
+            <h5>Spring 2022</h5>
+            <div class="close-modal-button"></div>
+        </div>
+        <div class="modal-body" id="modalContent">
+            <h6>Classes:</h6>
+            Web and Internet</br>
+            English 102</br>
+            Calculus 2</br>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal2">
+            Close
+        </button>
+        </div>
+    </div>
+</div>
 
 <div id="termsModal" class="modal" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitle"></h5>
@@ -73,5 +118,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function compareTerms() {
+        $("#modal1").modal('show')
+        $("#modal2").modal('show')
+    }
+</script>
 
 <%- include('./createTermModal') %>
