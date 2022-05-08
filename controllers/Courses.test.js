@@ -17,21 +17,21 @@ describe('Course controller tests', () => {
     axios.put.mockReset();
   });
 
-  describe('deleteCourses tests', () => {
-    test('if deletion of course was successful', async () => {
-      const course = 
-        {
-          id: 1,
-          courseId: 157,
-          name: 'Mathematics',
-          credits: 3,
-          section: 1
-        };
-      axios.post.mockResolvedValueOnce({ status: 201 });
-      const result = await Course.deleteCourse('session-token', course);
-      expect(result.message).toEqual('Course was deleted successfully');
-    });
-  });
+  // describe('deleteCourses tests', () => {
+  //   test('if deletion of course was successful', async () => {
+  //     const course = 
+  //       {
+  //         id: 1,
+  //         courseId: 157,
+  //         name: 'Mathematics',
+  //         credits: 3,
+  //         section: 1
+  //       };
+  //     axios.post.mockResolvedValueOnce({ status: 201 });
+  //     const result = await Course.deleteCourse('session-token', course);
+  //     expect(result.message).toEqual('Course was deleted successfully');
+  //   });
+  // });
   
   const testCourse = [
     {
