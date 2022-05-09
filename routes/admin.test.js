@@ -13,6 +13,8 @@ beforeAll(() => {
 jest.mock('../controllers/User', () => {
   return {
     fetchAll: jest.fn(),
+    editUser: jest.fn(),
+    deleteUser: jest.fn(),
   };
 });
 
@@ -75,6 +77,10 @@ describe('Admin Route Tests', () => {
   beforeEach(() => {
     User.fetchAll.mockReset();
     User.fetchAll.mockResolvedValue(null);
+    User.editUser.mockReset();
+    User.editUser.mockResolvedValue(null);
+    User.deleteUser.mockReset();
+    User.deleteUser.mockResolvedValue(null);
     resetMockIsUserLoaded();
   });
 
@@ -132,11 +138,11 @@ describe('Admin Route Tests', () => {
 
       // check the modals are being created
       for (let i = 0; i < rows.length; i++) {
-        const modal = doc.getElementById('detailModal'+i);
+        const modal = doc.getElementById('detailModal' + i);
         expect(doc.body.contains(modal)).toBe(true);
-    }
-  });
-    
+      }
+    });
+
     test('User.fetchAll thrown error', async () => {
       User.fetchAll.mockRejectedValue(HttpError(500, `Advisor API Error`));
       const response = await request(app).get('/admin');
@@ -145,6 +151,45 @@ describe('Admin Route Tests', () => {
       expect(User.fetchAll.mock.calls[0][0]).toBe('thisisatoken');
       expect(User.fetchAll.mock.calls[0][1]).toBe(0);
       expect(User.fetchAll.mock.calls[0][2]).toBe(100);
+      expect(response.statusCode).toBe(500);
+    });
+  });
+
+  describe('editUser Route', () => {
+    test('should make a call to editUser', async () => {
+      const editeduser = {
+        id: 1000,
+        role: 'user',
+        enabled: 'true',
+      };
+      User.editUser.mockResolvedValue(editeduser);
+      await request(app).post('/admin/editUser/1000');
+      expect(User.editUser.mock.calls).toHaveLength(1);
+      expect(User.editUser.mock.calls[0][0]).toBe('thisisatoken');
+    });
+
+    test('editUser throws an error', async () => {
+      User.editUser.mockRejectedValue(HttpError(500, 'Advisor API Error'));
+      const response = await request(app).post('/admin/editUser/1000');
+      expect(User.editUser.mock.calls).toHaveLength(1);
+      expect(User.editUser.mock.calls[0][0]).toBe('thisisatoken');
+      expect(User.editUser.mock.calls[0][1]).toBe('1000');
+      expect(response.statusCode).toBe(500);
+    });
+  });
+
+  describe('deleteuser Route', () => {
+    test('should make a call to deleteUser', async () => {
+      const deletedUser = {};
+      User.deleteUser.mockResolvedValue(deletedUser);
+      await request(app).delete('/admin/user/1000');
+      expect(User.editUser.mock.calls).toHaveLength(0);
+    });
+
+    test('editUser throws an error', async () => {
+      User.editUser.mockRejectedValue(HttpError(500, 'Advisor API Error'));
+      const response = await request(app).delete('/admin/user/1000');
+      expect(User.editUser.mock.calls).toHaveLength(0);
       expect(response.statusCode).toBe(500);
     });
   });
