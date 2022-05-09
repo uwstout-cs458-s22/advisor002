@@ -40,6 +40,10 @@ a:not([href]):not([tabindex]) {
   color: white;
 }
 
+#changeUserPermission {
+  display: hidden;
+}
+
 .headerBar {
   background-color: #0c233f;
   position: absolute;
