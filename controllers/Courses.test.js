@@ -137,4 +137,41 @@ describe('Course controller tests', () => {
       expect(result.message).toEqual('Unauthorized');
     });
   });
+
+  describe('addToTerm tests', () => {
+    test('addtoterm - success message', async () => {
+      const course = [
+        {
+          id: 1,
+          name: 'Intro Computer Science',
+          credits: 4,
+          section: 1,
+        },
+      ];
+      axios.put.mockResolvedValueOnce({ status: 200 });
+
+      const result = await Course.addToTerm('session-token', course, course.id);
+
+      expect(result.message).toEqual('Course Successfully Added To User Term');
+    });
+
+    test('addtoterm returns error message', async () => {
+      const course = [
+        {
+          id: 1,
+          name: 'Intro Computer Science',
+          credits: 4,
+          section: 1,
+        },
+      ];
+      axios.put.mockResolvedValueOnce({
+        status: 500,
+        data: { error: { message: 'Advisor API Error: Could not add course.' } },
+      });
+
+      const result = await Course.addToTerm('session-token', course, course.id);
+
+      expect(result.message).toEqual('Advisor API Error: Could not add course.');
+    });
+  });
 });

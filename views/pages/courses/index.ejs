@@ -85,7 +85,6 @@ futureCourses = [{
   }
 }]
 %>
-
 <div class="courses-container card">
   <div class="card-header">
 
@@ -120,97 +119,114 @@ futureCourses = [{
         <th style="width: 33%">Course Number</th>
         <th style="width: 33%">Course Name</th>
         <th style="width: 20%">Credit Amount</th>
+        <th>Course Options</th>
       </tr>
-      <% 
-    
-    for(var i = 0; i < completedCourses.length; i++) { %>
-      <tr>
-        <td><%-completedCourses[i].number%></td>
-        <td><%-completedCourses[i].name %></td>
-        <td><%-completedCourses[i].credit %></td>
-        <td>
-          <button type="button" class="btn btn-secondary" data-toggle="modal"
-            data-target="#<%-completedCourses[i].name%>Modal">
-            More
-          </button>
-        </td>
-        <div class="modal fade" id="<%-completedCourses[i].name%>Modal" tabindex="-1" role="dialog"
-          aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title"><%-completedCourses[i].name%></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <ul>
-                  Grade Letter: <%-completedCourses[i].more.grade%>
-                </ul>
-                <ul>
-                  Date: <%-completedCourses[i].more.date%>
-                </ul>
-                <ul>
-                  Category/s: <%completedCourses[i].more.category.forEach(category => {%>
+      <% for(var i=0; i < completedCourses.length; i++) { %>
+        <tr>
+          <td>
+            <%-completedCourses[i].number%>
+          </td>
+          <td>
+            <%-completedCourses[i].name %>
+          </td>
+          <td>
+            <%-completedCourses[i].credit %>
+          </td>
+          <td>
+            <button type="button" class="btn btn-info" data-toggle="modal"
+              data-target="#<%-completedCourses[i].name%>Modal">
+              More
+            </button>
+          </td>
+          <div class="modal fade" id="<%-completedCourses[i].name%>Modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">
+                    <%-completedCourses[i].name%>
+                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
                   <ul>
-                    <%-category%>
+                    Grade Letter: <%-completedCourses[i].more.grade%>
                   </ul>
-                  <%})%>
-                </ul>
+                  <ul>
+                    Date: <%-completedCourses[i].more.date%>
+                  </ul>
+                  <ul>
+                    Category/s: <%completedCourses[i].more.category.forEach(category=> {%>
+                      <ul>
+                        <%-category%>
+                      </ul>
+                      <%})%>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </tr>
-      <% } %>
+        </tr>
+        <% } %>
     </table>
     <table id="currentTable" class="table table-striped">
       <tr>
         <th style="width: 33%">Course Number</th>
         <th style="width: 33%">Course Name</th>
         <th style="width: 20%">Credit Amount</th>
+        <th>Course Options</th>
+
       </tr>
-      <% for(var i = 0; i < currentCourses.length; i++) { %>
-      <tr>
-        <td><%-currentCourses[i].number%></td>
-        <td><%-currentCourses[i].name %></td>
-        <td><%-currentCourses[i].credit %></td>
-        <td>
-          <button type="button" class="btn btn-secondary" data-toggle="modal"
-            data-target="#<%-currentCourses[i].name%>Modal">
-            More
-          </button>
-        </td>
-        <div class="modal fade" id="<%-currentCourses[i].name%>Modal" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title"><%-currentCourses[i].name%></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <ul>
-                  Grade Letter: <%-currentCourses[i].more.grade%>
-                </ul>
-                <ul>
-                  Date: <%-currentCourses[i].more.date%>
-                </ul>
-                <ul>
-                  Category/s: <%currentCourses[i].more.category.forEach(category => {%>
+      <% for(var i=0; i < currentCourses.length; i++) { %>
+        <tr>
+          <td>
+            <%-currentCourses[i].number%>
+          </td>
+          <td>
+            <%-currentCourses[i].name %>
+          </td>
+          <td>
+            <%-currentCourses[i].credit %>
+          </td>
+          <td>
+            <button type="button" class="btn btn-info" data-toggle="modal"
+              data-target="#<%-currentCourses[i].name%>Modal">
+              More
+            </button>
+          </td>
+          <div class="modal fade" id="<%-currentCourses[i].name%>Modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">
+                    <%-currentCourses[i].name%>
+                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
                   <ul>
-                    <%-category%>
+                    Grade Letter: <%-currentCourses[i].more.grade%>
                   </ul>
-                  <%})%>
-                </ul>
+                  <ul>
+                    Date: <%-currentCourses[i].more.date%>
+                  </ul>
+                  <ul>
+                    Category/s: <%currentCourses[i].more.category.forEach(category=> {%>
+                      <ul>
+                        <%-category%>
+                      </ul>
+                      <%})%>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </tr>
-      <% } %>
+        </tr>
+        <% } %>
     </table>
     <table id="viewTable" class="table table-striped">
       <tr>
@@ -220,56 +236,121 @@ futureCourses = [{
         <th>Course Section</th>
         <th>Action</th>
       </tr>
-      <% for(var i = 0; i < data.length; i++) { %>
-      <tr>
-        <td><%-data[i].id%></td>
-        <td><%-data[i].name %></td>
-        <td><%-data[i].credits %></td>
-        <td><%-data[i].section %></td>
+      <% for(var i=0; i < data.length; i++) { %>
+        <tr>
+          <td>
+            <%-data[i].id%>
+          </td>
+          <td>
+            <%-data[i].name %>
+          </td>
+          <td>
+            <%-data[i].credits %>
+          </td>
+          <td>
+            <%-data[i].section %>
+          </td>
 
-        <td>
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#<%-data[i].name%>Modal">
-            More
-          </button>
-          <button
-          type="button"
-          class="btn btn-info edit"
-          data-toggle="modal"
-          data-target="#<%-data[i].id%>-edit"
-        >
-          Edit
-        </button>
-        </td>
+          <td>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#<%-data[i].name%>Modal">
+              More
+            </button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#<%-data[i].name%>ModalAdd">
+              Add to Term
+            </button>
+            <button type="button" class="btn btn-info edit" data-toggle="modal" data-target="#<%-data[i].id%>-edit">
+              Edit
+            </button>
+          </td>
 
-        <div
-          class="modal fade"
-          id="<%-data[i].name%>Modal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
+          <div class="modal fade" id="<%-data[i].name%>Modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">
+                    <%-data[i].name%>
+                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ul>
+                    Year: Not Defined Yet
+                  </ul>
+                  <ul>
+                    Category/s:
+                    <ul>
+                      Not Defined Yet
+                    </ul>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="<%-data[i].name%>ModalAdd" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">
+                    <%-data[i].name%>
+                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form class="needs-validation" novalidate>
+                    <div>
+                      <label for="select" class="form-label">Add Class To:</label>
+                      <select class="form-select" id="select" aria-label="Default select example" name="selectTerm"
+                        required>
+                        <option selected disabled value="">Select a term</option>
+                        <option value="1">Fall Term</option>
+                        <option value="2">Winterm</option>
+                        <option value="3">Spring Term</option>
+                        <option value="4">Summer Term</option>
+                      </select>
+                      <div class="invalid-feedback">Please Select an option.</div>
+                    </div>
+
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tr>
+
+        <!-- Edit course modal -->
+        <div id="<%-data[i].id%>-edit" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title"><%-data[i].name%></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h4 class="modal-title">
+                  <%-data[i].name%>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div id='failed-edit-alert-<%-data[i].id%>' class="alert alert-danger alert-dismissible fade show"
+                role="alert" style="display:none">
+                Failed to update course.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <ul>
-                  Grade Letter: Not defined yet
-                </ul>
-                <ul>
-                  Date: Not Defined Yet
-                </ul>
-                <ul>
-                  Category/s:
-                  <ul>
-                    Not Defined Yet
-                  </ul>
-                </ul>
+              <div id='success-edit-alert-<%-data[i].id%>' class="alert alert-success alert-dismissible fade show"
+                role="alert" style="display:none">
+                Successfully updated the course.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
               <div class="modal-footer">
                 <a 
@@ -279,6 +360,34 @@ futureCourses = [{
                   class="btn btn-danger">Delete Course
                 </a>
               </div>
+              <form id='edit-course-form' data-id="<%-data[i].id%>" class="needs-validation" novalidate>
+                <div class="modal-body">
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="course-number">Course Number</label>
+                      <input type="text" class="form-control validate" id="course-number"
+                        placeholder="Course Prefix and Number" value="<%-data[i].prefix%>">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="course-name">Course Name</label>
+                      <input type="text" class="form-control validate" id="course-name" placeholder="Course Name"
+                        value="<%-data[i].name%>">
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="course-credits">Credits</label>
+                      <input type="text" class="form-control validate" id="course-credits" placeholder="Credits"
+                        value="<%-data[i].credits%>">
+                    </div>
+                  </div>
+                  <br>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary"
+                    onClick="submitCourseEditForm(this.form)">Submit</button>
+                  <button type="button" class="btn btn-danger" onClick="resetPlan();">Reset</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
