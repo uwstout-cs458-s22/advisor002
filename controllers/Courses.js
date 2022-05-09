@@ -22,23 +22,7 @@ async function findOne(sessionToken, criteria) {
   }
 }
 */
-async function deleteCourse(sessionToken, courseId) {
-  const request = axios.create({
-    headers: { Authorization: `Bearer ${sessionToken}` },
-  });
-  const response = await request.delete(`courses/${courseId}`);
-  if(response.status === 200) {
-    return {
-      message: 'Course was deleted successfully',
-      status: request.status
-    };
-  }
-  log.debug(`There was an error deleting course with status code: ${response.status}`);
-  return {
-    message: response.data.error.message,
-    status: request.status
-  };
-}
+
 async function findAll(sessionToken, criteria, limit = 100, offset = 0) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
