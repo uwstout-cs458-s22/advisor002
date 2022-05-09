@@ -47,7 +47,7 @@ describe('Manage Route Tests', () => {
       const doc = new JSDOM(response.text).window.document;
 
       // check the main navbar
-      expect(doc.querySelector('.dropdown-menu>.dropdown-item').getAttribute('href')).toBe(
+      expect(doc.querySelector('.dropdown-item').getAttribute('href')).toBe(
         '/profile'
       );
       expect(doc.querySelector('.nav-link.dropdown-toggle.active').innerHTML).toContain(

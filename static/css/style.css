@@ -157,6 +157,8 @@ body {
 .courses-container {
   display: block;
 }
+
+
 .course-input {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
@@ -182,6 +184,7 @@ body {
   height:auto;
 }
 
+
 .stout-colors {
   background-color: #0c233f;
   border-color: #0c233f;
@@ -204,11 +207,15 @@ body {
   opacity: 90%;
   color: #fff;
 }
-.modal-title {
-  color: #0c233f;
-}
+
 .role-alert-location {
   position: absolute;
   top: 50px;
   right: 0px;
 }
+
+#modal2{
+.modal-title {
+  color: #0c233f;
+}
+  
