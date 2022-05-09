@@ -39,20 +39,20 @@ async function findAll(sessionToken, criteria, limit = 100, offset = 0) {
     throw HttpError(500, `Advisor API Error ${response.status}: ${response.data.error.message}`);
   }
 }
-async function deleteCourse(sessionToken, course) {
-  const request = axios.put(`/`, {
-    body: course.id
+async function deleteCourse(sessionToken, courseId) {
+  const request = axios.create({
+    headers: { Authorization: `Bearer ${sessionToken}` },
   });
-  if(request == null) return {message: `request is null with course: ${course.id}`};
-  if(request.status === 204) {
+  const response = await request.delete(`courses/${courseId}`);
+  if(response.status === 200) {
     return {
       message: 'Course was deleted successfully',
       status: request.status
     };
   }
-  log.debug(`There was an error deleting course with status code: ${request.status}`);
+  log.debug(`There was an error deleting course with status code: ${response.status}`);
   return {
-    message: request.data.error.message,
+    message: response.data.error.message,
     status: request.status
   };
 }
