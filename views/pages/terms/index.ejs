@@ -1,8 +1,8 @@
-<div class="card" id="body">
-    <div class="text-center bold" id="pagegrid">Term Information Page
-        <form class="text-center" action="./terms" id="form" name="myform">
-         <label for="termSelection" class="align-middle text-center">Select the term you wish to view</label>
-            <select name="term" id="term">
+<div class="card" style="padding-top: 2%;" id="body">
+    <div class="text-center bold" id="pagegrid"><h4>Term Information Page</h4>
+        <form action="./terms" style="margin-top: 2%; margin-right: 2%;" id="form" name="myform">
+            <label for="termSelection" class="align-middle text-center">Select the term you wish to view</label>
+            <select name="term1" id="term1">
                 <option value=""></option>
                 <option value="Term1">Term 1</option>
                 <option value="Term2">Term 2</option>
@@ -10,12 +10,20 @@
                 <option value="Term4">Term 4</option>
                 <option value="Term5">Term 5</option>
                 <option value="Term6">Term 6</option>
-                <option value="Term7">Term 7</option>
-                <option value="Term8">Term 8</option>
             </select>
-            <input type="button" class="btn btn-primary" value="Compare" onClick="updateTerm()"></input>
-            <input type="button" class="btn btn-success" value="Add Term" onClick="addTerm()"></input>
-            <input type="button" class="btn btn-danger" value="Delete Term" onClick="deleteTerm()"></input>
+            <select name="term2" id="term2">
+                <option value=""></option>
+                <option value="Term1">Term 1</option>
+                <option value="Term2">Term 2</option>
+                <option value="Term3">Term 3</option>
+                <option value="Term4">Term 4</option>
+                <option value="Term5">Term 5</option>
+                <option value="Term6">Term 6</option>
+            </select>
+            <input type="button" class="btn btn-primary" value="Compare" onclick="compareTerms()"></input>
+            <br />
+            <input type="button" class="btn btn-success" value="Add Term" onclick="addTerm()"></input>
+            <input type="button" class="btn btn-danger" value="Delete Term" onclick="deleteTerm()"></input>
         </form>
     </div>
     <div class="terms-holder" id="Term1">
@@ -61,9 +69,85 @@
 
 
 
+    <label for="termSelection" class="align-middle text-center"><h5 style="margin-top: 2%;">Select the term you wish to view</h5></label>
+    <div class="terms-holder">
+        
+        <%for(var i = 0; i < 6; i++) {%>    
+        <div class="dropdown terms-term">
+            <button class="btn btn-secondary" style="width:100%; height: 200%;" type="button" id="userTerm<%=i%>" data-toggle="modal" data-target="#Term<%=i%>" aria-haspopup="true" aria-expanded="false">
+              Spring 2022
+            </button>
+          </div>
+          
+        <div class="modal fade" id="Term<%=i%>" tabindex="-1">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="termModalLabel">Spring 2022</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    <h6>Classes:</h6>
+                    Web and Internet</br>
+                    English 102</br>
+                    Calculus 2</br>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button class="btn btn-danger" onclick="showModal('<%=i%>')">Delete</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <%}%>
+    </div>
+</div>
+<div class="modal fade" aria-hidden="true" id="modal1">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <h5>Spring 2022</h5>
+            <div class="close-modal-button"></div>
+        </div>
+        <div class="modal-body" id="modalContent">
+            <h6>Classes:</h6>
+            Web and Internet</br>
+            English 102</br>
+            Calculus 2</br>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal1">
+            Close
+        </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" aria-hidden="true" id="modal2">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header ">
+            <h5>Spring 2022</h5>
+            <div class="close-modal-button"></div>
+        </div>
+        <div class="modal-body" id="modalContent">
+            <h6>Classes:</h6>
+            Web and Internet</br>
+            English 102</br>
+            Calculus 2</br>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal2">
+            Close
+        </button>
+        </div>
+    </div>
+</div>
 
 <div id="termsModal" class="modal" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitle"></h5>
@@ -71,15 +155,18 @@
                     <span aria-hidden="true">&times;</span>
             </div>
             <div class="modal-body">
-                <button class="btn btn-success" onClick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>
-                <button class="btn btn-danger" onClick="hideModal()" data-dismiss="modal">No</button>
+                <button class="btn btn-success" onclick="removeTerm(1)" width="10%" data-dismiss="modal">Yes</button>
+                <button class="btn btn-danger" onclick="hideModal()" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    function compareTerms() {
+        $("#modal1").modal('show')
+        $("#modal2").modal('show')
+    }
+</script>
 
-<div class="card justify-content-center">
-    Class
-</div>
 <%- include('./createTermModal') %>
