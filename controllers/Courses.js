@@ -102,7 +102,7 @@ async function addToTerm(sessionToken, requestBody, id) {
       status: response.status,
     };
   }
-  log.debug(`Advisor API Error: Could not update course. Status code: ${response.status}`);
+  log.debug(`Advisor API Error: Could not add course. Status code: ${response.status}`);
   return {
     message: response.data.error.message,
     status: response.status,
