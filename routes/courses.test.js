@@ -87,7 +87,6 @@ jest.mock('../controllers/Courses', () => {
     createCourse: jest.fn(),
     editCourse: jest.fn(),
     findAll: jest.fn(),
-    editCourse: jest.fn(),
     addToTerm: jest.fn(),
   };
 });
