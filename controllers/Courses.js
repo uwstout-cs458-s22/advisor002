@@ -47,6 +47,23 @@ async function findAll(sessionToken, criteria, limit = 100, offset = 0) {
     throw HttpError(500, `Advisor API Error ${response.status}: ${response.data.error.message}`);
   }
 }
+async function deleteCourse(sessionToken, course) {
+  const request = axios.put(`/`, {
+    body: course.id
+  });
+  if(request == null) return {message: `request is null with course: ${course.id}`};
+  if(request.status === 204) {
+    return {
+      message: 'Course was deleted successfully',
+      status: request.status
+    };
+  }
+  log.debug(`There was an error deleting course with status code: ${request.status}`);
+  return {
+    message: request.data.error.message,
+    status: request.status
+  };
+}
 
 async function createCourse(sessionToken, requestBody) {
   const request = axios.create({
@@ -90,8 +107,8 @@ async function editCourse(sessionToken, requestBody, id) {
 }
 
 module.exports = {
-  // deleteCourse,
   // findOne,
+  deleteCourse,
   findAll,
   createCourse,
   editCourse
