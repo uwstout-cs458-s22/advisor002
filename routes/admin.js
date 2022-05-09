@@ -40,9 +40,10 @@ module.exports = function () {
     }
   });
 
-  router.delete('/deleteUser/:id', isUserLoaded, async (req, res, next) => {
+  router.delete('/user/:userId', isUserLoaded, async (req, res, next) => {
     try {
-      await User.deleteUser(req.session.session_token, req.body.id);
+      const userID = req.session.users.userId; // this should refer to the value entered in the URL
+      await User.deleteUser(req.session.session_token, userID);
       res.redirect('/admin');
     } catch (err) {
       next(err);
