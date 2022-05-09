@@ -93,18 +93,20 @@ futureCourses = [{
         <a class="nav-link">Courses</a>
       </li>
       <li class="nav-pill ml-auto">
-        <button id="create-course-button" type="button" class="btn nav-link active" data-toggle="modal"
+        <button id="create-course-button" type="button" class="btn nav-link btn-stout" data-toggle="modal"
           data-target="#create-course-modal">
           Create Course
         </button>
       </li>
     </ul>
     <hr>
-    <button type="button" class="btn btn-primary" onClick="showCompleted()" id="completeBtn">Completed Courses</button>
+    <button type="button" class="btn btn-primary btn-stout" onclick="showCompleted()" id="completeBtn">Completed
+      Courses</button>
 
-    <button type="button" class="btn btn-primary" onclick="showCurrent()" id="currBtn">Current Courses</button>
+    <button type="button" class="btn btn-primary btn-stout" onclick="showCurrent()" id="currBtn">Current
+      Courses</button>
 
-    <button type="button" class="btn btn-primary" onclick="viewCourses()" id="viewBtn">
+    <button type="button" class="btn btn-primary btn-stout" onclick="viewCourses()" id="viewBtn">
       View Courses
     </button>
   </div>
@@ -349,6 +351,14 @@ futureCourses = [{
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
+              </div>
+              <div class="modal-footer">
+                <a 
+                  type="button" 
+                  href="courses/remove/<%-data[i].id%>" 
+                  onclick="return confirm('Are you sure you want to delete <%-data[i].name%>?');" 
+                  class="btn btn-danger">Delete Course
+                </a>
               </div>
               <form id='edit-course-form' data-id="<%-data[i].id%>" class="needs-validation" novalidate>
                 <div class="modal-body">

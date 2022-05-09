@@ -26,6 +26,49 @@
             <input type="button" class="btn btn-danger" value="Delete Term" onclick="deleteTerm()"></input>
         </form>
     </div>
+    <div class="terms-holder" id="Term1">
+        <%for(var i = 0; i < 6; i++) {%>
+        <div class="dropdown terms-term">
+            <button class="btn btn-secondary dropdown-toggle" style="width:100%; height: 200%;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Spring 2022
+            </button>
+            <div class="dropdown-menu" style="width: 100%; text-align: center;" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Web and Internet</a>
+              <a class="dropdown-item" href="#">English 102</a>
+              <a class="dropdown-item" href="#">Calculus 2</a>
+            </div>
+          </div>
+        <%}%>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    let term = ''
+
+    function buildPage(starting) {
+        const oldDiv = document.getElementById('term')
+        if (starting == '') {
+            oldDiv.innerHTML = 'You do not have any terms yet, please add a term before selection'
+        } else {
+            oldDiv.innerHTML = `You are looking at information for term ${term}`
+        }
+    }
+    window.onload = buildPage(term)
+</script>
+
+
+<div class="card-header">
+    <button id="add-plan-button" type="button" class="btn nav-link active" data-toggle="modal" data-target="#termModal">
+        Create Term </button>
+    <div id="testingDiv"></div>
+</div>
+
+<div class="text-center bold">Terms</div>
+</div>
+
+
+
     <label for="termSelection" class="align-middle text-center"><h5 style="margin-top: 2%;">Select the term you wish to view</h5></label>
     <div class="terms-holder">
         

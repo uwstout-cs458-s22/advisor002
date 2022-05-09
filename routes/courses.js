@@ -23,11 +23,11 @@ module.exports = function () {
     log.info(`${req.method} ${req.originalUrl} success: rendering course page`);
   });
 
-  router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {
+  router.get('/remove/:id', isUserLoaded, async (req, res, next) => {
     try{
-      log.info(`here is the requested id: ${res.params.id}`);
+      log.info(`here is the requested id: ${req.params.id}`);
       Course.deleteCourse(req.session.session_token, req.params.id);
-      
+      return res.redirect('/courses');
     }
     catch (error){
       next(error);
@@ -35,8 +35,10 @@ module.exports = function () {
   })
   router.get('/:courseId', isUserLoaded, async (req, res, next) => {
     try {
-      const courseId = req.session.courses.courseId;
-      const criteria = ' where courseId =' + courseId;
+     
+      const courseId = req.params.courseId;
+      
+      const criteria = ' where id =' + courseId;
       const courses = await Course.findAll({ criteria: criteria });
       log.info(`${req.method} ${req.originalUrl} success: returning courses ${courseId}`);
       return res.send(courses);
