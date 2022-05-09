@@ -24,15 +24,13 @@ module.exports = function () {
   });
 
   router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {
-    try{
+    try {
       log.info(`here is the requested id: ${res.params.id}`);
       Course.deleteCourse(req.session.session_token, req.params.id);
-      
-    }
-    catch (error){
+    } catch (error) {
       next(error);
     }
-  })
+  });
   router.get('/:courseId', isUserLoaded, async (req, res, next) => {
     try {
       const courseId = req.session.courses.courseId;
@@ -97,6 +95,6 @@ module.exports = function () {
     }
   });
   */
- 
+
   return router;
 };

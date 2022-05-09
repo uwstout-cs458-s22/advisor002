@@ -2,7 +2,6 @@ const axios = require('axios');
 const log = require('loglevel');
 const Course = require('./Courses');
 
-
 jest.mock('axios');
 
 beforeAll(() => {
@@ -19,7 +18,7 @@ describe('Course controller tests', () => {
 
   // describe('deleteCourses tests', () => {
   //   test('if deletion of course was successful', async () => {
-  //     const course = 
+  //     const course =
   //       {
   //         id: 1,
   //         courseId: 157,
@@ -32,7 +31,7 @@ describe('Course controller tests', () => {
   //     expect(result.message).toEqual('Course was deleted successfully');
   //   });
   // });
-  
+
   const testCourse = [
     {
       name: 'Intro Computer Science',
@@ -65,7 +64,12 @@ describe('Course controller tests', () => {
     test('findall -no records returned', async () => {
       const courses = [];
       axios.get.mockResolvedValueOnce({ status: 200, data: courses });
-      const result = await Course.findAll('mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q', '', 0, 100);
+      const result = await Course.findAll(
+        'mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q',
+        '',
+        0,
+        100
+      );
       expect(axios.get).toHaveBeenCalledWith('courses?criteria=');
       expect(result).toHaveLength(0);
     });
@@ -80,7 +84,7 @@ describe('Course controller tests', () => {
       ).rejects.toThrow('Advisor API Error 500: Internal Server Error');
       expect(axios.get).toHaveBeenCalledWith('courses?criteria=');
     });
-  });  
+  });
 
   describe('createCourse tests', () => {
     test('that createCourse returns success message', async () => {
@@ -96,7 +100,6 @@ describe('Course controller tests', () => {
         data: { error: { message: 'Unauthorized' } },
       });
       const result = await Course.createCourse('session-token', testCourse);
-
 
       expect(result.message).toEqual('Unauthorized');
     });

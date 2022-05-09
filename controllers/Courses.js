@@ -49,19 +49,19 @@ async function findAll(sessionToken, criteria, limit = 100, offset = 0) {
 }
 async function deleteCourse(sessionToken, course) {
   const request = axios.put(`/`, {
-    body: course.id
+    body: course.id,
   });
-  if(request == null) return {message: `request is null with course: ${course.id}`};
-  if(request.status === 204) {
+  if (request == null) return { message: `request is null with course: ${course.id}` };
+  if (request.status === 204) {
     return {
       message: 'Course was deleted successfully',
-      status: request.status
+      status: request.status,
     };
   }
   log.debug(`There was an error deleting course with status code: ${request.status}`);
   return {
     message: request.data.error.message,
-    status: request.status
+    status: request.status,
   };
 }
 
@@ -132,5 +132,5 @@ module.exports = {
   findAll,
   createCourse,
   editCourse,
-  addToTerm
+  addToTerm,
 };
