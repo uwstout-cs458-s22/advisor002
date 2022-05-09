@@ -71,6 +71,7 @@ module.exports = function () {
     }
   });
 
+  /*
   router.post('/addToTerm/:id', isUserLoaded, async (req, res, next) => {
     try {
       const id = req.params.id;
@@ -87,6 +88,7 @@ module.exports = function () {
       next(error);
     }
   });
+  */
 
   // router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {});
 
