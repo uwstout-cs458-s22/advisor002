@@ -59,15 +59,34 @@
                     Major: Computer Science <br />
                     Graduation Year: 2022 <br />
                   </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- edit user modal-->
+            <div class="modal fade" id="editUserModal<%=i%>" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel"><%=data[i].email%></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                   <div class="modal-body" id="changeUserPermission" aria-hidden="true">
                     <h4 class="editUserModalText">Select Role:</h4>
                     <input
                       type="radio"
-                      id="superAdmin"
+                      id="director"
                       name="role"
-                      value="admin"
+                      value="director"
                     /><!-- change this to what higher than admin level is -->
-                    <label for="superAdmin">Super Admin</label><br />
+                    <label for="director">Director</label><br />
                     <input type="radio" id="admin" name="role" value="admin" />
                     <label for="admin">Admin</label><br />
                     <input type="radio" id="user" name="role" value="user" checked="checked" />
@@ -139,17 +158,6 @@
                 }
               }
 
-              function editUserPopup() {
-                $('#modalContent').hide();
-                $('#changeUserPermission').show();
-              }
-
-              function viewUserPopup(){
-                $('#modalContent').show();
-                $('#changeUserPermission').hide();
-              }
-
-
               async function deleteUserPopup(id) {
                 if (confirm('Are You sure you want to delete this user?')) {
                   // delete the user of idNum
@@ -175,15 +183,13 @@
               data-toggle="modal"
               data-target="#detailModal<%=i%>"
               id="viewButton<%i%>"
-              onclick="viewUserPopup()"
               >View</a
             >
             <a
               class="btn btn-secondary edit"
               data-toggle="modal"
-              data-target="#detailModal<%=i%>"
+              data-target="#editUserModal<%=i%>"
               id="editButton<%i%>"
-              onclick="editUserPopup()"
               >Edit</a
             >
             <a class="btn btn-danger delete" onclick="deleteUserPopup('<%=data[i].id%>')">Delete</a>
