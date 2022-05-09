@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <% for(var i = 0; i< data.length; i++) { %>
-        <tr>
+        <tr id="row<%= data[i].id %>">
           <th scope="row" class="align-middle"><%= data[i].id %></th>
           <td class="align-middle">
             <% if (data[i].enable) { %>
@@ -59,11 +59,43 @@
                     Major: Computer Science <br />
                     Graduation Year: 2022 <br />
                   </div>
+                  <div class="modal-body" id="changeUserPermission" aria-hidden="true">
+                    <h4>Select Role:</h4>
+                    <input
+                      type="radio"
+                      id="superAdmin"
+                      name="role"
+                      value="admin"
+                    /><!-- change this to what higher than admin level is -->
+                    <label for="superAdmin">Super Admin</label><br />
+                    <input type="radio" id="admin" name="role" value="admin" />
+                    <label for="admin">Admin</label><br />
+                    <input type="radio" id="user" name="role" value="user" checked="checked" />
+                    <label for="user">User</label><br />
+
+                    <br />
+                    <h4>Active Status:</h4>
+                    <input type="radio" id="enabled" name="active" value="true" />
+                    <label for="enabled">Enable</label><br />
+                    <input
+                      type="radio"
+                      id="disabled"
+                      name="active"
+                      value="false"
+                      checked="checked"
+                    />
+                    <label for="disabled">Disable</label><br />
+                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                       Close
                     </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-dismiss="modal"
+                      onclick="submitUserEdits('<%=data[i].id%>')"
+                    >
                       Complete
                     </button>
                   </div>
@@ -71,20 +103,83 @@
               </div>
             </div>
 
+            <!-- Script for editing and deleting users -->
+            <script>
+              async function submitUserEdits(id) {
+                var roleVal, activeVal;
+                if (
+                  document.querySelector('input[name="role"]:checked').value &&
+                  document.querySelector('input[name="active"]:checked').value
+                ) {
+                  roleVal = document.querySelector('input[name="role"]:checked').value;
+                  activeVal = document.querySelector('input[name="active"]:checked').value;
+                } else {
+                  console.log('Something went wrong');
+                }
+
+                const newPermissions = {
+                  role: roleVal,
+                  enable: activeVal,
+                };
+
+                try {
+                  const editResponse = await fetch(`/admin/editUser/${id}`, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    body: JSON.stringify(newPermissions),
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  });
+                  if (editResponse.status === 200) {
+                    console.log('It worked successfully');
+                  }
+                } catch (err) {
+                  console.log('it didnt work:' + err);
+                }
+              }
+
+              function editUserPopup() {
+                $('#modalContent').hide();
+                $('#changeUserPermission').show();
+              }
+
+              async function deleteUserPopup(id) {
+                if (confirm('Are You sure you want to delete this user?')) {
+                  // delete the user of idNum
+                  const deleteResponse = await delete (`/admin/deleteUser/${id}`,
+                  {
+                    method: 'DELETE',
+                    credentials: 'same-origin',
+                    body: JSON.stringify(id),
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  });
+                  document.getElementById('row' + id).remove();
+                } else {
+                  // do nothing
+                }
+              }
+            </script>
+
             <a
+              href="#"
               class="btn btn-info"
               data-toggle="modal"
               data-target="#detailModal<%=i%>"
               id="viewButton<%i%>"
               >View</a
             >
-            <a class="btn btn-secondary edit" href="../users/edit/<%=data[i].id%>">Edit</a>
             <a
-              class="btn btn-danger delete"
-              onclick="return alert('Are You sure?')"
-              href="../users/delete/<%=data[i].id%>"
-              >Delete</a
+              class="btn btn-secondary edit"
+              data-toggle="modal"
+              data-target="#detailModal<%=i%>"
+              id="editButton<%i%>"
+              onclick="editUserPopup()"
+              >Edit</a
             >
+            <a class="btn btn-danger delete" onclick="deleteUserPopup('<%=data[i].id%>')">Delete</a>
           </td>
         </tr>
         <% } %>

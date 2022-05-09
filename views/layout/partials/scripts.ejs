@@ -142,20 +142,21 @@
       $('#completedTable').hide();
       $('#currentTable').show();
       $('#viewTable').hide();
-    }
+    };
     showCompleted = () => {
       $('#completedTable').show();
       $('#currentTable').hide();
       $('#viewTable').hide();
-    }
+    };
     viewCourses = () => {
       $('#completedTable').hide();
       $('#currentTable').hide();
       $('#viewTable').show();
-    }
-  })
-
+    };
+  });
 </script>
+
+<!-- Major Compare Scripts -->
 <script type="text/javascript">
   let studentMajor = '';
   const oldDiv = document.getElementById('major');
@@ -191,11 +192,49 @@
   }
 </script>
 
+<!-- Term Scripts -->
+<script type="text/javascript">
+  const currentTermDiv = document.getElementById('termSelection');
+  const comparedTermDiv = document.getElementById('termCompare');
+  const termButton = document.createElement('input');
 
-<!-- Create Course Validation -->
+  let termSelection = '';
+
+  // TODO: Find a way to switch which term is deleted.
+  //       The user should have the option to delete either term comparison options.
+  function termComparison(termDiv, termInformation) {
+    if (termInformation != '') {
+      currentTermDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+
+      newButton.setAttribute('class', 'align-self-end btn btn-primary');
+      newButton.setAttribute('value', 'Remove This Term');
+      newButton.setAttribute('id', 'fixedbutton');
+      newButton.setAttribute('onClick', 'newTermLayout()');
+      term = termInformation;
+      comparedTermDiv.setAttribute('class', 'card text-left col-sm justify-content-center');
+      comparedTermDiv.innerHTML = `You are currently looking at term ${termInformation}`;
+      comparedTermDiv.appendChild(newButton);
+    }
+  }
+
+  function newTermLayout() {
+    currentTermDiv.innerHTML = `You are currently looking at term ${termInformation}`;
+    currentTermDiv.class = 'align-items-center justify-content-center';
+    comparedTermDiv.removeAttribute('class');
+    comparedTermDiv.removeChild(newButton);
+    comparedTermDiv.innerHTML = null;
+  }
+
+  function updateTerm() {
+    var select = document.getElementById('term');
+    var value = select.options[select.selectedIndex].text;
+    termComparison('comparedTermDiv', value);
+  }
+</script>
+
+<!-- Course Form Validation -->
 <script>
   function validateCourseForm(form) {
-    form.reportValidity();
     elements = form.elements;
 
     let isValid = true;
@@ -223,6 +262,9 @@
       // Empty string means no errors
       element.setCustomValidity('');
     }
+
+    form.reportValidity();
+
     return isValid;
   }
 </script>
@@ -310,6 +352,68 @@
         },
       });
       if (res.status === 201) {
+        successAlert.style.display = 'block';
+      } else {
+        errorAlert.style.display = 'block';
+      }
+    } catch (e) {
+      errorAlert.style.display = 'block';
+    }
+  }
+</script>
+
+<!-- Edit course -->
+<script>
+  async function submitCourseEditForm(form) {
+    const courseId = $(form).data('id');
+    // Hides messages from previous course submissions, so that the new one will be displayed
+    const errorAlert = document.getElementById(`failed-edit-alert-${courseId}`);
+    const successAlert = document.getElementById(`success-edit-alert-${courseId}`);
+    errorAlert.style.display = 'none';
+    successAlert.style.display = 'none';
+
+    const isValid = validateCourseForm(form);
+
+    if (!isValid) return;
+
+    const formData = {
+      name: null,
+      credits: null,
+      section: null,
+    };
+    elements = form.elements;
+
+    // Turn the form data into an JS object
+    for (const element of elements) {
+      // Skips blank values
+      if (element.value === '') continue;
+
+      if (element.id === 'course-number') {
+        formData.section = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-name') {
+        formData.name = element.value;
+        continue;
+      }
+
+      if (element.id === 'course-credits') {
+        formData.credits = element.value;
+        continue;
+      }
+    }
+
+    try {
+      const editResponse = await fetch(`/courses/editCourse/${courseId}`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (editResponse.status === 200) {
         successAlert.style.display = 'block';
       } else {
         errorAlert.style.display = 'block';
