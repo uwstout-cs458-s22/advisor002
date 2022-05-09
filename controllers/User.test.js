@@ -167,7 +167,6 @@ describe('User controller tests', () => {
 
   describe('user delete tests', () => {
     test('user - valid delete', async () => {
-      
       axios.delete.mockResolvedValueOnce({ status: 200 });
       const result = await User.deleteUser('mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q', '1111');
 
@@ -215,12 +214,12 @@ describe('User controller tests', () => {
         data: { error: { message: 'Internal Server Error' } },
       });
       await expect(
-         User.editUser('mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q', '1111', {
+        User.editUser('mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q', '1111', {
           role: 'user',
           enable: false,
         })
       ).rejects.toThrow('Advisor API Edit User Error 500: Internal Server Error');
-    }); 
+    });
     // end of describe
   });
 });
