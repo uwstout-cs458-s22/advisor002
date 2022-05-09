@@ -5,14 +5,6 @@ const Course = require('../models/Course');
 const HttpError = require('http-errors');
 
 /*
-async function deleteCourse(sessionToken, Id) {
-  const request = axios.create({
-    headers: { Authorization: `Bearer ${sessionToken}` },
-  });
-}
-*/
-
-/*
 async function findOne(sessionToken, criteria) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
@@ -106,10 +98,31 @@ async function editCourse(sessionToken, requestBody, id) {
   };
 }
 
+async function addToTerm(sessionToken, requestBody, id) {
+  const request = axios.create({
+    headers: { Authorization: `Bearer ${sessionToken}` },
+  });
+  const response = await request.put(`users/${id}`, requestBody);
+
+  if (response.status === 200) {
+    log.debug(`Advisor API Success: Added Course To User Term`);
+    return {
+      message: 'Course Successfully Added To User Term',
+      status: response.status,
+    };
+  }
+  log.debug(`Advisor API Error: Could not add course. Status code: ${response.status}`);
+  return {
+    message: response.data.error.message,
+    status: response.status,
+  };
+}
+
 module.exports = {
   // findOne,
   deleteCourse,
   findAll,
   createCourse,
-  editCourse
+  editCourse,
+  addToTerm
 };

@@ -87,6 +87,7 @@ jest.mock('../controllers/Courses', () => {
     createCourse: jest.fn(),
     editCourse: jest.fn(),
     findAll: jest.fn(),
+    addToTerm: jest.fn(),
   };
 });
 
@@ -110,6 +111,10 @@ describe('Courses Route Tests', () => {
     Course.editCourse.mockResolvedValue(null);
     Course.findAll.mockReset();
     Course.findAll.mockResolvedValue({ name: 'test-course' });
+    Course.editCourse.mockReset();
+    Course.editCourse.mockResolvedValue(null);
+    Course.addToTerm.mockReset();
+    Course.addToTerm.mockResolvedValue(null);
     resetMockIsUserLoaded();
   });
 
