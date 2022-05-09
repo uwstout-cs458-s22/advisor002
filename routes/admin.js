@@ -33,10 +33,7 @@ module.exports = function () {
       enable: req.body.enable,
     };
     try {
-      console.log('hit router');
-      console.log(req.body.role + ' ' + req.body.enable);
       await User.editUser(req.session.session_token, req.params.id, requestBody);
-      console.log('redirec hits here');
       res.redirect('/admin');
     } catch (err) {
       next(err);
