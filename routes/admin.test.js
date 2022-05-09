@@ -187,9 +187,9 @@ describe('Admin Route Tests', () => {
     });
 
     test('editUser throws an error', async () => {
-      User.editUser.mockRejectedValue(HttpError(500, 'Advisor API Error'));
+      User.deleteUser.mockRejectedValue(HttpError(500, 'Advisor API Error'));
       const response = await request(app).delete('/admin/user/1000');
-      expect(User.editUser.mock.calls).toHaveLength(0);
+      expect(User.deleteUser.mock.calls).toHaveLength(0);
       expect(response.statusCode).toBe(500);
     });
   });
