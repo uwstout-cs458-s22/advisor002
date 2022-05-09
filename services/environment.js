@@ -8,5 +8,5 @@ module.exports = {
   stytchSecret: process.env.STYTCH_SECRET,
   stytchEnv: process.env.STYTCH_ENV || 'https://test.stytch.com/v1/',
   sessionSecret: process.env.SESSION_SECRET,
-  sessionDuration: process.env.SESSION_DURATION || 60,
+  sessionDuration: process.env.SESSION_DURATION || 6000,
 };

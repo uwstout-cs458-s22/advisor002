@@ -23,7 +23,16 @@ module.exports = function () {
     log.info(`${req.method} ${req.originalUrl} success: rendering course page`);
   });
 
-  /*
+  router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {
+    try{
+      log.info(`here is the requested id: ${res.params.id}`);
+      Course.deleteCourse(req.session.session_token, req.params.id);
+      
+    }
+    catch (error){
+      next(error);
+    }
+  })
   router.get('/:courseId', isUserLoaded, async (req, res, next) => {
     try {
       const courseId = req.session.courses.courseId;
@@ -35,7 +44,6 @@ module.exports = function () {
       next(error);
     }
   });
-  */
 
   router.post('/createCourse', isUserLoaded, async (req, res, next) => {
     try {
@@ -89,8 +97,6 @@ module.exports = function () {
     }
   });
   */
-
-  // router.delete('/remove/:id', isUserLoaded, async (req, res, next) => {});
-
+ 
   return router;
 };
