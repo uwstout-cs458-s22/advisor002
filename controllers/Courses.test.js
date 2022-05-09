@@ -31,7 +31,6 @@ describe('Course controller tests', () => {
   //     expect(result.message).toEqual('Course was deleted successfully');
   //   });
   // });
-
   const testCourse = [
     {
       name: 'Intro Computer Science',
@@ -154,8 +153,27 @@ describe('Course controller tests', () => {
         status: 500,
         data: { error: { message: 'Advisor API Error: Could not edit course.' } },
       });
+      const result = await Course.createCourse('session-token', testCourse);
 
-      const result = await Course.editCourse('session-token', course, course.id);
+
+      expect(result.message).toEqual('Unauthorized');
+    });
+  });
+
+  describe('editCourse tests', () => {
+    test('that editCourse returns success message', async () => {
+      axios.put.mockResolvedValueOnce({ status: 200 });
+      const result = await Course.editCourse('session-token', testCourse[0]);
+
+      expect(result.message).toEqual('Course Successfully Updated');
+    });
+
+    test('that editCourse returns error message', async () => {
+      axios.put.mockResolvedValueOnce({
+        status: 500,
+        data: { error: { message: 'Unauthorized' } },
+      });
+      const result = await Course.editCourse('session-token', testCourse[0]);
 
       expect(result.message).toEqual('Advisor API Error: Could not edit course.');
     });
