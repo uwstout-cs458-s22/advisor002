@@ -16,5 +16,5 @@ function deSerializeCourse(data) {
 }
 
 module.exports = {
-  deSerializeCourse,
+  deSerializeCourse
 };

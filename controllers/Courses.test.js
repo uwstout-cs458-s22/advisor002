@@ -14,9 +14,32 @@ describe('Course controller tests', () => {
   beforeEach(() => {
     axios.get.mockReset();
     axios.post.mockReset();
+    axios.put.mockReset();
   });
 
-
+  // describe('deleteCourses tests', () => {
+  //   test('if deletion of course was successful', async () => {
+  //     const course = 
+  //       {
+  //         id: 1,
+  //         courseId: 157,
+  //         name: 'Mathematics',
+  //         credits: 3,
+  //         section: 1
+  //       };
+  //     axios.post.mockResolvedValueOnce({ status: 201 });
+  //     const result = await Course.deleteCourse('session-token', course);
+  //     expect(result.message).toEqual('Course was deleted successfully');
+  //   });
+  // });
+  
+  const testCourse = [
+    {
+      name: 'Intro Computer Science',
+      credits: 4,
+      section: 1,
+    },
+  ];
   describe('fetchAll tests', () => {
     test('fetchAll - happy path test', async () => {
       const testCourses = [
@@ -61,34 +84,38 @@ describe('Course controller tests', () => {
 
   describe('createCourse tests', () => {
     test('that createCourse returns success message', async () => {
-      const course = [
-        {
-          name: 'Intro Computer Science',
-          credits: 4,
-          section: 1,
-        },
-      ];
       axios.post.mockResolvedValueOnce({ status: 201 });
-
-      const result = await Course.createCourse('session-token', course);
+      const result = await Course.createCourse('session-token', testCourse);
 
       expect(result.message).toEqual('Course Successfully Created');
     });
 
     test('that createCourse returns error message', async () => {
-      const course = [
-        {
-          name: 'Intro Computer Science',
-          credits: 4,
-          section: 1,
-        },
-      ];
       axios.post.mockResolvedValueOnce({
         status: 500,
         data: { error: { message: 'Unauthorized' } },
       });
+      const result = await Course.createCourse('session-token', testCourse);
 
-      const result = await Course.createCourse('session-token', course);
+
+      expect(result.message).toEqual('Unauthorized');
+    });
+  });
+
+  describe('editCourse tests', () => {
+    test('that editCourse returns success message', async () => {
+      axios.put.mockResolvedValueOnce({ status: 200 });
+      const result = await Course.editCourse('session-token', testCourse[0]);
+
+      expect(result.message).toEqual('Course Successfully Updated');
+    });
+
+    test('that editCourse returns error message', async () => {
+      axios.put.mockResolvedValueOnce({
+        status: 500,
+        data: { error: { message: 'Unauthorized' } },
+      });
+      const result = await Course.editCourse('session-token', testCourse[0]);
 
       expect(result.message).toEqual('Unauthorized');
     });
