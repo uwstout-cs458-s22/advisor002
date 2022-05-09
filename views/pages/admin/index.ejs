@@ -10,7 +10,7 @@
       <li class="nav-pill active">
         <a class="nav-link">Users</a>
       </li>
-      <li class="nav-pill ml-auto ">
+      <li class="nav-pill ml-auto">
         <a class="nav-link stout-colors" href="/users/add">Add User</a>
       </li>
     </ul>
@@ -60,7 +60,7 @@
                     Graduation Year: 2022 <br />
                   </div>
                   <div class="modal-body" id="changeUserPermission" aria-hidden="true">
-                    <h4>Select Role:</h4>
+                    <h4 id="editUserModalText">Select Role:</h4>
                     <input
                       type="radio"
                       id="superAdmin"
@@ -74,7 +74,7 @@
                     <label for="user">User</label><br />
 
                     <br />
-                    <h4>Active Status:</h4>
+                    <h4 id="editUserModalText">Active Status:</h4>
                     <input type="radio" id="enabled" name="active" value="true" />
                     <label for="enabled">Enable</label><br />
                     <input

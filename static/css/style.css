@@ -32,6 +32,14 @@ a {
   height: 5%;
 }
 
+.editUserModalText {
+  color: darkblue;
+}
+
+a:not([href]):not([tabindex]) {
+  color: white;
+}
+
 .headerBar {
   background-color: #0c233f;
   position: absolute;
@@ -63,9 +71,9 @@ a {
   max-width: 205px;
 }
 
-.headerLogo img{
+.headerLogo img {
   width: 100%;
-  transition: .25s;
+  transition: 0.25s;
   width: 205px;
   position: absolute;
   top: 40px;
@@ -91,11 +99,11 @@ header .navbar-brand {
 }
 
 .footerLogo img {
-max-width: 200px;
-width: 50%;
-display: block;
-margin-left: auto;
-margin-right: auto;
+  max-width: 200px;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footerWarning {
@@ -170,16 +178,16 @@ body {
   display: block;
   margin-left: auto;
   margin-top: auto;
-  width:80%;
-  height:100%;
+  width: 80%;
+  height: 100%;
 }
-.terms-term{
+.terms-term {
   margin-top: 1%;
   margin-bottom: 1%;
   display: flex;
   justify-content: center;
-  width:69%;
-  height:auto;
+  width: 69%;
+  height: auto;
 }
 
 .stout-colors {
@@ -194,7 +202,7 @@ body {
 
 .btn-stout {
   background-color: #0c233f;
-  border:#fff;
+  border: #fff;
   color: #fff;
 }
 
