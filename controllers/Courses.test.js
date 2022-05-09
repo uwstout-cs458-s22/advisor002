@@ -15,6 +15,7 @@ describe('Course controller tests', () => {
     axios.get.mockReset();
     axios.post.mockReset();
     axios.put.mockReset();
+    axios.delete.mockReset();
   });
 
   describe('deleteCourses tests', () => {
