@@ -51,7 +51,7 @@ async function deleteUser(sessionToken, id) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
   });
-  const response = await request.delete(`users/${id}`);
+  const response = await request.delete(`/users/${id}`);
   if (response.status === 200) {
     log.debug(`User: ${id} was successfully deleted`);
     return response;

@@ -40,7 +40,7 @@ module.exports = function () {
     }
   });
 
-  router.delete('/user/:id', isUserLoaded, async (req, res, next) => {
+  router.delete('/deleteUser/:id', isUserLoaded, async (req, res, next) => {
     try {
       await User.deleteUser(req.session.session_token, req.body.id);
       res.redirect('/admin');
