@@ -162,4 +162,42 @@ describe('User controller tests', () => {
       expect(axios.post).toHaveBeenCalledWith('users', {});
     });
   });
+
+  describe('edit user tests', () => {
+    test('edit - valid edit', async () => {
+      const userEdit = {
+        // Test edit user values
+        id: 1111,
+        enable: false,
+        role: 'user',
+      };
+
+      axios.put.mockResolvedValueOnce({ data: userEdit, status: 200 });
+      const result = await User.editUser('mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q', '1111', {
+        role: 'user',
+        enable: false,
+      });
+
+      expect(axios.put).toHaveBeenCalledWith('/users/1111', {
+        enable: false,
+        id: '1111',
+        role: 'user',
+      });
+      expect(result).toEqual(userEdit);
+    });
+
+    /*  test('edit - failed edit with error', async () => {
+      axios.put.mockResolvedValueOnce({
+        status: 500,
+        data: { error: { status: 500, message: 'Internal Database Error' } },
+      });
+      await expect(
+        await User.editUser('mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q', '1111', {
+          role: 'user',
+          enable: false,
+        })
+      ).rejects.toThrow('Advisor API Edit User Error 500: Internal Server Error');
+    }); */
+    // end of describe
+  });
 });
