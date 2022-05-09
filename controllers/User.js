@@ -47,13 +47,13 @@ async function fetchAll(sessionToken, offset, limit) {
   }
 }
 
-async function deleteUser(sessionToken, userId) {
+async function deleteUser(sessionToken, id) {
   const request = axios.create({
     headers: { Authorization: `Bearer ${sessionToken}` },
   });
-  const response = await request.delete(`users/${userId}`);
+  const response = await request.delete(`users/${id}`);
   if (response.status === 200) {
-    log.debug(`User: ${userId} was successfully deleted`);
+    log.debug(`User: ${id} was successfully deleted`);
     return response;
   } else {
     throw HttpError(
